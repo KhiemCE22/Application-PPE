@@ -1,0 +1,14 @@
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/yolo_inference.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/edit_cache.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/rebuild_cache.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/list_install_components.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/install.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/install/local.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/CMakeFiles/install/strip.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/zenohpico_shared.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/edit_cache.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/rebuild_cache.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/list_install_components.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/install.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/install/local.dir
+/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/CMakeFiles/install/strip.dir

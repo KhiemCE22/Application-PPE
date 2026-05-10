@@ -1,0 +1,2 @@
+Mode: FILE+Display
+Model: /home/minhpi/Desktop/EdgeVisionRT-main/models/PPE_model/model.ncnn.param

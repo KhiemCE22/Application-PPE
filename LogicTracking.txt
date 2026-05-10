@@ -1,0 +1,152 @@
+
+        /*======================= TRACKING & PPE LOGIC WITH OC-SORT ===============================*/
+        std::vector<std::vector<float>> objects_to_track_ocsort; // Data container for OC-SORT
+        std::vector<yolo::Detection> ppe_detections;
+        std::vector<yolo::Detection> final_detections; // Stores final results for display/output
+
+        // 1. Classify Bounding Boxes
+        for (int i = 0; i < result.count; i++) {
+            auto& det = result.detections[i];
+            
+            if (det.class_id == 5) { 
+                // Class 5: Person - Prepare object array for OC-SORT algorithm
+                // Format required by Vector2Matrix: [x1, y1, x2, y2, confidence, class_id]
+                objects_to_track_ocsort.push_back({
+                    det.x1, det.y1, det.x2, det.y2, 
+                    det.confidence, static_cast<float>(det.class_id)
+                });
+            } else if (det.class_id <= 4 || det.class_id == 7) { 
+                // Filter PPE related classes 
+                // (0: Hardhat, 1: Mask, 2: NO-Hardhat, 3: NO-Mask, 4: NO-Safety Vest, 7: Safety Vest)
+                ppe_detections.push_back(det);
+                final_detections.push_back(det); // Keep PPE boxes for the rendering thread
+            }
+        }
+
+        // 2. Run OC-SORT exclusively for "Person" class to save CPU cycles
+        std::vector<Eigen::RowVectorXf> output_stracks;
+        if (!objects_to_track_ocsort.empty()) {
+            output_stracks = tracker.update(Vector2Matrix(objects_to_track_ocsort));
+        } else {
+            // Important: Pass an empty matrix to OC-SORT to update the Kalman filters
+            // and increase the 'age' of currently lost tracks when no person is detected.
+            output_stracks = tracker.update(Eigen::Matrix<float, 0, 6>());
+        }
+
+        // 3. Associate PPE via IoA and Apply Temporal Voting
+        // TIMING PARAMETERS: Tuned for ~9 FPS performance on Raspberry Pi 5
+        int window_size = 5;       // Observation window (~0.55 seconds at 9 FPS)
+        int voting_threshold = 3;  // Warn if violation occurs in >= 3 frames within the window
+
+        // Iterate through the tracked objects returned by OC-SORT
+        for (auto& track : output_stracks) {
+            yolo::Detection tracked_person;
+            
+            // Map OC-SORT Eigen vector output back to standard x1, y1, x2, y2 format
+            // OC-SORT output format: [x1, y1, x2, y2, track_id, class_id, confidence]
+            tracked_person.x1 = track[0];
+            tracked_person.y1 = track[1];
+            tracked_person.x2 = track[2];
+            tracked_person.y2 = track[3];
+            
+            int tid = static_cast<int>(track[4]);         // Extract Track ID
+            tracked_person.class_id = 5;                  // Force class ID back to 5 (Person)
+            tracked_person.confidence = track[6];         // Extract tracking confidence
+
+            // Initialize temporal state for a newly detected track ID
+            if (active_workers.find(tid) == active_workers.end()) {
+                active_workers[tid] = WorkerState{tid, {}, {}, false, 0};
+            }
+            auto& state = active_workers[tid];
+            state.consecutive_misses = 0; // Reset miss counter since the ID is present in this frame
+
+            // Flags to record the PPE status in the CURRENT frame
+            int current_hardhat = -1; 
+            int current_vest = -1;
+
+            // ------------------------------------------------------------------------
+            // HEURISTIC BBOX EXPANSION
+            // ------------------------------------------------------------------------
+            float person_height = tracked_person.y2 - tracked_person.y1;
+            
+            // Expand the top of the bounding box by 15% to catch the hardhat 
+            // even if the person's bbox from YOLO is cut off at the forehead.
+            float expanded_head_y1 = std::max(0.0f, tracked_person.y1 - (person_height * 0.15f));
+            
+            // Associate PPE with this person using IoA
+            for(const auto& ppe : ppe_detections) {
+                
+                // For Hardhat / NO-Hardhat: Use the EXPANDED bounding box for IoA calculation
+                if (ppe.class_id == 0 || ppe.class_id == 2) {
+                    float ioa = calculate_ioa(ppe.x1, ppe.y1, ppe.x2, ppe.y2, 
+                                              tracked_person.x1, expanded_head_y1, 
+                                              tracked_person.x2, tracked_person.y2);
+                    if (ioa > 0.6f) { 
+                        if (ppe.class_id == 0) current_hardhat = 1;      // Hardhat detected
+                        else if (ppe.class_id == 2) current_hardhat = 0; // NO-Hardhat detected
+                    }
+                }
+                // For Safety Vest / NO-Safety Vest: Use the ORIGINAL bounding box
+                else if (ppe.class_id == 7 || ppe.class_id == 4) {
+                    float ioa = calculate_ioa(ppe.x1, ppe.y1, ppe.x2, ppe.y2, 
+                                              tracked_person.x1, tracked_person.y1, 
+                                              tracked_person.x2, tracked_person.y2);
+                    if (ioa > 0.6f) {
+                        if (ppe.class_id == 7) current_vest = 1;         // Safety Vest detected
+                        else if (ppe.class_id == 4) current_vest = 0;    // NO-Safety Vest detected
+                    }
+                }
+            }
+
+            // 4. Update Sliding Window History
+            state.hardhat_history.push_back(current_hardhat);
+            if (state.hardhat_history.size() > static_cast<size_t>(window_size)) {
+                state.hardhat_history.pop_front();
+            }
+
+            state.vest_history.push_back(current_vest);
+            if (state.vest_history.size() > static_cast<size_t>(window_size)) {
+                state.vest_history.pop_front();
+            }
+
+            // Calculate Votes based on historical frames
+            int no_hardhat_votes = 0; // int no_vest_votes = 0;
+            for (int v : state.hardhat_history) if (v == 0) no_hardhat_votes++;
+            // for (int v : state.vest_history) if (v == 0) no_vest_votes++;
+
+            // 5. Final Violation Decision
+            // Flag violation if negative votes exceed threshold
+            bool missing_hardhat = (no_hardhat_votes >= voting_threshold);
+            
+            // Note: You can easily add missing_vest logic here if needed:
+            // bool missing_vest = (no_vest_votes >= voting_threshold);
+            
+            state.is_violating = missing_hardhat; // || missing_vest;
+
+            // Encode the track_id and violation status into the class_id for the BBoxRenderer.
+            // Offset by 1000 to avoid conflicts with YOLO's base classes (0-9).
+            // Use a negative value to trigger the RED warning box.
+            tracked_person.class_id = state.is_violating ? -(tid + 1000) : (tid + 1000); 
+            
+            // Push the processed person back to the rendering queue
+            final_detections.push_back(tracked_person);
+        }
+
+        // 6. Cleanup stale IDs to prevent memory leaks in the active_workers map
+        for (auto it = active_workers.begin(); it != active_workers.end(); ) {
+            it->second.consecutive_misses++;
+            // Tuned for 9 FPS: Remove if not seen for 9 consecutive frames (~1 second)
+            if (it->second.consecutive_misses > 9) { 
+                it = active_workers.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        // 7. Overwrite the original inference result structure with our processed detections
+        int max_write = std::min((int)final_detections.size(), MAX_DETECTIONS);
+        for (int i = 0; i < max_write; i++) {
+            result.detections[i] = final_detections[i];
+        }
+        result.count = max_write;
+        /*============================================================================*/

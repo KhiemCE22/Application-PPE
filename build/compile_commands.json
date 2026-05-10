@@ -1,0 +1,914 @@
+[
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/main.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/main.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/main.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/neon_preprocess.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/neon_preprocess.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/neon_preprocess.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/neon_preprocess.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/input_pipeline.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/input_pipeline.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/input_pipeline.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/input_pipeline.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/inference_engine.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/inference_engine.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/inference_engine.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/inference_engine.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/postprocess.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/postprocess.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/postprocess.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/postprocess.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/benchmark.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/benchmark.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/benchmark.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/benchmark.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/bytetrack/BYTETracker.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/BYTETracker.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/BYTETracker.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/bytetrack/BYTETracker.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/bytetrack/STrack.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/STrack.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/STrack.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/bytetrack/STrack.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/bytetrack/kalmanFilter.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/kalmanFilter.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/kalmanFilter.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/bytetrack/kalmanFilter.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/bytetrack/lapjv.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/lapjv.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/lapjv.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/bytetrack/lapjv.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/bytetrack/utils.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/utils.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/bytetrack/utils.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/bytetrack/utils.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/ocsort/OCSort.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/ocsort/OCSort.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/ocsort/OCSort.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/ocsort/OCSort.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/ocsort/KalmanBoxTracker.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/ocsort/KalmanBoxTracker.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/ocsort/KalmanBoxTracker.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/ocsort/KalmanBoxTracker.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/ocsort/KalmanFilter.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/ocsort/KalmanFilter.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/ocsort/KalmanFilter.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/ocsort/KalmanFilter.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/ocsort/Association.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/ocsort/Association.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/ocsort/Association.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/ocsort/Association.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/ocsort/lapjv.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/ocsort/lapjv.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/ocsort/lapjv.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/ocsort/lapjv.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/c++ -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=c++17 -fPIE -fopenmp -pthread -o CMakeFiles/yolo_inference.dir/src/ocsort/Utilities.cpp.o -c /home/pi/AI/EdgeVisionRT-tracking/src/ocsort/Utilities.cpp",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/ocsort/Utilities.cpp",
+  "output": "CMakeFiles/yolo_inference.dir/src/ocsort/Utilities.cpp.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/aarch64-linux-gnu -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include -isystem /usr/include/orc-0.4 -O3 -DNDEBUG -fPIC -pthread -x assembler-with-cpp -o CMakeFiles/yolo_inference.dir/src/asm_kernels.S.o -c /home/pi/AI/EdgeVisionRT-tracking/src/asm_kernels.S",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/src/asm_kernels.S",
+  "output": "CMakeFiles/yolo_inference.dir/src/asm_kernels.S.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/admin_space.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/admin_space.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/admin_space.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/admin_space.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/advanced_publisher.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/advanced_publisher.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/advanced_publisher.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/advanced_publisher.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/advanced_subscriber.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/advanced_subscriber.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/advanced_subscriber.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/advanced_subscriber.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/api.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/api.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/api.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/api.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/connectivity.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/connectivity.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/connectivity.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/connectivity.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/encoding.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/encoding.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/encoding.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/encoding.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/liveliness.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/liveliness.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/liveliness.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/liveliness.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/api/serialization.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/serialization.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/api/serialization.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/api/serialization.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/advanced_cache.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/advanced_cache.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/advanced_cache.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/advanced_cache.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/arc_slice.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/arc_slice.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/arc_slice.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/arc_slice.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/atomic.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/atomic.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/atomic.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/atomic.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/bytes.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/bytes.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/bytes.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/bytes.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/fifo.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/fifo.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/fifo.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/fifo.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/fifo_mt.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/fifo_mt.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/fifo_mt.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/fifo_mt.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/hashmap.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/hashmap.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/hashmap.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/hashmap.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/lifo.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/lifo.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/lifo.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/lifo.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/list.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/list.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/list.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/list.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/lru_cache.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/lru_cache.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/lru_cache.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/lru_cache.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/refcount.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/refcount.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/refcount.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/refcount.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/ring.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/ring.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/ring.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/ring.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/ring_mt.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/ring_mt.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/ring_mt.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/ring_mt.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/slice.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/slice.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/slice.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/slice.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/sortedmap.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/sortedmap.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/sortedmap.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/sortedmap.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/string.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/string.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/string.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/string.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/sync_group.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/sync_group.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/sync_group.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/sync_group.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/collections/vec.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/vec.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/collections/vec.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/collections/vec.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/config.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/config.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/config.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/config.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/encoding.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/encoding.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/encoding.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/encoding.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/filtering.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/filtering.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/filtering.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/filtering.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/liveliness.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/liveliness.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/liveliness.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/liveliness.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/logger.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/logger.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/logger.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/logger.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/matching.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/matching.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/matching.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/matching.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/memory.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/memory.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/memory.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/memory.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/primitives.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/primitives.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/primitives.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/primitives.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/query.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/query.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/query.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/query.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/reply.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/reply.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/reply.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/reply.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/sample.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/sample.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/sample.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/sample.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/session.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/session.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/session.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/session.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/net/subscribe.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/subscribe.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/net/subscribe.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/net/subscribe.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/core.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/core.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/core.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/core.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/declarations.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/declarations.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/declarations.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/declarations.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/ext.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/ext.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/ext.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/ext.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/interest.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/interest.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/interest.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/interest.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/message.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/message.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/message.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/message.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/network.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/network.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/network.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/network.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/serial.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/serial.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/serial.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/serial.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/codec/transport.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/transport.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/codec/transport.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/codec/transport.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/config.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/config.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/config.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/config.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/core.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/core.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/core.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/core.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/declarations.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/declarations.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/declarations.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/declarations.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/interest.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/interest.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/interest.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/interest.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/message.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/message.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/message.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/message.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/network.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/network.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/network.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/network.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/transport.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/transport.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/definitions/transport.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/definitions/transport.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/ext.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/ext.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/ext.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/ext.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/protocol/iobuf.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/iobuf.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/protocol/iobuf.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/protocol/iobuf.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/runtime/background_executor.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/runtime/background_executor.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/runtime/background_executor.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/runtime/background_executor.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/runtime/executor.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/runtime/executor.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/runtime/executor.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/runtime/executor.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/cancellation.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/cancellation.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/cancellation.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/cancellation.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/interest.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/interest.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/interest.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/interest.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/keyexpr.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/keyexpr.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/keyexpr.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/keyexpr.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/liveliness.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/liveliness.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/liveliness.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/liveliness.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/loopback.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/loopback.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/loopback.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/loopback.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/push.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/push.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/push.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/push.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/query.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/query.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/query.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/query.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/queryable.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/queryable.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/queryable.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/queryable.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/reply.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/reply.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/reply.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/reply.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/resource.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/resource.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/resource.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/resource.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/rx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/rx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/rx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/rx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/scout.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/scout.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/scout.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/scout.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/subscription.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/subscription.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/subscription.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/subscription.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/session/utils.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/utils.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/session/utils.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/session/utils.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/system/common/platform.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/system/common/platform.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/system/common/platform.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/system/common/platform.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/common/lease.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/lease.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/lease.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/common/lease.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/common/read.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/read.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/read.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/common/read.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/common/rx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/rx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/rx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/common/rx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/common/transport.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/transport.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/transport.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/common/transport.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/common/tx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/tx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/common/tx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/common/tx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/manager.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/manager.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/manager.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/manager.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/multicast.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/multicast.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/multicast/lease.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/lease.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/lease.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/multicast/lease.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/multicast/read.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/read.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/read.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/multicast/read.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/multicast/rx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/rx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/rx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/multicast/rx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/multicast/transport.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/transport.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/multicast/transport.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/multicast/transport.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/peer.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/peer.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/peer.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/peer.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/raweth/link.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/link.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/link.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/raweth/link.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/raweth/read.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/read.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/read.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/raweth/read.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/raweth/rx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/rx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/rx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/raweth/rx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/raweth/tx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/tx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/raweth/tx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/raweth/tx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/transport.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/transport.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/transport.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/transport.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/unicast.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/unicast.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/unicast/accept.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/accept.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/accept.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/unicast/accept.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/unicast/lease.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/lease.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/lease.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/unicast/lease.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/unicast/read.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/read.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/read.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/unicast/read.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/unicast/rx.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/rx.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/rx.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/unicast/rx.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/unicast/transport.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/transport.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/unicast/transport.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/unicast/transport.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/transport/utils.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/utils.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/transport/utils.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/transport/utils.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/checksum.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/checksum.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/checksum.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/checksum.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/encoding.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/encoding.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/encoding.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/encoding.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/json_encoder.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/json_encoder.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/json_encoder.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/json_encoder.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/pointers.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/pointers.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/pointers.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/pointers.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/query_params.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/query_params.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/query_params.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/query_params.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/string.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/string.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/string.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/string.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/time_range.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/time_range.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/time_range.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/time_range.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/utils/uuid.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/uuid.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/utils/uuid.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/utils/uuid.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/config/bt.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/bt.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/bt.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/config/bt.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/config/serial.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/serial.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/serial.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/config/serial.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/config/tcp.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/tcp.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/tcp.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/config/tcp.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/config/tls.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/tls.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/tls.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/config/tls.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/config/udp.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/udp.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/udp.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/config/udp.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/config/ws.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/ws.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/config/ws.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/config/ws.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/multicast/bt.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/multicast/bt.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/multicast/bt.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/multicast/bt.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/multicast/udp.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/multicast/udp.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/multicast/udp.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/multicast/udp.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/common/address.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/common/address.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/common/address.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/common/address.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/common/endpoints.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/common/endpoints.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/common/endpoints.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/common/endpoints.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/unicast/serial.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/serial.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/serial.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/unicast/serial.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/unicast/tcp.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/tcp.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/tcp.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/unicast/tcp.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/unicast/tls.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/tls.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/tls.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/unicast/tls.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/unicast/udp.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/udp.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/udp.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/unicast/udp.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/unicast/ws.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/ws.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/unicast/ws.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/unicast/ws.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/link.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/link.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/link.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/link.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/endpoint.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/endpoint.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/endpoint.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/endpoint.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/tcp/address.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/tcp/address.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/tcp/address.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/tcp/address.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/address.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/address.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/address.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/address.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/upper/serial_protocol.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/upper/serial_protocol.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/upper/serial_protocol.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/upper/serial_protocol.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/upper/tls_stream.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/upper/tls_stream.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/upper/tls_stream.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/upper/tls_stream.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/system/unix/system.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/system/unix/system.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/system/unix/system.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/system/unix/system.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/system/unix/network.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/system/unix/network.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/system/unix/network.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/system/unix/network.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/raweth_unix.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/raweth_unix.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/raweth_unix.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/raweth_unix.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/tcp/tcp_posix.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/tcp/tcp_posix.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/tcp/tcp_posix.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/tcp/tcp_posix.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/udp_posix.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/udp_posix.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/udp_posix.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/udp_posix.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/serial/tty_posix.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/serial/tty_posix.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/serial/tty_posix.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/serial/tty_posix.c.o"
+},
+{
+  "directory": "/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico",
+  "command": "/usr/bin/cc -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX -DZ_BUILD_LOG=0 -Dzenohpico_shared_EXPORTS -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -O3 -DNDEBUG -march=armv8.2-a+fp16+dotprod -mtune=cortex-a76 -Wall -Wextra -Wpedantic -Wshadow -Wnull-dereference -Wformat=2 -Wno-unused-parameter -O3 -ffast-math -DNDEBUG -std=gnu11 -fPIC -pipe -O3 -o CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/udp_multicast_posix.c.o -c /home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/udp_multicast_posix.c",
+  "file": "/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/src/link/transport/udp/udp_multicast_posix.c",
+  "output": "zenoh-pico/CMakeFiles/zenohpico_shared.dir/src/link/transport/udp/udp_multicast_posix.c.o"
+}
+]

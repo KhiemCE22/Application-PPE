@@ -1,0 +1,2 @@
+ ./run.sh rtsp "rtsp://khacdausaomaitayninh:minhnhattran2004@192.168.1.222:554/stream1" display
+./run.sh rtsp "rtsp://192.168.1.13:8554/live_ppe" display

@@ -1,0 +1,7 @@
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/yolo_inference.dir
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/edit_cache.dir
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/rebuild_cache.dir
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/list_install_components.dir
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/install.dir
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/install/local.dir
+/home/minhpi/Desktop/EdgeVisionRT-main/newbuild/CMakeFiles/install/strip.dir
