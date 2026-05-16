@@ -64,6 +64,13 @@ public:
      * @return Error code
      */
     ErrorCode infer(const __fp16* input_data, DetectionResult& result);
+    /**
+     * @brief Run inference on preprocessed input
+     * @param input_data FP16 tensor in CHW layout (3x640x640)
+     * @param result Output detection result
+     * @return Error code
+     */
+    ErrorCode infer_fp16(const __fp16* input_data, DetectionResult& result);
 
     /**
      * @brief OPTIMIZED: Run inference with FP32 input directly

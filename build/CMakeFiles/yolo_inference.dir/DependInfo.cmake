@@ -30,7 +30,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "/usr/include/opencv4"
   "/usr/include/eigen3"
   "/home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn"
-  "/usr/include/aarch64-linux-gnu"
+  "/usr/local/include"
   "/usr/include/gstreamer-1.0"
   "/usr/include/glib-2.0"
   "/usr/lib/aarch64-linux-gnu/glib-2.0/include"

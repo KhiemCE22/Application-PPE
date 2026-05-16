@@ -143,7 +143,8 @@ void print_usage(const char* program) {
         << "  --fb             Enable framebuffer display\n"
         << "  --vulkan         Use Vulkan GPU backend\n"
         << "  --int8           Use INT8 quantization\n"
-        << "  --verbose        Verbose logging\n";
+        << "  --verbose        Verbose logging\n"
+        << "  --rtsp    IP     Video stream through RTSP sever\n";       
 }
 
 bool parse_options(int argc, char* argv[], Options& opts) {
@@ -164,6 +165,7 @@ bool parse_options(int argc, char* argv[], Options& opts) {
         {"cam-id",       required_argument, 0, 'k'},
         {"router",       required_argument, 0, 'r'},
         {"help",         no_argument,       0, 'h'},
+        {"rtsp",         required_argument, 0, 'R'},
         {0, 0, 0, 0}
     };
 
@@ -186,6 +188,7 @@ bool parse_options(int argc, char* argv[], Options& opts) {
             case 'V': opts.verbose      = true;                     break;
             case 'k': opts.cam_id       = optarg;                   break;
             case 'r': opts.router_ip    = optarg;                   break;
+            case 'R': opts.mode = "rtsp";opts.device = optarg;      break;
             case 'h': print_usage(argv[0]); exit(0);
             default: break;
         }
@@ -336,6 +339,7 @@ int run_inference_pipeline(const Options& opts) {
     }
     std::cout << "[INIT] Model loaded. Warming up...\n";
     engine.warmup(10);
+    bool use_zenoh = false;
 
     // ------------------------------------------------------------------
     // 3. Input pipeline
@@ -345,12 +349,21 @@ int run_inference_pipeline(const Options& opts) {
     InputPipeline pipeline;
     {
         InputPipeline::Config cfg;
-        cfg.source      = (opts.mode == "camera")
-                          ? InputSource::CAMERA_V4L2
-                          : InputSource::VIDEO_FILE;
-        cfg.device_path = opts.device;
+        if (opts.mode == "camera") {
+            cfg.source = InputSource::CAMERA_V4L2;
+            cfg.device_path = opts.device;
+        } else if (opts.mode == "rtsp") { // <--- Add check
+            cfg.source = InputSource::RTSP_STREAM;
+            cfg.device_path = opts.device;
+        } else {
+            cfg.source = InputSource::VIDEO_FILE;
+            cfg.device_path = opts.device;
+            cfg.loop_video = opts.output_video.empty();  // Don't loop if saving video
+        }
+
         cfg.width       = INPUT_WIDTH;
         cfg.height      = INPUT_HEIGHT;
+        cfg.fps         = 30;
         if (pipeline.initialize(cfg) != ErrorCode::SUCCESS) {
             std::cerr << "[FATAL] Failed to initialize input pipeline!\n";
             return 1;
@@ -370,12 +383,18 @@ int run_inference_pipeline(const Options& opts) {
         zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_MODE_KEY,    "client");
         if (z_open(&z_session, z_config_move(&z_cfg), NULL) < 0) {
             std::cerr << "[FATAL] Zenoh connection failed to " << ep << "\n";
-            return 1;
-        }
+	    use_zenoh = false;
+            //return 1;
+        } else {
+	    use_zenoh = true;
+	}
     }
-    zp_start_read_task(z_session_loan_mut(&z_session), NULL);
-    zp_start_lease_task(z_session_loan_mut(&z_session), NULL);
-    std::cout << "[INIT] Zenoh session open.\n";
+    if (use_zenoh){
+        zp_start_read_task(z_session_loan_mut(&z_session), NULL);
+        zp_start_lease_task(z_session_loan_mut(&z_session), NULL);
+        std::cout << "[INIT] Zenoh session open.\n";
+    }
+
 
     // ------------------------------------------------------------------
     // 5. Declare publishers
@@ -387,12 +406,13 @@ int run_inference_pipeline(const Options& opts) {
     const std::string t_ev_image  = base + "/events/image";  // [FIX-2] topic riêng
     const std::string t_image     = base + "/image";
     const std::string t_count     = base + "/count";
-
-    if (!declare_publisher(pub_stats,        t_stats))    return 1;
-    if (!declare_publisher(pub_events,       t_events))   return 1;
-    if (!declare_publisher(pub_events_image, t_ev_image)) return 1;  // [FIX-2]
-    if (!declare_publisher(pub_image,        t_image))    return 1;
-    if (!declare_publisher(pub_count,        t_count))    return 1;
+    if (use_zenoh){
+	    if (!declare_publisher(pub_stats,        t_stats))    return 1;
+	    if (!declare_publisher(pub_events,       t_events))   return 1;
+	    if (!declare_publisher(pub_events_image, t_ev_image)) return 1;  // [FIX-2]
+	    if (!declare_publisher(pub_image,        t_image))    return 1;
+	    if (!declare_publisher(pub_count,        t_count))    return 1;
+    }
 
     // ------------------------------------------------------------------
     // 6. Tracker & ROI
@@ -497,7 +517,9 @@ int run_inference_pipeline(const Options& opts) {
                     ++factory_in_count;
                     state.counted_in = true;
                     std::string val = std::to_string(factory_in_count);
-                    zenoh_publish_str(pub_count, val);
+		    if (use_zenoh){
+                    	zenoh_publish_str(pub_count, val);
+		    }
                     std::cout << "[COUNT] IN: " << factory_in_count << "\n";
                 }
             }
@@ -546,16 +568,19 @@ int run_inference_pipeline(const Options& opts) {
 
                 if (!state.event_sent) {
                     // [FIX-2] Metadata JSON — không nhúng ảnh vào đây
-                    std::string ev_json =
-                        "{\"id\":\"WK" + std::to_string(tid) +
-                        "\",\"type\":\"NO_PPE\""
-                        ",\"location\":\"" + opts.cam_id + "\""
-                        ",\"timestamp\":" +
-                        std::to_string(std::chrono::duration_cast<
-                            std::chrono::milliseconds>(
-                            now.time_since_epoch()).count()) +
-                        "}";
-                    zenoh_publish_str(pub_events, ev_json);
+		    if (use_zenoh){
+			    
+                        std::string ev_json =
+                            "{\"id\":\"WK" + std::to_string(tid) +
+                            "\",\"type\":\"NO_PPE\""
+                            ",\"location\":\"" + opts.cam_id + "\""
+                            ",\"timestamp\":" +
+                            std::to_string(std::chrono::duration_cast<
+                                std::chrono::milliseconds>(
+                                now.time_since_epoch()).count()) +
+                            "}";
+                        zenoh_publish_str(pub_events, ev_json);
+		    }
 
                     // [FIX-2] Ảnh crop worker → topic riêng → raw JPEG
                     cv::Mat raw(frame.height, frame.width,
@@ -568,7 +593,7 @@ int run_inference_pipeline(const Options& opts) {
                     roi &= cv::Rect(0, 0, frame.width, frame.height);
 
                     auto jpeg = encode_jpeg(raw(roi), 75);
-                    if (!jpeg.empty()) {
+                    if (!jpeg.empty() && use_zenoh) {
                         // Thêm worker ID vào topic để backend biết ảnh của ai
                         // factory/cam1/events/image  (backend dùng metadata từ
                         // /events để ghép, hoặc dùng Zenoh attachment nếu cần)
@@ -594,17 +619,19 @@ int run_inference_pipeline(const Options& opts) {
                 ? 100.f
                 : (1.f - (float)current_violations
                          / (float)active_workers.size()) * 100.f;
+	    if (use_zenoh){
 
-            std::string s_json =
-                "{\"cam_id\":\"" + opts.cam_id + "\""
-                ",\"total\":"      + std::to_string(active_workers.size()) +
-                ",\"violations\":" + std::to_string(current_violations) +
-                ",\"compliance\":" + std::to_string(compliance) +
-                ",\"in\":"         + std::to_string(factory_in_count) +
-                ",\"out\":"        + std::to_string(factory_out_count) +
-                "}";
-            zenoh_publish_str(pub_stats, s_json);
-            std::cout << "[ZENOH] Stats: " << s_json << "\n";
+		    std::string s_json =
+			"{\"cam_id\":\"" + opts.cam_id + "\""
+			",\"total\":"      + std::to_string(active_workers.size()) +
+			",\"violations\":" + std::to_string(current_violations) +
+			",\"compliance\":" + std::to_string(compliance) +
+			",\"in\":"         + std::to_string(factory_in_count) +
+			",\"out\":"        + std::to_string(factory_out_count) +
+			"}";
+		    zenoh_publish_str(pub_stats, s_json);
+		    std::cout << "[ZENOH] Stats: " << s_json << "\n";
+	    }
             last_stats_time = now;
         }
 
@@ -617,7 +644,7 @@ int run_inference_pipeline(const Options& opts) {
             cv::resize(raw, thumb, cv::Size(SNAPSHOT_WIDTH, SNAPSHOT_HEIGHT));
 
             auto jpeg = encode_jpeg(thumb, SNAPSHOT_QUALITY);
-            if (!jpeg.empty()) {
+            if (!jpeg.empty() && use_zenoh) {
                 zenoh_publish_bytes(pub_image, jpeg.data(), jpeg.size());
                 std::cout << "[ZENOH] Snapshot sent: "
                           << jpeg.size() << " bytes\n";
@@ -650,12 +677,14 @@ int run_inference_pipeline(const Options& opts) {
     // 11. Cleanup
     // ------------------------------------------------------------------
     std::cout << "[SHUTDOWN] Cleaning up...\n";
-    z_publisher_drop(z_publisher_move(&pub_stats));
-    z_publisher_drop(z_publisher_move(&pub_events));
-    z_publisher_drop(z_publisher_move(&pub_events_image));
-    z_publisher_drop(z_publisher_move(&pub_image));
-    z_publisher_drop(z_publisher_move(&pub_count));
-    z_session_drop(z_session_move(&z_session));
+    if (use_zenoh){
+	    z_publisher_drop(z_publisher_move(&pub_stats));
+	    z_publisher_drop(z_publisher_move(&pub_events));
+	    z_publisher_drop(z_publisher_move(&pub_events_image));
+	    z_publisher_drop(z_publisher_move(&pub_image));
+	    z_publisher_drop(z_publisher_move(&pub_count));
+	    z_session_drop(z_session_move(&z_session));
+    }
     neon::cleanup_preprocess_buffers();
     std::cout << "[SHUTDOWN] Done.\n";
     return 0;

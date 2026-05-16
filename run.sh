@@ -18,23 +18,40 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="${SCRIPT_DIR}/build"
 BINARY="${BUILD_DIR}/yolo_inference"
 #VIDEO="${SCRIPT_DIR}/video/input/PPE_Part1.mp4"
-#VIDEO="${SCRIPT_DIR}/video/input/realistic_cctv.mp4"
-VIDEO="${SCRIPT_DIR}/video/input/192_168_2_202_seq_0.mp4"
+#VIDEO="${SCRIPT_DIR}/video/input/MOT17-02-SDP.mp4"
+#VIDEO="${SCRIPT_DIR}/video/input/192_168_2_202_seq_0.mp4"
+VIDEO="${SCRIPT_DIR}/video/input/gemini_1.mp4"
 # =================================================================
 # MODEL PATHS (RESTORED TO ORIGINAL DEFAULT)
 # =================================================================
 
 # Default: FP32 model
-PARAM="${SCRIPT_DIR}/models/PPE_model/ori-640.ncnn.param"
-BIN="${SCRIPT_DIR}/models/PPE_model/ori-640.ncnn.bin"
+#PARAM="${SCRIPT_DIR}/models/PPE_model/model.ncnn.param"
+#BIN="${SCRIPT_DIR}/models/PPE_model/model.ncnn.bin"
+
+#PARAM="${SCRIPT_DIR}/models/benchmarkYolov8n/FP16model.ncnn.param"
+#BIN="${SCRIPT_DIR}/models/benchmarkYolov8n/FP16model.ncnn.bin"
+
+#PARAM="${SCRIPT_DIR}/models/benchmarkYolov8n/ORI-FP32-model.ncnn.param"
+#BIN="${SCRIPT_DIR}/models/benchmarkYolov8n/ORI-FP32-model.ncnn.bin"
+
+PARAM="${SCRIPT_DIR}/models/kaggle/working/best_ncnn_model/model.ncnn.param"
+BIN="${SCRIPT_DIR}/models/kaggle/working/best_ncnn_model/model.ncnn.bin"
+
+
 
 # INT8 model paths
-PARAM_INT8="${SCRIPT_DIR}/models/yolov8n_ncnn_model/model.int8.param"
-BIN_INT8="${SCRIPT_DIR}/models/yolov8n_ncnn_model/model.int8.bin"
+PARAM_INT8="${SCRIPT_DIR}/models/PPE_model/khiem.int8.param"
+BIN_INT8="${SCRIPT_DIR}/models/PPE_model/khiem.int8.bin"
 
 # FP16 model paths
-PARAM_FP16="${SCRIPT_DIR}/models/PPE_model/model3.ncnn.param"
-BIN_FP16="${SCRIPT_DIR}/models/PPE_model/model3.ncnn.bin"
+#PARAM_FP16="${SCRIPT_DIR}/models/PPE_model/model3.ncnn.param"
+#BIN_FP16="${SCRIPT_DIR}/models/PPE_model/model3.ncnn.bin"
+#PARAM="${SCRIPT_DIR}/models/PPE_model/ori-640.ncnn.param"
+#BIN="${SCRIPT_DIR}/models/PPE_model/ori-640.ncnn.bin"
+PARAM_FP16="${SCRIPT_DIR}/models/benchmarkYolov8n/ORI-FP32-model.param"
+BIN_FP16="${SCRIPT_DIR}/models/benchmarkYolov8n/ORI-FP32-model.bin"
+
 
 # =================================================================
 

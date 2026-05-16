@@ -118,6 +118,9 @@ ErrorCode InferenceEngine::initialize(const Config& config) {
         net_->opt.use_fp16_packed = config.use_fp16;
         net_->opt.use_fp16_storage = config.use_fp16;
         net_->opt.use_fp16_arithmetic = config.use_fp16;
+
+	if (config.use_fp16)
+	   std::cout<<"DEBUG: TURN ON FP16"<<std::endl;
     }
     
     net_->opt.blob_allocator = blob_pool_allocator_;
@@ -228,6 +231,7 @@ ErrorCode InferenceEngine::infer_fp32(const float* input_data, DetectionResult& 
         num_proposals,
         num_channels
     );
+
     
     // Decode outputs
     result.count = decode_yolov8_output(
@@ -282,7 +286,83 @@ ErrorCode InferenceEngine::infer(const __fp16* input_data, DetectionResult& resu
     
     return infer_fp32(fp32_input.get(), result);
 }
+ErrorCode InferenceEngine::infer_fp16(const __fp16* input_data, DetectionResult& result) {
+    if (!initialized_) {
+        return ErrorCode::MODEL_LOAD_FAILED;
+    }
 
+    result.count = 0;
+
+    // NCNN Mat từ FP16 data (CHW: 3 x MODEL_SIZE x MODEL_SIZE)
+    // elemsize = 2 bytes (__fp16)
+    ncnn::Mat input(MODEL_SIZE, MODEL_SIZE, 3, (void*)input_data, (size_t)2u);
+
+    ncnn::Extractor ex = net_->create_extractor();
+    ex.set_light_mode(config_.light_mode);
+
+    ex.input(input_name_.c_str(), input);
+
+    ncnn::Mat output;
+    int ret = ex.extract(output_name_.c_str(), output);
+    if (ret != 0) {
+        return ErrorCode::INFERENCE_FAILED;
+    }
+
+    // Đảm bảo output về float để decode path cũ
+    // (decode_outputs/apply_nms hiện đang làm việc với float)
+    ncnn::Mat output_f32;
+    if (output.elemsize == 2u) {
+        output_f32.create(output.w, output.h, output.c, (size_t)4u);
+        const __fp16* src = (const __fp16*)output.data;
+        float* dst = (float*)output_f32.data;
+
+        const int total = output.w * output.h * output.c;
+        for (int i = 0; i < total; ++i) {
+            dst[i] = (float)src[i];
+        }
+    } else {
+        output_f32 = output; // đã là float
+    }
+
+    // transpose/decode như infer_fp32 hiện tại
+    const int num_proposals = output_f32.w;
+    const int num_channels  = output_f32.h;
+
+    // Nếu bạn đang có asm transpose thì dùng lại
+    // transpose_84x8400_asm((const float*)output_f32.data, output_buffer_.get(), num_proposals, num_channels);
+
+    // fallback transpose C++
+    for (int i = 0; i < num_channels; i++) {
+        for (int j = 0; j < num_proposals; j++) {
+            output_buffer_.get()[j * num_channels + i] =
+                ((const float*)output_f32.data)[i * num_proposals + j];
+        }
+    }
+    
+    // Decode outputs
+    result.count = decode_yolov8_output(
+       output_buffer_.get(),
+       num_proposals,
+       CONF_THRESHOLD,
+       result.detections,
+       MAX_DETECTIONS
+    );
+
+    // Apply NMS
+    if (result.count > 0) {
+       sort_detections_by_confidence(result.detections, result.count);
+       nms_sorted(result.detections, result.count, NMS_THRESHOLD);
+    }
+    for (int i = 0; i < result.count; i++) {
+        map_detection_to_original(
+            result.detections[i],
+            scale_, pad_x_, pad_y_,
+            INPUT_WIDTH, INPUT_HEIGHT
+        );
+    }
+
+    return ErrorCode::SUCCESS;
+}
 void InferenceEngine::warmup(int iterations) {
     if (!initialized_) return;
     

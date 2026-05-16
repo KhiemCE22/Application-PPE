@@ -1,0 +1,1859 @@
+Mode: FILE
+Model: /home/pi/AI/EdgeVisionRT-tracking/models/benchmarkYolov8n/ORI-FP32-model.ncnn.param
+MAIN.CPP: LINE 249Starting OPTIMIZED inference pipeline...
+Mode: video
+Device/File: /home/pi/AI/EdgeVisionRT-tracking/video/input/gemini_1.mp4
+Output video: output.mp4
+DEBUG: TURN ON FP16
+Model loaded (threads=4), warming up...
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+output.w=8400 output.h=11
+class 0 max_conf=0.0256653 anchor=8063
+class 1 max_conf=5.22733e-05 anchor=8072
+class 2 max_conf=4.8697e-05 anchor=8044
+class 3 max_conf=0.000209928 anchor=2720
+class 4 max_conf=2.52724e-05 anchor=8044
+class 5 max_conf=3.53456e-05 anchor=8044
+class 6 max_conf=7.66516e-05 anchor=3
+Video writer initialized: 640x480
+[ZENOH] Listening on tcp/0.0.0.0:7447
+[ZENOH] Publisher declared.
+Starting frame processing...
+Warmup: 30 frames
+Test: 1000 frames
+
+output.w=8400 output.h=11
+class 0 max_conf=0.857422 anchor=7329
+class 1 max_conf=0.838867 anchor=2659
+class 2 max_conf=0.82959 anchor=3379
+class 3 max_conf=0.683105 anchor=3467
+class 4 max_conf=0.0560303 anchor=3148
+class 5 max_conf=0.000803947 anchor=3228
+class 6 max_conf=0.000579357 anchor=3386
+ID: 3 | Ground Y: 562.472
+ID: 2 | Ground Y: 443.55
+ID: 1 | Ground Y: 587.114
+output.w=8400 output.h=11
+class 0 max_conf=0.862793 anchor=7329
+class 1 max_conf=0.823242 anchor=2659
+class 2 max_conf=0.822266 anchor=3379
+class 3 max_conf=0.674805 anchor=3431
+class 4 max_conf=0.0602112 anchor=3148
+class 5 max_conf=0.000859261 anchor=3228
+class 6 max_conf=0.000590801 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.866211 anchor=7329
+class 1 max_conf=0.835449 anchor=3189
+class 2 max_conf=0.82373 anchor=3379
+class 3 max_conf=0.674805 anchor=3431
+class 4 max_conf=0.0527039 anchor=3148
+class 5 max_conf=0.000910759 anchor=3228
+class 6 max_conf=0.000656605 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.869141 anchor=7329
+class 1 max_conf=0.837402 anchor=3189
+class 2 max_conf=0.861328 anchor=3459
+class 3 max_conf=0.696289 anchor=3430
+class 4 max_conf=0.0700684 anchor=3228
+class 5 max_conf=0.00083971 anchor=3228
+class 6 max_conf=0.000674248 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.865723 anchor=7329
+class 1 max_conf=0.833984 anchor=3189
+class 2 max_conf=0.873047 anchor=3459
+class 3 max_conf=0.67041 anchor=3430
+class 4 max_conf=0.0509949 anchor=3228
+class 5 max_conf=0.000664234 anchor=3228
+class 6 max_conf=0.000482559 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.865723 anchor=7329
+class 1 max_conf=0.835449 anchor=2659
+class 2 max_conf=0.868652 anchor=3459
+class 3 max_conf=0.696777 anchor=3430
+class 4 max_conf=0.0532837 anchor=3228
+class 5 max_conf=0.000666618 anchor=3228
+class 6 max_conf=0.000489712 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.870605 anchor=7329
+class 1 max_conf=0.847168 anchor=2659
+class 2 max_conf=0.860352 anchor=3459
+class 3 max_conf=0.713867 anchor=3430
+class 4 max_conf=0.0400085 anchor=3228
+class 5 max_conf=0.00052309 anchor=3228
+class 6 max_conf=0.000677109 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.875 anchor=7329
+class 1 max_conf=0.846191 anchor=2659
+class 2 max_conf=0.852539 anchor=3459
+class 3 max_conf=0.67627 anchor=3429
+class 4 max_conf=0.0283966 anchor=3228
+class 5 max_conf=0.000633717 anchor=3228
+class 6 max_conf=0.000529766 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.870605 anchor=7329
+class 1 max_conf=0.842285 anchor=2659
+class 2 max_conf=0.819824 anchor=3459
+class 3 max_conf=0.662109 anchor=3429
+class 4 max_conf=0.014122 anchor=3228
+class 5 max_conf=0.000337839 anchor=3228
+class 6 max_conf=0.000432491 anchor=3388
+output.w=8400 output.h=11
+class 0 max_conf=0.867188 anchor=7329
+class 1 max_conf=0.833984 anchor=2659
+class 2 max_conf=0.81543 anchor=3459
+class 3 max_conf=0.609863 anchor=3509
+class 4 max_conf=0.0114594 anchor=3066
+class 5 max_conf=0.000228763 anchor=3228
+class 6 max_conf=0.000570297 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.874512 anchor=7288
+class 1 max_conf=0.827148 anchor=2659
+class 2 max_conf=0.800781 anchor=3379
+class 3 max_conf=0.624512 anchor=3430
+class 4 max_conf=0.0108185 anchor=3228
+class 5 max_conf=0.000252962 anchor=3228
+class 6 max_conf=0.000794888 anchor=3386
+ID: 3 | Ground Y: 582.828
+ID: 2 | Ground Y: 440.692
+ID: 1 | Ground Y: 602.113
+output.w=8400 output.h=11
+class 0 max_conf=0.868652 anchor=7329
+class 1 max_conf=0.819824 anchor=3189
+class 2 max_conf=0.79541 anchor=3379
+class 3 max_conf=0.640625 anchor=3430
+class 4 max_conf=0.0303955 anchor=3228
+class 5 max_conf=0.000418663 anchor=3228
+class 6 max_conf=0.00082016 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.868652 anchor=7329
+class 1 max_conf=0.807617 anchor=3189
+class 2 max_conf=0.79541 anchor=3219
+class 3 max_conf=0.576172 anchor=3429
+class 4 max_conf=0.0407715 anchor=2900
+class 5 max_conf=0.000263214 anchor=3228
+class 6 max_conf=0.000889778 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.869141 anchor=7329
+class 1 max_conf=0.799316 anchor=3189
+class 2 max_conf=0.787598 anchor=3219
+class 3 max_conf=0.626465 anchor=3468
+class 4 max_conf=0.0171814 anchor=2900
+class 5 max_conf=0.000261307 anchor=3228
+class 6 max_conf=0.00056839 anchor=3671
+output.w=8400 output.h=11
+class 0 max_conf=0.875 anchor=7329
+class 1 max_conf=0.809082 anchor=3189
+class 2 max_conf=0.767578 anchor=3300
+class 3 max_conf=0.676758 anchor=3547
+class 4 max_conf=0.0168457 anchor=3228
+class 5 max_conf=0.000368118 anchor=3228
+class 6 max_conf=0.000677109 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.873047 anchor=7329
+class 1 max_conf=0.818359 anchor=3189
+class 2 max_conf=0.77002 anchor=3380
+class 3 max_conf=0.736816 anchor=3509
+class 4 max_conf=0.0155945 anchor=3228
+class 5 max_conf=0.000359774 anchor=3228
+class 6 max_conf=0.000687599 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.87207 anchor=7329
+class 1 max_conf=0.819824 anchor=3188
+class 2 max_conf=0.775879 anchor=3380
+class 3 max_conf=0.731445 anchor=3547
+class 4 max_conf=0.0156708 anchor=2901
+class 5 max_conf=0.000411272 anchor=3148
+class 6 max_conf=0.000823021 anchor=3140
+output.w=8400 output.h=11
+class 0 max_conf=0.867188 anchor=7329
+class 1 max_conf=0.823242 anchor=2579
+class 2 max_conf=0.772461 anchor=3380
+class 3 max_conf=0.714844 anchor=3547
+class 4 max_conf=0.0112915 anchor=3148
+class 5 max_conf=0.00033021 anchor=3148
+class 6 max_conf=0.000794888 anchor=3140
+output.w=8400 output.h=11
+class 0 max_conf=0.857422 anchor=7329
+class 1 max_conf=0.825195 anchor=2579
+class 2 max_conf=0.787109 anchor=3380
+class 3 max_conf=0.714355 anchor=3467
+class 4 max_conf=0.0100098 anchor=3148
+class 5 max_conf=0.000277996 anchor=3148
+class 6 max_conf=0.00088644 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.85498 anchor=7329
+class 1 max_conf=0.825684 anchor=2579
+class 2 max_conf=0.805664 anchor=3379
+class 3 max_conf=0.736328 anchor=3508
+class 4 max_conf=0.008255 anchor=3228
+class 5 max_conf=0.000225186 anchor=3228
+class 6 max_conf=0.000869751 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.855469 anchor=7329
+class 1 max_conf=0.831055 anchor=3188
+class 2 max_conf=0.821777 anchor=3380
+class 3 max_conf=0.734863 anchor=3428
+class 4 max_conf=0.00588989 anchor=3148
+class 5 max_conf=0.000129342 anchor=3228
+class 6 max_conf=0.000738144 anchor=3307
+ID: 3 | Ground Y: 608.184
+ID: 2 | Ground Y: 438.55
+ID: 1 | Ground Y: 631.04
+output.w=8400 output.h=11
+class 0 max_conf=0.861816 anchor=7328
+class 1 max_conf=0.83252 anchor=3188
+class 2 max_conf=0.850586 anchor=3459
+class 3 max_conf=0.758301 anchor=3428
+class 4 max_conf=0.0157928 anchor=3228
+class 5 max_conf=0.000241518 anchor=3228
+class 6 max_conf=0.00104427 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.849609 anchor=7329
+class 1 max_conf=0.827148 anchor=3188
+class 2 max_conf=0.847168 anchor=3459
+class 3 max_conf=0.763184 anchor=3428
+class 4 max_conf=0.0225067 anchor=2900
+class 5 max_conf=0.00020659 anchor=2981
+class 6 max_conf=0.000900269 anchor=3307
+output.w=8400 output.h=11
+class 0 max_conf=0.839355 anchor=7369
+class 1 max_conf=0.819824 anchor=3188
+class 2 max_conf=0.818359 anchor=3379
+class 3 max_conf=0.777344 anchor=3428
+class 4 max_conf=0.0191956 anchor=2900
+class 5 max_conf=0.000188231 anchor=3068
+class 6 max_conf=0.000671387 anchor=3387
+output.w=8400 output.h=11
+class 0 max_conf=0.828613 anchor=7373
+class 1 max_conf=0.800781 anchor=3188
+class 2 max_conf=0.794434 anchor=3379
+class 3 max_conf=0.687988 anchor=3428
+class 4 max_conf=0.0265961 anchor=2820
+class 5 max_conf=0.00022006 anchor=3068
+class 6 max_conf=0.000531673 anchor=3387
+output.w=8400 output.h=11
+class 0 max_conf=0.825195 anchor=7354
+class 1 max_conf=0.813965 anchor=2578
+class 2 max_conf=0.813965 anchor=3379
+class 3 max_conf=0.737793 anchor=3428
+class 4 max_conf=0.0409241 anchor=2900
+class 5 max_conf=0.000396729 anchor=2900
+class 6 max_conf=0.000586033 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.81543 anchor=7333
+class 1 max_conf=0.8125 anchor=2578
+class 2 max_conf=0.833008 anchor=3379
+class 3 max_conf=0.708496 anchor=3428
+class 4 max_conf=0.0088501 anchor=2898
+class 5 max_conf=0.000451326 anchor=3038
+class 6 max_conf=0.00194931 anchor=3357
+output.w=8400 output.h=11
+class 0 max_conf=0.803711 anchor=7329
+class 1 max_conf=0.817871 anchor=2713
+class 2 max_conf=0.830566 anchor=3380
+class 3 max_conf=0.722656 anchor=3428
+class 4 max_conf=0.0135803 anchor=2819
+class 5 max_conf=0.000146508 anchor=2958
+class 6 max_conf=0.00174046 anchor=3356
+output.w=8400 output.h=11
+class 0 max_conf=0.80957 anchor=7333
+class 1 max_conf=0.818359 anchor=3036
+class 2 max_conf=0.825684 anchor=3458
+class 3 max_conf=0.732422 anchor=3588
+class 4 max_conf=0.0151978 anchor=2818
+class 5 max_conf=0.000110626 anchor=3267
+class 6 max_conf=0.00197983 anchor=3356
+output.w=8400 output.h=11
+class 0 max_conf=0.810547 anchor=7328
+class 1 max_conf=0.800781 anchor=2956
+class 2 max_conf=0.815918 anchor=3458
+class 3 max_conf=0.677246 anchor=3387
+class 4 max_conf=0.0314941 anchor=2818
+class 5 max_conf=0.000160933 anchor=3268
+class 6 max_conf=0.00101662 anchor=4796
+output.w=8400 output.h=11
+class 0 max_conf=0.814453 anchor=7328
+class 1 max_conf=0.802734 anchor=3036
+class 2 max_conf=0.806152 anchor=3379
+class 3 max_conf=0.667969 anchor=3387
+class 4 max_conf=0.012291 anchor=3148
+class 5 max_conf=0.000628471 anchor=2399
+class 6 max_conf=0.00247192 anchor=2478
+output.w=8400 output.h=11
+class 0 max_conf=0.829102 anchor=7328
+class 1 max_conf=0.825684 anchor=3034
+class 2 max_conf=0.817871 anchor=3379
+class 3 max_conf=0.718262 anchor=3466
+class 4 max_conf=0.012146 anchor=3148
+class 5 max_conf=0.000823021 anchor=2399
+class 6 max_conf=0.00233269 anchor=2558
+output.w=8400 output.h=11
+class 0 max_conf=0.835938 anchor=7328
+class 1 max_conf=0.791992 anchor=2498
+class 2 max_conf=0.815918 anchor=3379
+class 3 max_conf=0.731934 anchor=3515
+class 4 max_conf=0.0139618 anchor=2899
+class 5 max_conf=0.000150084 anchor=2899
+class 6 max_conf=0.00164223 anchor=3517
+output.w=8400 output.h=11
+class 0 max_conf=0.852539 anchor=7328
+class 1 max_conf=0.833984 anchor=2715
+class 2 max_conf=0.786621 anchor=3378
+class 3 max_conf=0.718262 anchor=3466
+class 4 max_conf=0.014061 anchor=3148
+class 5 max_conf=0.000129342 anchor=3148
+class 6 max_conf=0.0036068 anchor=3437
+output.w=8400 output.h=11
+class 0 max_conf=0.849121 anchor=7328
+class 1 max_conf=0.803711 anchor=2868
+class 2 max_conf=0.794434 anchor=3378
+class 3 max_conf=0.67334 anchor=4635
+class 4 max_conf=0.0121002 anchor=3148
+class 5 max_conf=9.60827e-05 anchor=3148
+class 6 max_conf=0.00304031 anchor=3508
+output.w=8400 output.h=11
+class 0 max_conf=0.837402 anchor=7328
+class 1 max_conf=0.790527 anchor=2786
+class 2 max_conf=0.852051 anchor=3379
+class 3 max_conf=0.615234 anchor=3387
+class 4 max_conf=0.0243683 anchor=2737
+class 5 max_conf=0.000327587 anchor=3038
+class 6 max_conf=0.00416565 anchor=3507
+output.w=8400 output.h=11
+class 0 max_conf=0.835449 anchor=7368
+class 1 max_conf=0.821289 anchor=2866
+class 2 max_conf=0.842285 anchor=3379
+class 3 max_conf=0.594727 anchor=3347
+class 4 max_conf=0.0269165 anchor=2818
+class 5 max_conf=0.00039053 anchor=3038
+class 6 max_conf=0.00641632 anchor=3347
+output.w=8400 output.h=11
+class 0 max_conf=0.845703 anchor=7368
+class 1 max_conf=0.819336 anchor=2784
+class 2 max_conf=0.799805 anchor=3457
+class 3 max_conf=0.590332 anchor=3354
+class 4 max_conf=0.0631714 anchor=2818
+class 5 max_conf=0.000109732 anchor=3148
+class 6 max_conf=0.00671768 anchor=3353
+output.w=8400 output.h=11
+class 0 max_conf=0.851074 anchor=7368
+class 1 max_conf=0.805664 anchor=2738
+class 2 max_conf=0.797363 anchor=3298
+class 3 max_conf=0.631348 anchor=4473
+class 4 max_conf=0.064209 anchor=2818
+class 5 max_conf=0.000889778 anchor=2719
+class 6 max_conf=0.00612259 anchor=3352
+output.w=8400 output.h=11
+class 0 max_conf=0.847168 anchor=7368
+class 1 max_conf=0.819336 anchor=2863
+class 2 max_conf=0.794922 anchor=3298
+class 3 max_conf=0.536133 anchor=3387
+class 4 max_conf=0.0553284 anchor=2718
+class 5 max_conf=0.00208282 anchor=2718
+class 6 max_conf=0.01017 anchor=3271
+output.w=8400 output.h=11
+class 0 max_conf=0.858398 anchor=7369
+class 1 max_conf=0.791992 anchor=2738
+class 2 max_conf=0.794434 anchor=3298
+class 3 max_conf=0.529297 anchor=3387
+class 4 max_conf=0.0327759 anchor=2818
+class 5 max_conf=0.000107229 anchor=3148
+class 6 max_conf=0.00508118 anchor=4630
+output.w=8400 output.h=11
+class 0 max_conf=0.850586 anchor=7368
+class 1 max_conf=0.82959 anchor=2862
+class 2 max_conf=0.775879 anchor=3298
+class 3 max_conf=0.692383 anchor=3269
+class 4 max_conf=0.015007 anchor=2737
+class 5 max_conf=8.89301e-05 anchor=3148
+class 6 max_conf=0.00511932 anchor=3270
+output.w=8400 output.h=11
+class 0 max_conf=0.846191 anchor=7369
+class 1 max_conf=0.82666 anchor=2860
+class 2 max_conf=0.776855 anchor=3457
+class 3 max_conf=0.65918 anchor=3387
+class 4 max_conf=0.00990295 anchor=2737
+class 5 max_conf=0.00011152 anchor=2746
+class 6 max_conf=0.00629044 anchor=3349
+output.w=8400 output.h=11
+class 0 max_conf=0.844238 anchor=7369
+class 1 max_conf=0.847656 anchor=2859
+class 2 max_conf=0.803223 anchor=3457
+class 3 max_conf=0.675293 anchor=3348
+class 4 max_conf=0.0195312 anchor=2737
+class 5 max_conf=0.000125408 anchor=2870
+class 6 max_conf=0.00388336 anchor=3341
+output.w=8400 output.h=11
+class 0 max_conf=0.853516 anchor=7369
+class 1 max_conf=0.810059 anchor=2860
+class 2 max_conf=0.803711 anchor=3457
+class 3 max_conf=0.714844 anchor=3348
+class 4 max_conf=0.0354919 anchor=2737
+class 5 max_conf=0.000112414 anchor=3148
+class 6 max_conf=0.00244331 anchor=3348
+output.w=8400 output.h=11
+class 0 max_conf=0.851074 anchor=7369
+class 1 max_conf=0.857422 anchor=3027
+class 2 max_conf=0.79541 anchor=3457
+class 3 max_conf=0.703125 anchor=3346
+class 4 max_conf=0.0458679 anchor=2737
+class 5 max_conf=8.95858e-05 anchor=3148
+class 6 max_conf=0.00190449 anchor=3347
+output.w=8400 output.h=11
+class 0 max_conf=0.843262 anchor=7369
+class 1 max_conf=0.841309 anchor=2947
+class 2 max_conf=0.791504 anchor=3377
+class 3 max_conf=0.716309 anchor=3346
+class 4 max_conf=0.0883179 anchor=2737
+class 5 max_conf=0.000345707 anchor=2633
+class 6 max_conf=0.00184536 anchor=4382
+output.w=8400 output.h=11
+class 0 max_conf=0.831055 anchor=7328
+class 1 max_conf=0.853516 anchor=2856
+class 2 max_conf=0.796875 anchor=3377
+class 3 max_conf=0.736816 anchor=3345
+class 4 max_conf=0.0842285 anchor=2737
+class 5 max_conf=0.000347137 anchor=2638
+class 6 max_conf=0.000896931 anchor=3338
+output.w=8400 output.h=11
+class 0 max_conf=0.825195 anchor=7328
+class 1 max_conf=0.839355 anchor=2701
+class 2 max_conf=0.789062 anchor=3377
+class 3 max_conf=0.755371 anchor=3344
+class 4 max_conf=0.0258484 anchor=2738
+class 5 max_conf=0.000486374 anchor=2558
+class 6 max_conf=0.00261116 anchor=4306
+output.w=8400 output.h=11
+class 0 max_conf=0.808105 anchor=7372
+class 1 max_conf=0.84082 anchor=2856
+class 2 max_conf=0.809082 anchor=3378
+class 3 max_conf=0.742676 anchor=3343
+class 4 max_conf=0.0245209 anchor=2737
+class 5 max_conf=0.000574589 anchor=2637
+class 6 max_conf=0.00175476 anchor=4304
+output.w=8400 output.h=11
+class 0 max_conf=0.8125 anchor=7369
+class 1 max_conf=0.827148 anchor=2935
+class 2 max_conf=0.853516 anchor=3378
+class 3 max_conf=0.748047 anchor=3342
+class 4 max_conf=0.0551147 anchor=2737
+class 5 max_conf=0.000251293 anchor=3148
+class 6 max_conf=0.00117874 anchor=3118
+output.w=8400 output.h=11
+class 0 max_conf=0.822266 anchor=7369
+class 1 max_conf=0.818359 anchor=2779
+class 2 max_conf=0.82666 anchor=3377
+class 3 max_conf=0.763184 anchor=3341
+class 4 max_conf=0.0377502 anchor=2736
+class 5 max_conf=0.000191092 anchor=3147
+class 6 max_conf=0.00388336 anchor=4302
+output.w=8400 output.h=11
+class 0 max_conf=0.823242 anchor=7368
+class 1 max_conf=0.797363 anchor=2698
+class 2 max_conf=0.832031 anchor=3377
+class 3 max_conf=0.745605 anchor=3340
+class 4 max_conf=0.0278015 anchor=3067
+class 5 max_conf=0.000312567 anchor=3067
+class 6 max_conf=0.0020256 anchor=4714
+output.w=8400 output.h=11
+class 0 max_conf=0.806152 anchor=7368
+class 1 max_conf=0.835449 anchor=2715
+class 2 max_conf=0.835938 anchor=3377
+class 3 max_conf=0.763672 anchor=3340
+class 4 max_conf=0.0170441 anchor=3192
+class 5 max_conf=0.000259161 anchor=3193
+class 6 max_conf=0.00157356 anchor=4634
+output.w=8400 output.h=11
+class 0 max_conf=0.78125 anchor=7367
+class 1 max_conf=0.83252 anchor=2698
+class 2 max_conf=0.813477 anchor=3377
+class 3 max_conf=0.736816 anchor=3259
+class 4 max_conf=0.0055542 anchor=3147
+class 5 max_conf=0.000119627 anchor=3147
+class 6 max_conf=0.00110722 anchor=3387
+output.w=8400 output.h=11
+class 0 max_conf=0.797363 anchor=7367
+class 1 max_conf=0.82959 anchor=2853
+class 2 max_conf=0.817383 anchor=3297
+class 3 max_conf=0.736816 anchor=3258
+class 4 max_conf=0.0603638 anchor=4232
+class 5 max_conf=0.000411272 anchor=4232
+class 6 max_conf=0.000823021 anchor=4712
+output.w=8400 output.h=11
+class 0 max_conf=0.79248 anchor=7367
+class 1 max_conf=0.834473 anchor=2932
+class 2 max_conf=0.802734 anchor=3375
+class 3 max_conf=0.705078 anchor=3337
+class 4 max_conf=0.00323677 anchor=4231
+class 5 max_conf=9.84073e-05 anchor=8195
+class 6 max_conf=0.00107765 anchor=3336
+output.w=8400 output.h=11
+class 0 max_conf=0.783691 anchor=7367
+class 1 max_conf=0.824707 anchor=2865
+class 2 max_conf=0.821777 anchor=3376
+class 3 max_conf=0.666992 anchor=3257
+class 4 max_conf=0.0053215 anchor=3032
+class 5 max_conf=0.000103891 anchor=3032
+class 6 max_conf=0.00145531 anchor=3336
+output.w=8400 output.h=11
+class 0 max_conf=0.796387 anchor=7367
+class 1 max_conf=0.814453 anchor=2631
+class 2 max_conf=0.801758 anchor=3375
+class 3 max_conf=0.565918 anchor=3336
+class 4 max_conf=0.00831604 anchor=2827
+class 5 max_conf=0.000118732 anchor=3171
+class 6 max_conf=0.00225258 anchor=3336
+output.w=8400 output.h=11
+class 0 max_conf=0.785156 anchor=7546
+class 1 max_conf=0.809082 anchor=2931
+class 2 max_conf=0.754395 anchor=3295
+class 3 max_conf=0.716797 anchor=3335
+class 4 max_conf=0.0129623 anchor=2586
+class 5 max_conf=0.000361204 anchor=2506
+class 6 max_conf=0.00148964 anchor=3335
+output.w=8400 output.h=11
+class 0 max_conf=0.791992 anchor=7367
+class 1 max_conf=0.813477 anchor=2940
+class 2 max_conf=0.785645 anchor=3865
+class 3 max_conf=0.738281 anchor=3335
+class 4 max_conf=0.0191956 anchor=3146
+class 5 max_conf=0.000417471 anchor=2506
+class 6 max_conf=0.00149441 anchor=3335
+output.w=8400 output.h=11
+class 0 max_conf=0.760742 anchor=7367
+class 1 max_conf=0.818359 anchor=2630
+class 2 max_conf=0.810059 anchor=3865
+class 3 max_conf=0.584961 anchor=3335
+class 4 max_conf=0.0209961 anchor=3146
+class 5 max_conf=0.000236034 anchor=2505
+class 6 max_conf=0.00239754 anchor=3334
+output.w=8400 output.h=11
+class 0 max_conf=0.799316 anchor=7545
+class 1 max_conf=0.83252 anchor=2629
+class 2 max_conf=0.76416 anchor=3865
+class 3 max_conf=0.614258 anchor=3330
+class 4 max_conf=0.0145035 anchor=2906
+class 5 max_conf=0.000133395 anchor=3029
+class 6 max_conf=0.00232315 anchor=4212
+output.w=8400 output.h=11
+class 0 max_conf=0.822266 anchor=7505
+class 1 max_conf=0.825684 anchor=2853
+class 2 max_conf=0.770508 anchor=3945
+class 3 max_conf=0.608887 anchor=3333
+class 4 max_conf=0.0101242 anchor=3146
+class 5 max_conf=0.000103891 anchor=3146
+class 6 max_conf=0.00251007 anchor=3333
+output.w=8400 output.h=11
+class 0 max_conf=0.834473 anchor=7544
+class 1 max_conf=0.828613 anchor=2852
+class 2 max_conf=0.782715 anchor=3373
+class 3 max_conf=0.520996 anchor=3334
+class 4 max_conf=0.0136414 anchor=3146
+class 5 max_conf=0.000118732 anchor=2798
+class 6 max_conf=0.00450516 anchor=3332
+output.w=8400 output.h=11
+class 0 max_conf=0.819824 anchor=7504
+class 1 max_conf=0.831055 anchor=2931
+class 2 max_conf=0.800781 anchor=3293
+class 3 max_conf=0.559082 anchor=3333
+class 4 max_conf=0.0162048 anchor=2665
+class 5 max_conf=0.00010556 anchor=3146
+class 6 max_conf=0.00108147 anchor=4290
+output.w=8400 output.h=11
+class 0 max_conf=0.79248 anchor=7325
+class 1 max_conf=0.844727 anchor=2927
+class 2 max_conf=0.794434 anchor=3373
+class 3 max_conf=0.539551 anchor=3385
+class 4 max_conf=0.00923157 anchor=3146
+class 5 max_conf=0.000191092 anchor=3146
+class 6 max_conf=0.0015974 anchor=3331
+output.w=8400 output.h=11
+class 0 max_conf=0.760254 anchor=7325
+class 1 max_conf=0.825684 anchor=2412
+class 2 max_conf=0.746582 anchor=3373
+class 3 max_conf=0.61084 anchor=3385
+class 4 max_conf=0.0662231 anchor=4078
+class 5 max_conf=0.000218391 anchor=2638
+class 6 max_conf=0.0010004 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.790039 anchor=7504
+class 1 max_conf=0.82959 anchor=2412
+class 2 max_conf=0.720215 anchor=3293
+class 3 max_conf=0.590332 anchor=3332
+class 4 max_conf=0.0413208 anchor=4078
+class 5 max_conf=0.000374317 anchor=2638
+class 6 max_conf=0.00200272 anchor=3331
+output.w=8400 output.h=11
+class 0 max_conf=0.775391 anchor=7367
+class 1 max_conf=0.829102 anchor=2412
+class 2 max_conf=0.737305 anchor=3373
+class 3 max_conf=0.538574 anchor=3385
+class 4 max_conf=0.0220642 anchor=4078
+class 5 max_conf=0.000267267 anchor=2638
+class 6 max_conf=0.0026741 anchor=4129
+output.w=8400 output.h=11
+class 0 max_conf=0.737793 anchor=7365
+class 1 max_conf=0.813477 anchor=2412
+class 2 max_conf=0.708984 anchor=3452
+class 3 max_conf=0.36792 anchor=3405
+class 4 max_conf=0.0156708 anchor=4227
+class 5 max_conf=0.000179648 anchor=2638
+class 6 max_conf=0.000869751 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.797363 anchor=7503
+class 1 max_conf=0.837402 anchor=2627
+class 2 max_conf=0.706055 anchor=3293
+class 3 max_conf=0.724121 anchor=3404
+class 4 max_conf=0.0248871 anchor=4383
+class 5 max_conf=0.000179648 anchor=2771
+class 6 max_conf=0.00153637 anchor=4129
+output.w=8400 output.h=11
+class 0 max_conf=0.842285 anchor=7543
+class 1 max_conf=0.834473 anchor=2699
+class 2 max_conf=0.758301 anchor=3211
+class 3 max_conf=0.507812 anchor=3330
+class 4 max_conf=0.0146637 anchor=3704
+class 5 max_conf=0.000181079 anchor=2558
+class 6 max_conf=0.00229645 anchor=4128
+output.w=8400 output.h=11
+class 0 max_conf=0.756836 anchor=7503
+class 1 max_conf=0.839844 anchor=2331
+class 2 max_conf=0.785156 anchor=3211
+class 3 max_conf=0.560547 anchor=3325
+class 4 max_conf=0.024704 anchor=3624
+class 5 max_conf=0.000315189 anchor=2558
+class 6 max_conf=0.0008564 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.753418 anchor=7365
+class 1 max_conf=0.85498 anchor=2331
+class 2 max_conf=0.790039 anchor=3213
+class 3 max_conf=0.556641 anchor=3483
+class 4 max_conf=0.00901794 anchor=4226
+class 5 max_conf=0.000261307 anchor=2558
+class 6 max_conf=0.00071764 anchor=3305
+output.w=8400 output.h=11
+class 0 max_conf=0.751465 anchor=7365
+class 1 max_conf=0.853516 anchor=3016
+class 2 max_conf=0.82373 anchor=3213
+class 3 max_conf=0.45752 anchor=3403
+class 4 max_conf=0.0481262 anchor=4147
+class 5 max_conf=0.000255108 anchor=3163
+class 6 max_conf=0.000910759 anchor=3324
+output.w=8400 output.h=11
+class 0 max_conf=0.743652 anchor=7325
+class 1 max_conf=0.847168 anchor=2547
+class 2 max_conf=0.81543 anchor=3213
+class 3 max_conf=0.390869 anchor=3385
+class 4 max_conf=0.0618896 anchor=4147
+class 5 max_conf=0.00022161 anchor=2558
+class 6 max_conf=0.000816822 anchor=3131
+output.w=8400 output.h=11
+class 0 max_conf=0.72998 anchor=7325
+class 1 max_conf=0.861328 anchor=2250
+class 2 max_conf=0.78418 anchor=3211
+class 3 max_conf=0.223755 anchor=3575
+class 4 max_conf=0.0407715 anchor=4226
+class 5 max_conf=0.000156045 anchor=4227
+class 6 max_conf=0.000810146 anchor=3386
+output.w=8400 output.h=11
+class 0 max_conf=0.683594 anchor=7325
+class 1 max_conf=0.882812 anchor=2330
+class 2 max_conf=0.772461 anchor=3211
+class 3 max_conf=0.138794 anchor=3334
+class 4 max_conf=0.0205994 anchor=4226
+class 5 max_conf=0.000150084 anchor=2843
+class 6 max_conf=0.00056839 anchor=3385
+output.w=8400 output.h=11
+class 0 max_conf=0.722656 anchor=7371
+class 1 max_conf=0.867676 anchor=2330
+class 2 max_conf=0.785156 anchor=3132
+class 3 max_conf=0.305664 anchor=3415
+class 4 max_conf=0.0113297 anchor=2584
+class 5 max_conf=0.000788689 anchor=3082
+class 6 max_conf=0.00144958 anchor=4128
+output.w=8400 output.h=11
+class 0 max_conf=0.746582 anchor=7331
+class 1 max_conf=0.874512 anchor=2329
+class 2 max_conf=0.841309 anchor=3132
+class 3 max_conf=0.360596 anchor=3575
+class 4 max_conf=0.00805664 anchor=2584
+class 5 max_conf=0.000412464 anchor=2843
+class 6 max_conf=0.00123501 anchor=4048
+output.w=8400 output.h=11
+class 0 max_conf=0.709961 anchor=7366
+class 1 max_conf=0.864746 anchor=2330
+class 2 max_conf=0.793945 anchor=3131
+class 3 max_conf=0.265625 anchor=3574
+class 4 max_conf=0.0510864 anchor=2583
+class 5 max_conf=0.000443935 anchor=3081
+class 6 max_conf=0.000628471 anchor=3050
+output.w=8400 output.h=11
+class 0 max_conf=0.708984 anchor=7365
+class 1 max_conf=0.860352 anchor=2328
+class 2 max_conf=0.80127 anchor=3131
+class 3 max_conf=0.28833 anchor=2946
+class 4 max_conf=0.0404663 anchor=2584
+class 5 max_conf=0.000505447 anchor=3081
+class 6 max_conf=0.000826359 anchor=3242
+output.w=8400 output.h=11
+class 0 max_conf=0.690918 anchor=7404
+class 1 max_conf=0.87207 anchor=2329
+class 2 max_conf=0.760742 anchor=3130
+class 3 max_conf=0.350586 anchor=3481
+class 4 max_conf=0.00997162 anchor=2744
+class 5 max_conf=0.000288963 anchor=3081
+class 6 max_conf=0.000350237 anchor=3383
+output.w=8400 output.h=11
+class 0 max_conf=0.710938 anchor=7404
+class 1 max_conf=0.877441 anchor=2327
+class 2 max_conf=0.729492 anchor=3128
+class 3 max_conf=0.408203 anchor=2868
+class 4 max_conf=0.0184174 anchor=4076
+class 5 max_conf=0.000197172 anchor=3086
+class 6 max_conf=0.0004673 anchor=4947
+output.w=8400 output.h=11
+class 0 max_conf=0.73877 anchor=7363
+class 1 max_conf=0.865723 anchor=2328
+class 2 max_conf=0.776855 anchor=3209
+class 3 max_conf=0.313232 anchor=3413
+class 4 max_conf=0.0124283 anchor=4144
+class 5 max_conf=0.00028038 anchor=2845
+class 6 max_conf=0.00079155 anchor=3327
+output.w=8400 output.h=11
+class 0 max_conf=0.747559 anchor=7363
+class 1 max_conf=0.860352 anchor=2326
+class 2 max_conf=0.76709 anchor=3208
+class 3 max_conf=0.433594 anchor=3400
+class 4 max_conf=0.0203705 anchor=4470
+class 5 max_conf=0.000178218 anchor=2845
+class 6 max_conf=0.00109863 anchor=3327
+output.w=8400 output.h=11
+class 0 max_conf=0.723145 anchor=7363
+class 1 max_conf=0.861328 anchor=2325
+class 2 max_conf=0.758301 anchor=3127
+class 3 max_conf=0.493652 anchor=3401
+class 4 max_conf=0.0107803 anchor=4470
+class 5 max_conf=0.000687599 anchor=3161
+class 6 max_conf=0.00167465 anchor=4126
+output.w=8400 output.h=11
+class 0 max_conf=0.69873 anchor=7362
+class 1 max_conf=0.882812 anchor=2245
+class 2 max_conf=0.719727 anchor=3207
+class 3 max_conf=0.513184 anchor=3321
+class 4 max_conf=0.00959778 anchor=4470
+class 5 max_conf=0.000451326 anchor=3161
+class 6 max_conf=0.000823021 anchor=3241
+output.w=8400 output.h=11
+class 0 max_conf=0.733398 anchor=7502
+class 1 max_conf=0.868652 anchor=2245
+class 2 max_conf=0.736816 anchor=3127
+class 3 max_conf=0.496094 anchor=3320
+class 4 max_conf=0.0177155 anchor=4311
+class 5 max_conf=0.00161076 anchor=3078
+class 6 max_conf=0.00160408 anchor=4126
+output.w=8400 output.h=11
+class 0 max_conf=0.793945 anchor=7500
+class 1 max_conf=0.868652 anchor=2244
+class 2 max_conf=0.763184 anchor=3127
+class 3 max_conf=0.572266 anchor=3480
+class 4 max_conf=0.0134811 anchor=2663
+class 5 max_conf=0.00122547 anchor=3078
+class 6 max_conf=0.00119305 anchor=2878
+output.w=8400 output.h=11
+class 0 max_conf=0.805176 anchor=7499
+class 1 max_conf=0.869141 anchor=2164
+class 2 max_conf=0.796387 anchor=3461
+class 3 max_conf=0.640137 anchor=3406
+class 4 max_conf=0.131714 anchor=4392
+class 5 max_conf=0.00252151 anchor=3078
+class 6 max_conf=0.00181866 anchor=2878
+output.w=8400 output.h=11
+class 0 max_conf=0.774414 anchor=7499
+class 1 max_conf=0.852051 anchor=2661
+class 2 max_conf=0.767578 anchor=3461
+class 3 max_conf=0.469727 anchor=3415
+class 4 max_conf=0.0151367 anchor=2742
+class 5 max_conf=0.000981331 anchor=3158
+class 6 max_conf=0.0027256 anchor=2965
+output.w=8400 output.h=11
+class 0 max_conf=0.79541 anchor=7459
+class 1 max_conf=0.836426 anchor=2165
+class 2 max_conf=0.78418 anchor=3461
+class 3 max_conf=0.486572 anchor=3330
+class 4 max_conf=0.0643921 anchor=2821
+class 5 max_conf=0.0011425 anchor=3158
+class 6 max_conf=0.00186062 anchor=2965
+output.w=8400 output.h=11
+class 0 max_conf=0.781738 anchor=7459
+class 1 max_conf=0.84082 anchor=2084
+class 2 max_conf=0.79541 anchor=3541
+class 3 max_conf=0.481201 anchor=3330
+class 4 max_conf=0.0874023 anchor=2662
+class 5 max_conf=0.000432491 anchor=2398
+class 6 max_conf=0.00143242 anchor=2965
+output.w=8400 output.h=11
+class 0 max_conf=0.74707 anchor=7459
+class 1 max_conf=0.839355 anchor=2163
+class 2 max_conf=0.809082 anchor=3461
+class 3 max_conf=0.351074 anchor=3330
+class 4 max_conf=0.0512695 anchor=4634
+class 5 max_conf=0.00103664 anchor=2398
+class 6 max_conf=0.00186729 anchor=2965
+output.w=8400 output.h=11
+class 0 max_conf=0.748047 anchor=7410
+class 1 max_conf=0.844727 anchor=2244
+class 2 max_conf=0.803711 anchor=3461
+class 3 max_conf=0.389404 anchor=3479
+class 4 max_conf=0.0351562 anchor=2821
+class 5 max_conf=0.000491619 anchor=2919
+class 6 max_conf=0.00136185 anchor=3924
+output.w=8400 output.h=11
+class 0 max_conf=0.814453 anchor=7409
+class 1 max_conf=0.83252 anchor=2618
+class 2 max_conf=0.787109 anchor=3126
+class 3 max_conf=0.421631 anchor=3406
+class 4 max_conf=0.0276337 anchor=4555
+class 5 max_conf=0.000381708 anchor=2919
+class 6 max_conf=0.00220871 anchor=3844
+output.w=8400 output.h=11
+class 0 max_conf=0.78418 anchor=7676
+class 1 max_conf=0.831055 anchor=2244
+class 2 max_conf=0.815918 anchor=3461
+class 3 max_conf=0.358154 anchor=3325
+class 4 max_conf=0.0352783 anchor=2741
+class 5 max_conf=0.00033927 anchor=3157
+class 6 max_conf=0.00189018 anchor=3126
+output.w=8400 output.h=11
+class 0 max_conf=0.753906 anchor=7675
+class 1 max_conf=0.819336 anchor=2698
+class 2 max_conf=0.809082 anchor=3461
+class 3 max_conf=0.521484 anchor=3406
+class 4 max_conf=0.368408 anchor=2740
+class 5 max_conf=0.000370979 anchor=3084
+class 6 max_conf=0.00228691 anchor=3126
+Frame 100 | 72787us | 13.7387 FPS | Queue: 76output.w=8400 output.h=11
+class 0 max_conf=0.716797 anchor=7676
+class 1 max_conf=0.836426 anchor=2618
+class 2 max_conf=0.793945 anchor=3459
+class 3 max_conf=0.313721 anchor=4043
+class 4 max_conf=0.439941 anchor=2739
+class 5 max_conf=0.000400066 anchor=2918
+class 6 max_conf=0.00348473 anchor=3923
+output.w=8400 output.h=11
+class 0 max_conf=0.796875 anchor=7637
+class 1 max_conf=0.84082 anchor=2499
+class 2 max_conf=0.825195 anchor=3459
+class 3 max_conf=0.52002 anchor=5034
+class 4 max_conf=0.0878296 anchor=2659
+class 5 max_conf=0.000116825 anchor=2918
+class 6 max_conf=0.00588989 anchor=5194
+output.w=8400 output.h=11
+class 0 max_conf=0.727051 anchor=7288
+class 1 max_conf=0.828613 anchor=2498
+class 2 max_conf=0.805176 anchor=3459
+class 3 max_conf=0.37207 anchor=5034
+class 4 max_conf=0.168457 anchor=2659
+class 5 max_conf=0.000257254 anchor=2916
+class 6 max_conf=0.00183868 anchor=5034
+output.w=8400 output.h=11
+class 0 max_conf=0.734375 anchor=7290
+class 1 max_conf=0.85498 anchor=2498
+class 2 max_conf=0.753906 anchor=3459
+class 3 max_conf=0.597656 anchor=5114
+class 4 max_conf=0.0111542 anchor=3156
+class 5 max_conf=0.00105667 anchor=3156
+class 6 max_conf=0.0017271 anchor=5035
+output.w=8400 output.h=11
+class 0 max_conf=0.748535 anchor=7298
+class 1 max_conf=0.866211 anchor=2498
+class 2 max_conf=0.742188 anchor=3378
+class 3 max_conf=0.619629 anchor=3396
+class 4 max_conf=0.0049057 anchor=2658
+class 5 max_conf=0.000501156 anchor=3156
+class 6 max_conf=0.000872612 anchor=3317
+output.w=8400 output.h=11
+class 0 max_conf=0.775879 anchor=7377
+class 1 max_conf=0.85498 anchor=2498
+class 2 max_conf=0.767578 anchor=3457
+class 3 max_conf=0.640137 anchor=3396
+class 4 max_conf=0.0385437 anchor=2658
+class 5 max_conf=0.000350237 anchor=2482
+class 6 max_conf=0.000907421 anchor=5196
+output.w=8400 output.h=11
+class 0 max_conf=0.742188 anchor=7377
+class 1 max_conf=0.853516 anchor=2497
+class 2 max_conf=0.787109 anchor=3457
+class 3 max_conf=0.65625 anchor=3396
+class 4 max_conf=0.0522461 anchor=2080
+class 5 max_conf=0.000484467 anchor=3079
+class 6 max_conf=0.0017271 anchor=5196
+output.w=8400 output.h=11
+class 0 max_conf=0.70166 anchor=7327
+class 1 max_conf=0.874512 anchor=2497
+class 2 max_conf=0.810059 anchor=3537
+class 3 max_conf=0.566406 anchor=3315
+class 4 max_conf=0.0418701 anchor=2658
+class 5 max_conf=0.000955105 anchor=3079
+class 6 max_conf=0.000776291 anchor=2964
+output.w=8400 output.h=11
+class 0 max_conf=0.723633 anchor=7337
+class 1 max_conf=0.839844 anchor=2498
+class 2 max_conf=0.791504 anchor=3537
+class 3 max_conf=0.666992 anchor=3395
+class 4 max_conf=0.014061 anchor=2657
+class 5 max_conf=0.000430346 anchor=3079
+class 6 max_conf=0.00164223 anchor=2962
+output.w=8400 output.h=11
+class 0 max_conf=0.691895 anchor=7327
+class 1 max_conf=0.845703 anchor=2496
+class 2 max_conf=0.80127 anchor=3536
+class 3 max_conf=0.598145 anchor=3394
+class 4 max_conf=0.0269165 anchor=2657
+class 5 max_conf=0.00171375 anchor=3079
+class 6 max_conf=0.00282288 anchor=2963
+output.w=8400 output.h=11
+class 0 max_conf=0.710449 anchor=7327
+class 1 max_conf=0.852051 anchor=2495
+class 2 max_conf=0.77002 anchor=3455
+class 3 max_conf=0.693359 anchor=3314
+class 4 max_conf=0.025177 anchor=3931
+class 5 max_conf=0.00246239 anchor=3079
+class 6 max_conf=0.0039444 anchor=2961
+output.w=8400 output.h=11
+class 0 max_conf=0.720703 anchor=7326
+class 1 max_conf=0.84082 anchor=2495
+class 2 max_conf=0.8125 anchor=3535
+class 3 max_conf=0.683594 anchor=3394
+class 4 max_conf=0.286865 anchor=2655
+class 5 max_conf=0.00264168 anchor=3079
+class 6 max_conf=0.00056839 anchor=2962
+output.w=8400 output.h=11
+class 0 max_conf=0.749023 anchor=7336
+class 1 max_conf=0.876953 anchor=2496
+class 2 max_conf=0.789551 anchor=3455
+class 3 max_conf=0.50293 anchor=3393
+class 4 max_conf=0.281738 anchor=2654
+class 5 max_conf=0.00482941 anchor=3158
+class 6 max_conf=0.0012064 anchor=2158
+output.w=8400 output.h=11
+class 0 max_conf=0.692383 anchor=7326
+class 1 max_conf=0.785156 anchor=2770
+class 2 max_conf=0.775879 anchor=3455
+class 3 max_conf=0.439209 anchor=3393
+class 4 max_conf=0.419434 anchor=2573
+class 5 max_conf=0.00734711 anchor=3158
+class 6 max_conf=0.00128937 anchor=3315
+output.w=8400 output.h=11
+class 0 max_conf=0.677246 anchor=7326
+class 1 max_conf=0.779297 anchor=2770
+class 2 max_conf=0.744141 anchor=3454
+class 3 max_conf=0.452393 anchor=3393
+class 4 max_conf=0.325439 anchor=2573
+class 5 max_conf=0.00462723 anchor=3158
+class 6 max_conf=0.00173473 anchor=3234
+output.w=8400 output.h=11
+class 0 max_conf=0.67627 anchor=7296
+class 1 max_conf=0.789551 anchor=2769
+class 2 max_conf=0.693848 anchor=3454
+class 3 max_conf=0.356689 anchor=3473
+class 4 max_conf=0.0549011 anchor=2253
+class 5 max_conf=0.00230598 anchor=3158
+class 6 max_conf=0.00146675 anchor=3234
+output.w=8400 output.h=11
+class 0 max_conf=0.674316 anchor=7296
+class 1 max_conf=0.835449 anchor=2769
+class 2 max_conf=0.727051 anchor=3453
+class 3 max_conf=0.442871 anchor=3560
+class 4 max_conf=0.0288239 anchor=4547
+class 5 max_conf=0.00167465 anchor=3158
+class 6 max_conf=0.00162888 anchor=3234
+output.w=8400 output.h=11
+class 0 max_conf=0.65918 anchor=7384
+class 1 max_conf=0.845703 anchor=2769
+class 2 max_conf=0.678223 anchor=3373
+class 3 max_conf=0.648926 anchor=3233
+class 4 max_conf=0.0396423 anchor=2492
+class 5 max_conf=0.00132465 anchor=3158
+class 6 max_conf=0.00115585 anchor=3234
+output.w=8400 output.h=11
+class 0 max_conf=0.707031 anchor=7325
+class 1 max_conf=0.835938 anchor=2769
+class 2 max_conf=0.691895 anchor=3373
+class 3 max_conf=0.623047 anchor=3312
+class 4 max_conf=0.0541992 anchor=2092
+class 5 max_conf=0.000849724 anchor=3158
+class 6 max_conf=0.0014267 anchor=3233
+output.w=8400 output.h=11
+class 0 max_conf=0.724609 anchor=7424
+class 1 max_conf=0.825195 anchor=2330
+class 2 max_conf=0.692383 anchor=3453
+class 3 max_conf=0.64502 anchor=3233
+class 4 max_conf=0.0872803 anchor=3686
+class 5 max_conf=0.000452995 anchor=3079
+class 6 max_conf=0.00109482 anchor=3233
+output.w=8400 output.h=11
+class 0 max_conf=0.757324 anchor=7424
+class 1 max_conf=0.833984 anchor=2689
+class 2 max_conf=0.740234 anchor=3453
+class 3 max_conf=0.552734 anchor=3233
+class 4 max_conf=0.00923157 anchor=3160
+class 5 max_conf=0.00291061 anchor=3153
+class 6 max_conf=0.00292397 anchor=3233
+output.w=8400 output.h=11
+class 0 max_conf=0.757324 anchor=7424
+class 1 max_conf=0.833008 anchor=2329
+class 2 max_conf=0.673828 anchor=3451
+class 3 max_conf=0.640137 anchor=3312
+class 4 max_conf=0.052887 anchor=3847
+class 5 max_conf=0.00494385 anchor=3153
+class 6 max_conf=0.00174809 anchor=3233
+output.w=8400 output.h=11
+class 0 max_conf=0.805176 anchor=7336
+class 1 max_conf=0.835449 anchor=2691
+class 2 max_conf=0.720215 anchor=3531
+class 3 max_conf=0.583008 anchor=3556
+class 4 max_conf=0.182983 anchor=2489
+class 5 max_conf=0.00540543 anchor=3152
+class 6 max_conf=0.00130844 anchor=3313
+output.w=8400 output.h=11
+class 0 max_conf=0.781738 anchor=7416
+class 1 max_conf=0.82959 anchor=3153
+class 2 max_conf=0.729004 anchor=3449
+class 3 max_conf=0.630371 anchor=3312
+class 4 max_conf=0.0113831 anchor=2227
+class 5 max_conf=0.0064888 anchor=3152
+class 6 max_conf=0.00133514 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.744629 anchor=7416
+class 1 max_conf=0.805664 anchor=2690
+class 2 max_conf=0.772461 anchor=3529
+class 3 max_conf=0.673828 anchor=3311
+class 4 max_conf=0.0164642 anchor=3152
+class 5 max_conf=0.00809479 anchor=3152
+class 6 max_conf=0.00178242 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.728027 anchor=7456
+class 1 max_conf=0.855469 anchor=2704
+class 2 max_conf=0.720215 anchor=3447
+class 3 max_conf=0.702637 anchor=3556
+class 4 max_conf=0.0321045 anchor=3153
+class 5 max_conf=0.00812531 anchor=3152
+class 6 max_conf=0.00167465 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.702637 anchor=7298
+class 1 max_conf=0.818359 anchor=2784
+class 2 max_conf=0.706543 anchor=3447
+class 3 max_conf=0.693848 anchor=3311
+class 4 max_conf=0.0515747 anchor=2405
+class 5 max_conf=0.00572968 anchor=3159
+class 6 max_conf=0.00200272 anchor=3232
+output.w=8400 output.h=11
+class 0 max_conf=0.770508 anchor=7338
+class 1 max_conf=0.819336 anchor=2691
+class 2 max_conf=0.620605 anchor=3446
+class 3 max_conf=0.709961 anchor=3556
+class 4 max_conf=0.039856 anchor=2405
+class 5 max_conf=0.00305176 anchor=3152
+class 6 max_conf=0.00369263 anchor=3232
+output.w=8400 output.h=11
+class 0 max_conf=0.762695 anchor=7338
+class 1 max_conf=0.816406 anchor=2691
+class 2 max_conf=0.669922 anchor=3446
+class 3 max_conf=0.675293 anchor=3311
+class 4 max_conf=0.0297699 anchor=2324
+class 5 max_conf=0.00308609 anchor=3160
+class 6 max_conf=0.00191212 anchor=3232
+output.w=8400 output.h=11
+class 0 max_conf=0.757812 anchor=7298
+class 1 max_conf=0.801758 anchor=3156
+class 2 max_conf=0.668945 anchor=3446
+class 3 max_conf=0.612305 anchor=3475
+class 4 max_conf=0.0883179 anchor=1924
+class 5 max_conf=0.0016489 anchor=3152
+class 6 max_conf=0.00577545 anchor=4564
+output.w=8400 output.h=11
+class 0 max_conf=0.759766 anchor=7298
+class 1 max_conf=0.825684 anchor=2692
+class 2 max_conf=0.716309 anchor=3366
+class 3 max_conf=0.647461 anchor=3636
+class 4 max_conf=0.088501 anchor=2725
+class 5 max_conf=0.00290108 anchor=3152
+class 6 max_conf=0.00469971 anchor=3446
+output.w=8400 output.h=11
+class 0 max_conf=0.759766 anchor=7295
+class 1 max_conf=0.839844 anchor=2692
+class 2 max_conf=0.521484 anchor=3365
+class 3 max_conf=0.642578 anchor=3636
+class 4 max_conf=0.0449524 anchor=2162
+class 5 max_conf=0.00452042 anchor=3152
+class 6 max_conf=0.0106964 anchor=4563
+output.w=8400 output.h=11
+class 0 max_conf=0.729004 anchor=7298
+class 1 max_conf=0.842285 anchor=2613
+class 2 max_conf=0.278564 anchor=3205
+class 3 max_conf=0.628906 anchor=3555
+class 4 max_conf=0.108948 anchor=2162
+class 5 max_conf=0.00812531 anchor=3152
+class 6 max_conf=0.0088501 anchor=3284
+output.w=8400 output.h=11
+class 0 max_conf=0.788086 anchor=7338
+class 1 max_conf=0.85498 anchor=2613
+class 2 max_conf=0.0805054 anchor=3391
+class 3 max_conf=0.687988 anchor=3556
+class 4 max_conf=0.018158 anchor=2081
+class 5 max_conf=0.00322342 anchor=3151
+class 6 max_conf=0.00302887 anchor=3363
+output.w=8400 output.h=11
+class 0 max_conf=0.760742 anchor=7338
+class 1 max_conf=0.837891 anchor=2613
+class 2 max_conf=0.162598 anchor=4226
+class 3 max_conf=0.6875 anchor=3556
+class 4 max_conf=0.0018816 anchor=3232
+class 5 max_conf=0.00248146 anchor=3151
+class 6 max_conf=0.00595856 anchor=3363
+output.w=8400 output.h=11
+class 0 max_conf=0.731445 anchor=7295
+class 1 max_conf=0.825195 anchor=2615
+class 2 max_conf=0.319092 anchor=3551
+class 3 max_conf=0.606934 anchor=3556
+class 4 max_conf=0.00290108 anchor=3232
+class 5 max_conf=0.00208282 anchor=3152
+class 6 max_conf=0.00300217 anchor=4041
+output.w=8400 output.h=11
+class 0 max_conf=0.775879 anchor=7295
+class 1 max_conf=0.835449 anchor=2614
+class 2 max_conf=0.541016 anchor=3551
+class 3 max_conf=0.653809 anchor=3405
+class 4 max_conf=0.0115128 anchor=3079
+class 5 max_conf=0.00266266 anchor=3158
+class 6 max_conf=0.001688 anchor=3312
+output.w=8400 output.h=11
+class 0 max_conf=0.726562 anchor=7295
+class 1 max_conf=0.833984 anchor=2783
+class 2 max_conf=0.526855 anchor=3552
+class 3 max_conf=0.664062 anchor=3404
+class 4 max_conf=0.00265312 anchor=3080
+class 5 max_conf=0.00223541 anchor=3151
+class 6 max_conf=0.00122547 anchor=3312
+output.w=8400 output.h=11
+class 0 max_conf=0.766113 anchor=7382
+class 1 max_conf=0.817871 anchor=2709
+class 2 max_conf=0.208984 anchor=3634
+class 3 max_conf=0.65625 anchor=3484
+class 4 max_conf=0.0041008 anchor=4309
+class 5 max_conf=0.00130844 anchor=3077
+class 6 max_conf=0.00125027 anchor=3310
+output.w=8400 output.h=11
+class 0 max_conf=0.725098 anchor=7417
+class 1 max_conf=0.857422 anchor=2709
+class 2 max_conf=0.229614 anchor=4708
+class 3 max_conf=0.58252 anchor=3484
+class 4 max_conf=0.0281677 anchor=4309
+class 5 max_conf=0.0029583 anchor=3231
+class 6 max_conf=0.00135708 anchor=3312
+output.w=8400 output.h=11
+class 0 max_conf=0.779785 anchor=7382
+class 1 max_conf=0.815918 anchor=2710
+class 2 max_conf=0.168335 anchor=3554
+class 3 max_conf=0.623047 anchor=3484
+class 4 max_conf=0.0190125 anchor=4310
+class 5 max_conf=0.00353622 anchor=3231
+class 6 max_conf=0.00239754 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.791504 anchor=7382
+class 1 max_conf=0.82373 anchor=2710
+class 2 max_conf=0.499023 anchor=4624
+class 3 max_conf=0.67627 anchor=3565
+class 4 max_conf=0.0389099 anchor=3231
+class 5 max_conf=0.00800323 anchor=3150
+class 6 max_conf=0.00292397 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.790039 anchor=7382
+class 1 max_conf=0.819336 anchor=2631
+class 2 max_conf=0.510254 anchor=4624
+class 3 max_conf=0.696777 anchor=3484
+class 4 max_conf=0.0500488 anchor=3231
+class 5 max_conf=0.00878143 anchor=3150
+class 6 max_conf=0.00288963 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.790527 anchor=7382
+class 1 max_conf=0.847168 anchor=2631
+class 2 max_conf=0.324463 anchor=3550
+class 3 max_conf=0.722168 anchor=3484
+class 4 max_conf=0.0593262 anchor=3150
+class 5 max_conf=0.00737381 anchor=3150
+class 6 max_conf=0.00240707 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.777344 anchor=7382
+class 1 max_conf=0.820312 anchor=2632
+class 2 max_conf=0.351562 anchor=3550
+class 3 max_conf=0.710449 anchor=3484
+class 4 max_conf=0.450684 anchor=4223
+class 5 max_conf=0.00743484 anchor=3150
+class 6 max_conf=0.00245476 anchor=3389
+output.w=8400 output.h=11
+class 0 max_conf=0.801758 anchor=7337
+class 1 max_conf=0.825195 anchor=2632
+class 2 max_conf=0.545898 anchor=4624
+class 3 max_conf=0.753906 anchor=3484
+class 4 max_conf=0.398682 anchor=4143
+class 5 max_conf=0.0106506 anchor=3150
+class 6 max_conf=0.0017271 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.801758 anchor=7337
+class 1 max_conf=0.822266 anchor=2633
+class 2 max_conf=0.246338 anchor=4625
+class 3 max_conf=0.770996 anchor=3404
+class 4 max_conf=0.463867 anchor=4143
+class 5 max_conf=0.0111084 anchor=3150
+class 6 max_conf=0.00170612 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.805664 anchor=7297
+class 1 max_conf=0.83252 anchor=2633
+class 2 max_conf=0.227783 anchor=3578
+class 3 max_conf=0.763672 anchor=3404
+class 4 max_conf=0.40625 anchor=4064
+class 5 max_conf=0.0107346 anchor=3150
+class 6 max_conf=0.00165558 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.790527 anchor=7297
+class 1 max_conf=0.837402 anchor=2634
+class 2 max_conf=0.256104 anchor=3630
+class 3 max_conf=0.770996 anchor=3484
+class 4 max_conf=0.263184 anchor=4145
+class 5 max_conf=0.0127716 anchor=3150
+class 6 max_conf=0.00173473 anchor=3311
+output.w=8400 output.h=11
+class 0 max_conf=0.779297 anchor=7297
+class 1 max_conf=0.79834 anchor=3234
+class 2 max_conf=0.421143 anchor=3550
+class 3 max_conf=0.77002 anchor=3484
+class 4 max_conf=0.254639 anchor=4066
+class 5 max_conf=0.0111542 anchor=3150
+class 6 max_conf=0.00183868 anchor=3731
+output.w=8400 output.h=11
+class 0 max_conf=0.77832 anchor=7382
+class 1 max_conf=0.799805 anchor=3234
+class 2 max_conf=0.429199 anchor=3630
+class 3 max_conf=0.771484 anchor=3491
+class 4 max_conf=0.108398 anchor=4066
+class 5 max_conf=0.00815582 anchor=3230
+class 6 max_conf=0.00181007 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.776855 anchor=7381
+class 1 max_conf=0.813965 anchor=2930
+class 2 max_conf=0.529785 anchor=3630
+class 3 max_conf=0.763672 anchor=3491
+class 4 max_conf=0.103699 anchor=4067
+class 5 max_conf=0.0100098 anchor=3150
+class 6 max_conf=0.00239754 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.832031 anchor=7426
+class 1 max_conf=0.819336 anchor=2930
+class 2 max_conf=0.474121 anchor=3550
+class 3 max_conf=0.800781 anchor=3492
+class 4 max_conf=0.0192719 anchor=4068
+class 5 max_conf=0.0108185 anchor=3150
+class 6 max_conf=0.00462723 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.82666 anchor=7426
+class 1 max_conf=0.82373 anchor=3011
+class 2 max_conf=0.380371 anchor=3630
+class 3 max_conf=0.815918 anchor=3492
+class 4 max_conf=0.0112076 anchor=3230
+class 5 max_conf=0.0134811 anchor=3230
+class 6 max_conf=0.00482941 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.819824 anchor=7385
+class 1 max_conf=0.8125 anchor=2930
+class 2 max_conf=0.365723 anchor=3630
+class 3 max_conf=0.817871 anchor=3652
+class 4 max_conf=0.0422363 anchor=4705
+class 5 max_conf=0.014389 anchor=3150
+class 6 max_conf=0.00800323 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.805176 anchor=7385
+class 1 max_conf=0.812012 anchor=2461
+class 2 max_conf=0.264893 anchor=3550
+class 3 max_conf=0.806152 anchor=3652
+class 4 max_conf=0.141357 anchor=4785
+class 5 max_conf=0.0107803 anchor=3230
+class 6 max_conf=0.0113831 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.810059 anchor=7386
+class 1 max_conf=0.823242 anchor=2931
+class 2 max_conf=0.318848 anchor=5185
+class 3 max_conf=0.809082 anchor=3652
+class 4 max_conf=0.019577 anchor=3230
+class 5 max_conf=0.014122 anchor=3230
+class 6 max_conf=0.0112457 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.813965 anchor=7426
+class 1 max_conf=0.821777 anchor=2931
+class 2 max_conf=0.241089 anchor=3550
+class 3 max_conf=0.813477 anchor=3652
+class 4 max_conf=0.0589905 anchor=3230
+class 5 max_conf=0.0163422 anchor=3150
+class 6 max_conf=0.00746155 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.833984 anchor=7426
+class 1 max_conf=0.825684 anchor=3011
+class 2 max_conf=0.166992 anchor=3550
+class 3 max_conf=0.817871 anchor=3572
+class 4 max_conf=0.0471497 anchor=3230
+class 5 max_conf=0.014389 anchor=3150
+class 6 max_conf=0.00854492 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.82959 anchor=7426
+class 1 max_conf=0.82666 anchor=3011
+class 2 max_conf=0.187134 anchor=3550
+class 3 max_conf=0.805176 anchor=3572
+class 4 max_conf=0.0881348 anchor=4949
+class 5 max_conf=0.0121918 anchor=3150
+class 6 max_conf=0.00534439 anchor=2822
+output.w=8400 output.h=11
+class 0 max_conf=0.819824 anchor=7426
+class 1 max_conf=0.831055 anchor=2931
+class 2 max_conf=0.225342 anchor=3550
+class 3 max_conf=0.791504 anchor=3732
+class 4 max_conf=0.0678101 anchor=3230
+class 5 max_conf=0.0103302 anchor=3231
+class 6 max_conf=0.00311089 anchor=3732
+output.w=8400 output.h=11
+class 0 max_conf=0.819824 anchor=7426
+class 1 max_conf=0.833984 anchor=2931
+class 2 max_conf=0.302002 anchor=3550
+class 3 max_conf=0.785645 anchor=3732
+class 4 max_conf=0.069519 anchor=3230
+class 5 max_conf=0.00930023 anchor=3231
+class 6 max_conf=0.00682449 anchor=3732
+output.w=8400 output.h=11
+class 0 max_conf=0.819336 anchor=7425
+class 1 max_conf=0.832031 anchor=2931
+class 2 max_conf=0.320312 anchor=3561
+class 3 max_conf=0.770508 anchor=3491
+class 4 max_conf=0.00854492 anchor=3230
+class 5 max_conf=0.00671768 anchor=3231
+class 6 max_conf=0.00743484 anchor=3732
+output.w=8400 output.h=11
+class 0 max_conf=0.821289 anchor=7425
+class 1 max_conf=0.833984 anchor=2931
+class 2 max_conf=0.366455 anchor=3551
+class 3 max_conf=0.758301 anchor=3492
+class 4 max_conf=0.00538254 anchor=3230
+class 5 max_conf=0.00959778 anchor=3233
+class 6 max_conf=0.019577 anchor=3652
+output.w=8400 output.h=11
+class 0 max_conf=0.821777 anchor=7426
+class 1 max_conf=0.832031 anchor=2852
+class 2 max_conf=0.49707 anchor=3551
+class 3 max_conf=0.760254 anchor=3492
+class 4 max_conf=0.00413513 anchor=3230
+class 5 max_conf=0.00963593 anchor=3233
+class 6 max_conf=0.0174408 anchor=3652
+output.w=8400 output.h=11
+class 0 max_conf=0.819824 anchor=7426
+class 1 max_conf=0.837402 anchor=2852
+class 2 max_conf=0.375977 anchor=3551
+class 3 max_conf=0.760254 anchor=3492
+class 4 max_conf=0.0118713 anchor=2999
+class 5 max_conf=0.00674438 anchor=3078
+class 6 max_conf=0.0114212 anchor=3652
+output.w=8400 output.h=11
+class 0 max_conf=0.823242 anchor=7426
+class 1 max_conf=0.83252 anchor=2852
+class 2 max_conf=0.349609 anchor=3630
+class 3 max_conf=0.773438 anchor=3491
+class 4 max_conf=0.0173035 anchor=3236
+class 5 max_conf=0.00593567 anchor=3078
+class 6 max_conf=0.00775146 anchor=3651
+output.w=8400 output.h=11
+class 0 max_conf=0.82959 anchor=7426
+class 1 max_conf=0.834473 anchor=2852
+class 2 max_conf=0.330811 anchor=3630
+class 3 max_conf=0.784668 anchor=3491
+class 4 max_conf=0.0109024 anchor=3077
+class 5 max_conf=0.00757599 anchor=3077
+class 6 max_conf=0.00443649 anchor=3651
+output.w=8400 output.h=11
+class 0 max_conf=0.822266 anchor=7426
+class 1 max_conf=0.819336 anchor=2852
+class 2 max_conf=0.313232 anchor=3630
+class 3 max_conf=0.791992 anchor=3491
+class 4 max_conf=0.00785065 anchor=3230
+class 5 max_conf=0.0113831 anchor=3077
+class 6 max_conf=0.00389862 anchor=3731
+<<< COUNT OUT! ID 9 Total: 1
+output.w=8400 output.h=11
+class 0 max_conf=0.82666 anchor=7426
+class 1 max_conf=0.82959 anchor=2852
+class 2 max_conf=0.182617 anchor=3633
+class 3 max_conf=0.796875 anchor=3491
+class 4 max_conf=0.0237732 anchor=3230
+class 5 max_conf=0.00725937 anchor=3077
+class 6 max_conf=0.00389862 anchor=3731
+output.w=8400 output.h=11
+class 0 max_conf=0.837891 anchor=7426
+class 1 max_conf=0.833008 anchor=2931
+class 2 max_conf=0.122131 anchor=3633
+class 3 max_conf=0.796387 anchor=3491
+class 4 max_conf=0.0236053 anchor=3230
+class 5 max_conf=0.0107346 anchor=3230
+class 6 max_conf=0.00325966 anchor=3732
+output.w=8400 output.h=11
+class 0 max_conf=0.84082 anchor=7425
+class 1 max_conf=0.820312 anchor=2931
+class 2 max_conf=0.129761 anchor=3633
+class 3 max_conf=0.797363 anchor=3732
+class 4 max_conf=0.0207672 anchor=3235
+class 5 max_conf=0.011734 anchor=3233
+class 6 max_conf=0.00737381 anchor=3731
+output.w=8400 output.h=11
+class 0 max_conf=0.83252 anchor=7425
+class 1 max_conf=0.820312 anchor=2851
+class 2 max_conf=0.222656 anchor=3633
+class 3 max_conf=0.79248 anchor=3732
+class 4 max_conf=0.0152512 anchor=3235
+class 5 max_conf=0.00952148 anchor=3233
+class 6 max_conf=0.00967407 anchor=3731
+output.w=8400 output.h=11
+class 0 max_conf=0.837891 anchor=7425
+class 1 max_conf=0.833008 anchor=2931
+class 2 max_conf=0.240112 anchor=3553
+class 3 max_conf=0.786621 anchor=3732
+class 4 max_conf=0.0272827 anchor=3235
+class 5 max_conf=0.0106964 anchor=3230
+class 6 max_conf=0.0128174 anchor=3731
+output.w=8400 output.h=11
+class 0 max_conf=0.830566 anchor=7425
+class 1 max_conf=0.834473 anchor=2930
+class 2 max_conf=0.180176 anchor=3553
+class 3 max_conf=0.788086 anchor=3732
+class 4 max_conf=0.0371094 anchor=3230
+class 5 max_conf=0.016037 anchor=3230
+class 6 max_conf=0.0147858 anchor=3731
+output.w=8400 output.h=11
+class 0 max_conf=0.837891 anchor=7425
+class 1 max_conf=0.84082 anchor=2850
+class 2 max_conf=0.293457 anchor=3553
+class 3 max_conf=0.770996 anchor=3491
+class 4 max_conf=0.0282745 anchor=3235
+class 5 max_conf=0.00905609 anchor=3157
+class 6 max_conf=0.0200195 anchor=3651
+output.w=8400 output.h=11
+class 0 max_conf=0.838867 anchor=7425
+class 1 max_conf=0.839355 anchor=2850
+class 2 max_conf=0.400635 anchor=3553
+class 3 max_conf=0.775391 anchor=3491
+class 4 max_conf=0.0232391 anchor=3235
+class 5 max_conf=0.00500107 anchor=3157
+class 6 max_conf=0.0259552 anchor=3651
+output.w=8400 output.h=11
+class 0 max_conf=0.837891 anchor=7425
+class 1 max_conf=0.831055 anchor=2850
+class 2 max_conf=0.337402 anchor=3553
+class 3 max_conf=0.738281 anchor=3491
+class 4 max_conf=0.0348816 anchor=3235
+class 5 max_conf=0.00536346 anchor=3157
+class 6 max_conf=0.0483093 anchor=3651
+output.w=8400 output.h=11
+class 0 max_conf=0.834473 anchor=7425
+class 1 max_conf=0.82959 anchor=2850
+class 2 max_conf=0.282471 anchor=3633
+class 3 max_conf=0.732422 anchor=3491
+class 4 max_conf=0.0298157 anchor=3235
+class 5 max_conf=0.00440216 anchor=3157
+class 6 max_conf=0.0531006 anchor=3651
+output.w=8400 output.h=11
+class 0 max_conf=0.823242 anchor=7425
+class 1 max_conf=0.835449 anchor=2850
+class 2 max_conf=0.242432 anchor=3633
+class 3 max_conf=0.745605 anchor=3490
+class 4 max_conf=0.0357666 anchor=3235
+class 5 max_conf=0.00323677 anchor=3230
+class 6 max_conf=0.0498352 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.82666 anchor=7425
+class 1 max_conf=0.835449 anchor=2850
+class 2 max_conf=0.157593 anchor=3633
+class 3 max_conf=0.747559 anchor=3491
+class 4 max_conf=0.0143356 anchor=3235
+class 5 max_conf=0.00344276 anchor=3230
+class 6 max_conf=0.0428162 anchor=3651
+ID: 12 | Ground Y: 410.694
+ID: 11 | Ground Y: 558.544
+ID: 9 | Ground Y: 382.838
+ID: 7 | Ground Y: 442.121
+ID: 6 | Ground Y: 372.839
+output.w=8400 output.h=11
+class 0 max_conf=0.837891 anchor=7425
+class 1 max_conf=0.825195 anchor=2850
+class 2 max_conf=0.185425 anchor=3633
+class 3 max_conf=0.729004 anchor=3491
+class 4 max_conf=0.0193787 anchor=3235
+class 5 max_conf=0.00559998 anchor=3157
+class 6 max_conf=0.0484009 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.830566 anchor=7425
+class 1 max_conf=0.827637 anchor=2771
+class 2 max_conf=0.147461 anchor=3552
+class 3 max_conf=0.725098 anchor=3651
+class 4 max_conf=0.0252838 anchor=3235
+class 5 max_conf=0.0045929 anchor=3230
+class 6 max_conf=0.0527039 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.828613 anchor=7425
+class 1 max_conf=0.823242 anchor=2932
+class 2 max_conf=0.159546 anchor=3552
+class 3 max_conf=0.720215 anchor=3651
+class 4 max_conf=0.0167847 anchor=3235
+class 5 max_conf=0.00265312 anchor=3233
+class 6 max_conf=0.0772705 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.82373 anchor=7426
+class 1 max_conf=0.828613 anchor=2852
+class 2 max_conf=0.149902 anchor=3559
+class 3 max_conf=0.739746 anchor=3732
+class 4 max_conf=0.00524139 anchor=3235
+class 5 max_conf=0.00367928 anchor=3233
+class 6 max_conf=0.0858765 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.81543 anchor=7426
+class 1 max_conf=0.843262 anchor=2932
+class 2 max_conf=0.179199 anchor=3552
+class 3 max_conf=0.730469 anchor=3644
+class 4 max_conf=0.0413208 anchor=3235
+class 5 max_conf=0.00888062 anchor=3159
+class 6 max_conf=0.101929 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.836426 anchor=7382
+class 1 max_conf=0.847168 anchor=2851
+class 2 max_conf=0.134155 anchor=3472
+class 3 max_conf=0.744141 anchor=3645
+class 4 max_conf=0.0319214 anchor=3235
+class 5 max_conf=0.00805664 anchor=3159
+class 6 max_conf=0.0643921 anchor=3653
+output.w=8400 output.h=11
+class 0 max_conf=0.82666 anchor=7382
+class 1 max_conf=0.836426 anchor=2851
+class 2 max_conf=0.237427 anchor=3553
+class 3 max_conf=0.737793 anchor=3645
+class 4 max_conf=0.132812 anchor=3235
+class 5 max_conf=0.00963593 anchor=3235
+class 6 max_conf=0.0858765 anchor=3572
+output.w=8400 output.h=11
+class 0 max_conf=0.825684 anchor=7343
+class 1 max_conf=0.828613 anchor=2933
+class 2 max_conf=0.293701 anchor=3553
+class 3 max_conf=0.749023 anchor=3645
+class 4 max_conf=0.162598 anchor=3235
+class 5 max_conf=0.0166626 anchor=3231
+class 6 max_conf=0.0956421 anchor=3653
+output.w=8400 output.h=11
+class 0 max_conf=0.830566 anchor=7383
+class 1 max_conf=0.829102 anchor=2933
+class 2 max_conf=0.234009 anchor=3470
+class 3 max_conf=0.764648 anchor=3485
+class 4 max_conf=0.135254 anchor=3235
+class 5 max_conf=0.0211639 anchor=3231
+class 6 max_conf=0.112061 anchor=3653
+output.w=8400 output.h=11
+class 0 max_conf=0.835449 anchor=7383
+class 1 max_conf=0.83252 anchor=2932
+class 2 max_conf=0.306396 anchor=3470
+class 3 max_conf=0.756348 anchor=3405
+class 4 max_conf=0.0381775 anchor=3235
+class 5 max_conf=0.0148392 anchor=3231
+class 6 max_conf=0.129639 anchor=3573
+ID: 11 | Ground Y: 575.686
+ID: 10 | Ground Y: 385.695
+ID: 9 | Ground Y: 372.124
+ID: 7 | Ground Y: 433.55
+ID: 6 | Ground Y: 369.267
+output.w=8400 output.h=11
+class 0 max_conf=0.82959 anchor=7383
+class 1 max_conf=0.843262 anchor=2773
+class 2 max_conf=0.386719 anchor=3470
+class 3 max_conf=0.764648 anchor=3405
+class 4 max_conf=0.105957 anchor=3235
+class 5 max_conf=0.0134201 anchor=3231
+class 6 max_conf=0.104309 anchor=3573
+
+Flushing video writer...
+Converting to MP4 (H.264)...
+MP4 conversion complete: output.mp4
+Video saved: output.mp4
+  Frames written: 192
+  Frames dropped: 0
+
+╔══════════════════════════════════════════════════════════════╗
+║                    BENCHMARK RESULTS                         ║
+╠══════════════════════════════════════════════════════════════╣
+║  Frames Analyzed:         162                                ║
+║  Frames > 50ms:           162                                ║
+╠══════════════════════════════════════════════════════════════╣
+║  LATENCY (microseconds)                                      ║
+║    Mean:              70040.4                                ║
+║    Std Dev:            3740.9                                ║
+║    Min:               67519.0                                ║
+║    Max:               98962.0                                ║
+║    P50 (median):      68699.0                                ║
+║    P90:               72901.2                                ║
+║    P95:               76008.9                                ║
+║    P99:               85137.7                                ║
+╠══════════════════════════════════════════════════════════════╣
+║  COMPONENT BREAKDOWN (mean, microseconds)                    ║
+║    Capture:               0.0                                ║
+║    Preprocess:         4161.2                                ║
+║    Inference:         67194.8                                ║
+║    Postprocess:          34.6                                ║
+╠══════════════════════════════════════════════════════════════╣
+║  THROUGHPUT (FPS)                                            ║
+║    Mean:                14.28                                ║
+║    P50:                 14.56                                ║
+║    P99:                 11.75                                ║
+╠══════════════════════════════════════════════════════════════╣
+║  MEMORY                                                      ║
+║    Peak RSS:              306 MB                             ║
+╠══════════════════════════════════════════════════════════════╣
+║  PASS/FAIL CRITERIA                                          ║
+║    ≥20 FPS (P99):    FAIL ✗                                  ║
+║    ≤50ms latency:    FAIL ✗                                  ║
+║    ≤5ms jitter:      PASS ✓                                  ║
+╠══════════════════════════════════════════════════════════════╣
+║                    ✗ SYSTEM NOT VALIDATED ✗                  ║
+╚══════════════════════════════════════════════════════════════╝
+
+✗ SYSTEM DOES NOT MEET PERFORMANCE REQUIREMENTS
+  FPS (P99): 11.7457 < 20

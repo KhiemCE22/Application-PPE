@@ -33,10 +33,17 @@
 
 extern "C" {
 #include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libavutil/dict.h>
-#include <libavutil/pixfmt.h>
+#include <libavcodec/packet.h>
 #include <libavcodec/bsf.h>  // Required for Bitstream Filter
+
+
+#include <libavutil/dict.h>
+#include <libavutil/hwcontext.h>
+#include <libavutil/hwcontext_drm.h>
+#include <libavutil/pixdesc.h>
+#include <libavutil/pixfmt.h>
+
+#include <libavformat/avformat.h>
 #include <libswscale/swscale.h>
 }
 

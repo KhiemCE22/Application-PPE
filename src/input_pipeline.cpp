@@ -577,127 +577,491 @@ void InputPipeline::capture_loop_rtsp(FrameCallback callback) {
 }
 */
 
+
+/**
+ * New RTSP callback to use Hardware Decoder with FFmpeg
+**/
+
+
+static enum AVPixelFormat get_hw_format(
+    AVCodecContext* ctx,
+    const enum AVPixelFormat* pix_fmts)
+{
+    std::cout << "[HW] Available pixel formats:\n";
+
+    while (*pix_fmts != AV_PIX_FMT_NONE) {
+
+        std::cout << "  -> " << av_get_pix_fmt_name(*pix_fmts) << "\n";
+
+        if (*pix_fmts == AV_PIX_FMT_DRM_PRIME) {
+
+            std::cout << "[HW] Selected DRM PRIME format\n";
+
+            return *pix_fmts;
+        }
+
+        pix_fmts++;
+    }
+
+    std::cerr << "[HW] DRM PRIME format not offered by decoder\n";
+
+    return AV_PIX_FMT_NONE;
+}
+
+void InputPipeline::capture_loop_rtsp(FrameCallback callback)
+{
+    set_thread_affinity(INPUT_THREAD_CPU);
+
+    std::cout << "\n========================================\n";
+    std::cout << " RTSP HEVC INPUT PIPELINE STARTED\n";
+    std::cout << "========================================\n";
+
+    AVFormatContext* fmt_ctx = nullptr;
+
+    AVDictionary* opts = nullptr;
+
+    av_dict_set(&opts, "rtsp_transport", "tcp", 0);
+    av_dict_set(&opts, "fflags", "nobuffer", 0);
+    av_dict_set(&opts, "flags", "low_delay", 0);
+
+    std::cout << "[RTSP] Opening stream:\n";
+    std::cout << "       " << config_.device_path << "\n";
+
+    if (avformat_open_input(
+            &fmt_ctx,
+            config_.device_path.c_str(),
+            nullptr,
+            &opts) < 0)
+    {
+        std::cerr << "[FATAL] Could not open RTSP stream\n";
+        running_.store(false);
+        return;
+    }
+
+    if (avformat_find_stream_info(fmt_ctx, nullptr) < 0) {
+
+        std::cerr << "[FATAL] Could not find stream info\n";
+
+        running_.store(false);
+        return;
+    }
+
+    int video_stream_idx = -1;
+
+    for (unsigned int i = 0; i < fmt_ctx->nb_streams; i++) {
+
+        if (fmt_ctx->streams[i]->codecpar->codec_type ==
+            AVMEDIA_TYPE_VIDEO)
+        {
+            video_stream_idx = i;
+            break;
+        }
+    }
+
+    if (video_stream_idx < 0) {
+
+        std::cerr << "[FATAL] No video stream found\n";
+
+        running_.store(false);
+        return;
+    }
+
+    AVCodecParameters* codec_par =
+        fmt_ctx->streams[video_stream_idx]->codecpar;
+
+    std::cout << "\n[STREAM INFO]\n";
+    std::cout << "Codec: " << avcodec_get_name(codec_par->codec_id) << "\n";
+    std::cout << "Resolution: "
+              << codec_par->width
+              << "x"
+              << codec_par->height
+              << "\n";
+
+    // =========================================================
+    // USE NATIVE DECODER + DRM HWACCEL
+    // =========================================================
+
+    const AVCodec* codec =
+        avcodec_find_decoder(codec_par->codec_id);
+
+    if (!codec) {
+
+        std::cerr << "[FATAL] Decoder not found\n";
+
+        running_.store(false);
+        return;
+    }
+
+    std::cout << "\n[DECODER]\n";
+    std::cout << "Using decoder: " << codec->name << "\n";
+
+    AVCodecContext* codec_ctx =
+        avcodec_alloc_context3(codec);
+
+    avcodec_parameters_to_context(codec_ctx, codec_par);
+
+    // =========================================================
+    // DRM HW DEVICE
+    // =========================================================
+
+    AVBufferRef* hw_device_ctx = nullptr;
+
+    std::cout << "\n[HWACCEL]\n";
+    std::cout << "Creating DRM device context...\n";
+
+    int hw_ret = av_hwdevice_ctx_create(
+        &hw_device_ctx,
+        AV_HWDEVICE_TYPE_DRM,
+        "/dev/dri/card0",
+        nullptr,
+        0);
+
+    bool hw_enabled = false;
+
+    if (hw_ret >= 0) {
+
+        std::cout << "[SUCCESS] DRM HW Device Created\n";
+
+        codec_ctx->hw_device_ctx =
+            av_buffer_ref(hw_device_ctx);
+
+        codec_ctx->get_format = get_hw_format;
+
+        hw_enabled = true;
+
+    } else {
+
+        std::cout << "[WARNING] DRM HW Device Creation Failed\n";
+        std::cout << "[FALLBACK] Software Decode Mode\n";
+
+        codec_ctx->thread_count = 4;
+        codec_ctx->thread_type = FF_THREAD_FRAME;
+    }
+
+    // =========================================================
+    // OPEN CODEC
+    // =========================================================
+
+    if (avcodec_open2(codec_ctx, codec, nullptr) < 0) {
+
+        std::cerr << "[FATAL] Could not open codec\n";
+
+        running_.store(false);
+        return;
+    }
+
+    std::cout << "\n[CODEC OPENED SUCCESSFULLY]\n";
+
+    if (hw_enabled) {
+
+        std::cout << "[MODE] HARDWARE HEVC DECODE ACTIVE\n";
+
+    } else {
+
+        std::cout << "[MODE] SOFTWARE DECODE ACTIVE\n";
+    }
+
+    // =========================================================
+    // ALLOC FRAMES
+    // =========================================================
+
+    AVFrame* frame = av_frame_alloc();
+
+    AVFrame* sw_frame = av_frame_alloc();
+
+    AVPacket* pkt = av_packet_alloc();
+
+    struct SwsContext* sws_ctx = sws_getContext(
+        codec_par->width,
+        codec_par->height,
+        AV_PIX_FMT_YUV420P,
+        config_.width,
+        config_.height,
+        AV_PIX_FMT_BGR24,
+        SWS_BILINEAR,
+        nullptr,
+        nullptr,
+        nullptr);
+
+    std::cout << "\n[PIPELINE READY]\n";
+    std::cout << "========================================\n";
+
+    // =========================================================
+    // MAIN LOOP
+    // =========================================================
+
+    while (running_.load(std::memory_order_relaxed)) {
+
+        if (av_read_frame(fmt_ctx, pkt) < 0) {
+
+            std::cout << "[STREAM] End or Error\n";
+
+            break;
+        }
+
+        if (pkt->stream_index != video_stream_idx) {
+
+            av_packet_unref(pkt);
+
+            continue;
+        }
+
+        int send_ret = avcodec_send_packet(codec_ctx, pkt);
+
+        if (send_ret < 0) {
+
+            std::cerr << "[ERROR] Failed to send packet\n";
+
+            av_packet_unref(pkt);
+
+            continue;
+        }
+
+        while (true) {
+
+            int recv_ret =
+                avcodec_receive_frame(codec_ctx, frame);
+
+            if (recv_ret == AVERROR(EAGAIN) ||
+                recv_ret == AVERROR_EOF)
+            {
+                break;
+            }
+
+            if (recv_ret < 0) {
+
+                std::cerr << "[ERROR] Failed to receive frame\n";
+
+                break;
+            }
+
+            // =================================================
+            // HARDWARE FRAME
+            // =================================================
+
+            AVFrame* usable_frame = frame;
+
+            if (frame->format == AV_PIX_FMT_DRM_PRIME) {
+
+                std::cout << "[HW FRAME] DRM PRIME received\n";
+
+                if (av_hwframe_transfer_data(
+                        sw_frame,
+                        frame,
+                        0) < 0)
+                {
+                    std::cerr
+                        << "[ERROR] hwframe transfer failed\n";
+
+                    continue;
+                }
+
+                usable_frame = sw_frame;
+
+            } else {
+
+                std::cout << "[SW FRAME] CPU frame received\n";
+            }
+
+            // =================================================
+            // YUV -> BGR
+            // =================================================
+
+            uint8_t* dest_slices[1] = {
+                video_frame_buffer_.get()
+            };
+
+            int dest_linesize[1] = {
+                config_.width * 3
+            };
+
+            sws_scale(
+                sws_ctx,
+                usable_frame->data,
+                usable_frame->linesize,
+                0,
+                codec_ctx->height,
+                dest_slices,
+                dest_linesize);
+
+            // =================================================
+            // CALLBACK
+            // =================================================
+
+            FrameBuffer fb;
+
+            fb.data = video_frame_buffer_.get();
+            fb.size = config_.width * config_.height * 3;
+            fb.width = config_.width;
+            fb.height = config_.height;
+            fb.stride = config_.width * 3;
+            fb.format = PixelFormat::BGR;
+            fb.frame_index = frame_count_.load();
+            fb.timestamp_ns = get_timestamp_ns();
+            fb.valid = true;
+
+            if (!callback(fb)) {
+
+                running_.store(false);
+            }
+
+            frame_count_.fetch_add(1);
+        }
+
+        av_packet_unref(pkt);
+    }
+
+    // =========================================================
+    // CLEANUP
+    // =========================================================
+
+    std::cout << "\n[CLEANUP]\n";
+
+    av_packet_free(&pkt);
+
+    av_frame_free(&frame);
+
+    av_frame_free(&sw_frame);
+
+    avcodec_free_context(&codec_ctx);
+
+    avformat_close_input(&fmt_ctx);
+
+    sws_freeContext(sws_ctx);
+
+    if (hw_device_ctx) {
+
+        av_buffer_unref(&hw_device_ctx);
+    }
+
+    running_.store(false);
+
+    std::cout << "[EXIT] Pipeline stopped\n";
+}
+
+
+
 // Callback function to handle new frames from GStreamer
 /**
  * @brief GStreamer static callback (The Producer).
  * Grabs raw hardware-decoded buffers, clones them, and pushes them into a thread-safe queue.
  */
-static GstFlowReturn on_new_sample(GstElement* sink, gpointer user_data) {
-    // Access the InputPipeline instance through user_data
-    auto* pipeline_ptr = static_cast<yolo::InputPipeline*>(user_data);
-    
-    GstSample* sample = nullptr;
-    // Emit signal to pull the latest sample from appsink
-    g_signal_emit_by_name(sink, "pull-sample", &sample);
-
-    if (sample) {
-        GstBuffer* buffer = gst_sample_get_buffer(sample);
-        GstCaps* caps = gst_sample_get_caps(sample);
-        GstStructure* s = gst_caps_get_structure(caps, 0);
-        
-        int width, height;
-        gst_structure_get_int(s, "width", &width);
-        gst_structure_get_int(s, "height", &height);
-
-        GstMapInfo map;
-        // Map GStreamer buffer memory for CPU access
-        if (gst_buffer_map(buffer, &map, GST_MAP_READ)) {
-            
-            // Calculate stride (byte jump per row) for hardware-aligned memory
-            size_t stride = map.size / height;
-
-            // Wrap hardware memory into a cv::Mat (Zero-copy wrapper)
-            cv::Mat hw_frame(height, width, CV_8UC3, (void*)map.data, stride);
-
-            // Thread-safe queue operation
-            {
-                std::lock_guard<std::mutex> lock(pipeline_ptr->get_queue_mutex());
-                
-                // If the queue is full, drop the oldest frame to maintain low latency (Real-time)
-                if (pipeline_ptr->get_frame_queue().size() >= pipeline_ptr->get_max_queue_size()) {
-                    pipeline_ptr->get_frame_queue().pop();
-                }
-
-                // Deep copy (.clone()) is MANDATORY here because GStreamer will 
-                // recycle the 'map.data' memory immediately after this function returns.
-                pipeline_ptr->get_frame_queue().push(hw_frame.clone());
-                pipeline_ptr->get_frame_cv().notify_one();
-            }
-
-            // Unmap memory to release hardware resources
-            gst_buffer_unmap(buffer, &map);
-        }
-        
-        // Cleanup GStreamer sample reference
-        gst_sample_unref(sample);
-        return GST_FLOW_OK;
-    }
-    
-    return GST_FLOW_ERROR;
-}
+//static GstFlowReturn on_new_sample(GstElement* sink, gpointer user_data) {
+//    // Access the InputPipeline instance through user_data
+//    auto* pipeline_ptr = static_cast<yolo::InputPipeline*>(user_data);
+//    
+//    GstSample* sample = nullptr;
+//    // Emit signal to pull the latest sample from appsink
+//    g_signal_emit_by_name(sink, "pull-sample", &sample);
+//
+//    if (sample) {
+//        GstBuffer* buffer = gst_sample_get_buffer(sample);
+//        GstCaps* caps = gst_sample_get_caps(sample);
+//        GstStructure* s = gst_caps_get_structure(caps, 0);
+//        
+//        int width, height;
+//        gst_structure_get_int(s, "width", &width);
+//        gst_structure_get_int(s, "height", &height);
+//
+//        GstMapInfo map;
+//        // Map GStreamer buffer memory for CPU access
+//        if (gst_buffer_map(buffer, &map, GST_MAP_READ)) {
+//            
+//            // Calculate stride (byte jump per row) for hardware-aligned memory
+//            size_t stride = map.size / height;
+//
+//            // Wrap hardware memory into a cv::Mat (Zero-copy wrapper)
+//            cv::Mat hw_frame(height, width, CV_8UC3, (void*)map.data, stride);
+//
+//            // Thread-safe queue operation
+//            {
+//                std::lock_guard<std::mutex> lock(pipeline_ptr->get_queue_mutex());
+//                
+//                // If the queue is full, drop the oldest frame to maintain low latency (Real-time)
+//                if (pipeline_ptr->get_frame_queue().size() >= pipeline_ptr->get_max_queue_size()) {
+//                    pipeline_ptr->get_frame_queue().pop();
+//                }
+//
+//                // Deep copy (.clone()) is MANDATORY here because GStreamer will 
+//                // recycle the 'map.data' memory immediately after this function returns.
+//                pipeline_ptr->get_frame_queue().push(hw_frame.clone());
+//                pipeline_ptr->get_frame_cv().notify_one();
+//            }
+//
+//            // Unmap memory to release hardware resources
+//            gst_buffer_unmap(buffer, &map);
+//        }
+//        
+//        // Cleanup GStreamer sample reference
+//        gst_sample_unref(sample);
+//        return GST_FLOW_OK;
+//    }
+//    
+//    return GST_FLOW_ERROR;
+//}
 
 /**
  * @brief Consumer loop with Condition Variable to prevent Terminal Freezing.
  */
-void yolo::InputPipeline::capture_loop_rtsp(FrameCallback callback) {
-    set_thread_affinity(INPUT_THREAD_CPU);
-    gst_init(NULL, NULL);
-
-    // Optimized pipeline with internal queue to decouple hardware decoder from app logic
-    std::string launch_str = 
-        "rtspsrc location=" + config_.device_path + " latency=0 protocols=tcp ! "
-        "rtph265depay ! h265parse ! v4l2slh265dec ! "
-        "videoconvert ! video/x-raw, format=BGR ! "
-        "appsink name=mysink emit-signals=true sync=false drop=true async=false";
-
-    GError* error = nullptr;
-    GstElement* pipeline = gst_parse_launch(launch_str.c_str(), &error);
-    if (error) { /* handle error */ return; }
-
-    GstElement* appsink = gst_bin_get_by_name(GST_BIN(pipeline), "mysink");
-    g_signal_connect(appsink, "new-sample", G_CALLBACK(on_new_sample), this);
-    gst_object_unref(appsink);
-
-    gst_element_set_state(pipeline, GST_STATE_PLAYING);
-    std::cout << "[SUCCESS] Hardware Pipeline Live. Processing frames..." << std::endl;
-
-    while (running_.load(std::memory_order_relaxed)) {
-        cv::Mat frame_to_process;
-        
-        {
-            // Wait until a frame is available or timeout (to check running_ flag)
-            std::unique_lock<std::mutex> lock(queue_mutex_);
-            frame_cv_.wait_for(lock, std::chrono::milliseconds(100), [this] {
-                return !frame_queue_.empty() || !running_.load();
-            });
-
-            if (!running_.load()) break;
-            if (frame_queue_.empty()) continue;
-
-            frame_to_process = frame_queue_.front();
-            frame_queue_.pop();
-        }
-
-        // --- INFERENCE START ---
-        yolo::FrameBuffer fb;
-        fb.data = frame_to_process.data;
-        fb.width = frame_to_process.cols;
-        fb.height = frame_to_process.rows;
-        fb.stride = frame_to_process.step;
-        fb.format = yolo::PixelFormat::BGR;
-        fb.timestamp_ns = get_timestamp_ns();
-        fb.valid = true;
-
-        if (!callback(fb)) break; 
-        // --- INFERENCE END ---
-    }
-    
-    
-    // Cleanup: Properly transition the pipeline to NULL state to release HW resources
-    std::cout << "[INFO] Shutting down capture pipeline..." << std::endl;
-    gst_element_set_state(pipeline, GST_STATE_NULL);
-    gst_object_unref(pipeline);
-}
+//void yolo::InputPipeline::capture_loop_rtsp(FrameCallback callback) {
+//    set_thread_affinity(INPUT_THREAD_CPU);
+//    gst_init(NULL, NULL);
+//
+//    // Optimized pipeline with internal queue to decouple hardware decoder from app logic
+//    std::string launch_str = 
+//        "rtspsrc location=" + config_.device_path + " latency=0 protocols=tcp ! "
+//        "rtph265depay ! h265parse ! v4l2slh265dec ! "
+//        "videoconvert ! video/x-raw, format=BGR ! "
+//        "appsink name=mysink emit-signals=true sync=false drop=true async=false";
+//
+//    GError* error = nullptr;
+//    GstElement* pipeline = gst_parse_launch(launch_str.c_str(), &error);
+//    if (error) { /* handle error */ return; }
+//
+//    GstElement* appsink = gst_bin_get_by_name(GST_BIN(pipeline), "mysink");
+//    g_signal_connect(appsink, "new-sample", G_CALLBACK(on_new_sample), this);
+//    gst_object_unref(appsink);
+//
+//    gst_element_set_state(pipeline, GST_STATE_PLAYING);
+//    std::cout << "[SUCCESS] Hardware Pipeline Live. Processing frames..." << std::endl;
+//
+//    while (running_.load(std::memory_order_relaxed)) {
+//        cv::Mat frame_to_process;
+//        
+//        {
+//            // Wait until a frame is available or timeout (to check running_ flag)
+//            std::unique_lock<std::mutex> lock(queue_mutex_);
+//            frame_cv_.wait_for(lock, std::chrono::milliseconds(100), [this] {
+//                return !frame_queue_.empty() || !running_.load();
+//            });
+//
+//            if (!running_.load()) break;
+//            if (frame_queue_.empty()) continue;
+//
+//            frame_to_process = frame_queue_.front();
+//            frame_queue_.pop();
+//        }
+//
+//        // --- INFERENCE START ---
+//        yolo::FrameBuffer fb;
+//        fb.data = frame_to_process.data;
+//        fb.width = frame_to_process.cols;
+//        fb.height = frame_to_process.rows;
+//        fb.stride = frame_to_process.step;
+//        fb.format = yolo::PixelFormat::BGR;
+//        fb.timestamp_ns = get_timestamp_ns();
+//        fb.valid = true;
+//
+//        if (!callback(fb)) break; 
+//        // --- INFERENCE END ---
+//    }
+//    
+//    
+//    // Cleanup: Properly transition the pipeline to NULL state to release HW resources
+//    std::cout << "[INFO] Shutting down capture pipeline..." << std::endl;
+//    gst_element_set_state(pipeline, GST_STATE_NULL);
+//    gst_object_unref(pipeline);
+//}
 
 /**
  * @brief Main capture loop for RTSP streams (The Consumer).

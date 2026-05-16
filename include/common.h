@@ -29,7 +29,7 @@ constexpr int INPUT_HEIGHT = 480;
 constexpr int MODEL_SIZE = 640; // 640 // 416 // Reduced from 640 for better FPS (was 480)
 constexpr int NUM_CLASSES = 7; // 7 // 80 // COCO dataset
 constexpr int NUM_OUTPUTS = 8400; // 8400 // 33600 // 3549 // YOLOv8 output anchors at 416x416
-constexpr float CONF_THRESHOLD = 0.25f;
+constexpr float CONF_THRESHOLD = 0.1f;
 constexpr float NMS_THRESHOLD = 0.45f;
 constexpr int MAX_DETECTIONS = 100;
 

@@ -40,11 +40,11 @@ yolo_inference: \
   /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.10.0 \
   /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.10.0 \
   /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.10.0 \
-  /usr/lib/aarch64-linux-gnu/libavformat.so \
-  /usr/lib/aarch64-linux-gnu/libavcodec.so \
-  /usr/lib/aarch64-linux-gnu/libswscale.so \
-  /usr/lib/aarch64-linux-gnu/libswresample.so \
-  /usr/lib/aarch64-linux-gnu/libavutil.so \
+  /usr/local/lib/libavformat.so \
+  /usr/local/lib/libavcodec.so \
+  /usr/local/lib/libswscale.so \
+  /usr/local/lib/libswresample.so \
+  /usr/local/lib/libavutil.so \
   /usr/lib/aarch64-linux-gnu/libgstapp-1.0.so \
   /usr/lib/aarch64-linux-gnu/libgstvideo-1.0.so \
   /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so \
@@ -80,16 +80,30 @@ yolo_inference: \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crtn.o \
   /lib/aarch64-linux-gnu/libdc1394.so.25 \
   /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so \
+  /usr/lib/aarch64-linux-gnu/libgstreamer-1.0.so \
+  /usr/lib/aarch64-linux-gnu/libgobject-2.0.so \
   /usr/lib/aarch64-linux-gnu/libglib-2.0.so \
   /usr/lib/aarch64-linux-gnu/libgstapp-1.0.so \
   /lib/aarch64-linux-gnu/libgstriff-1.0.so.0 \
   /lib/aarch64-linux-gnu/libgstpbutils-1.0.so.0 \
   /usr/lib/aarch64-linux-gnu/libgstvideo-1.0.so \
   /lib/aarch64-linux-gnu/libgstaudio-1.0.so.0 \
-  /usr/lib/aarch64-linux-gnu/libavcodec.so \
-  /usr/lib/aarch64-linux-gnu/libavformat.so \
-  /usr/lib/aarch64-linux-gnu/libavutil.so \
-  /usr/lib/aarch64-linux-gnu/libswscale.so \
+  /lib/aarch64-linux-gnu/libavcodec.so.61 \
+  /usr/lib/aarch64-linux-gnu/libavcodec.so.61 \
+  /lib/aarch64-linux-gnu/libavcodec.so.61 \
+  /usr/lib/aarch64-linux-gnu/libavcodec.so.61 \
+  /lib/aarch64-linux-gnu/libavcodec.so.61 \
+  /lib/aarch64-linux-gnu/libavformat.so.61 \
+  /usr/lib/aarch64-linux-gnu/libavformat.so.61 \
+  /lib/aarch64-linux-gnu/libavformat.so.61 \
+  /usr/lib/aarch64-linux-gnu/libavformat.so.61 \
+  /lib/aarch64-linux-gnu/libavformat.so.61 \
+  /lib/aarch64-linux-gnu/libavutil.so.59 \
+  /lib/aarch64-linux-gnu/libswscale.so.8 \
+  /usr/lib/aarch64-linux-gnu/libswscale.so.8 \
+  /lib/aarch64-linux-gnu/libswscale.so.8 \
+  /usr/lib/aarch64-linux-gnu/libswscale.so.8 \
+  /lib/aarch64-linux-gnu/libswscale.so.8 \
   /lib/aarch64-linux-gnu/libgphoto2.so.6 \
   /lib/aarch64-linux-gnu/libgphoto2_port.so.12 \
   /lib/aarch64-linux-gnu/libjpeg.so.62 \
@@ -106,18 +120,26 @@ yolo_inference: \
   /lib/aarch64-linux-gnu/liblapack.so.3 \
   /lib/aarch64-linux-gnu/libblas.so.3 \
   /lib/aarch64-linux-gnu/libtbb.so.12 \
-  /lib/aarch64-linux-gnu/libgmodule-2.0.so.0 \
-  /lib/aarch64-linux-gnu/libffi.so.8 \
+  /lib/aarch64-linux-gnu/libbz2.so.1.0 \
+  /usr/local/lib/libswresample.so \
+  /lib/aarch64-linux-gnu/liblzma.so.5 \
+  /lib/aarch64-linux-gnu/libudev.so.1 \
+  /lib/aarch64-linux-gnu/libdrm.so.2 \
   /lib/aarch64-linux-gnu/libraw1394.so.11 \
   /lib/aarch64-linux-gnu/libusb-1.0.so.0 \
+  /lib/aarch64-linux-gnu/libgmodule-2.0.so.0 \
+  /lib/aarch64-linux-gnu/libffi.so.8 \
   /usr/lib/gcc/aarch64-linux-gnu/14/libatomic.so \
   /lib/aarch64-linux-gnu/libpcre2-8.so.0 \
   /lib/aarch64-linux-gnu/libgsttag-1.0.so.0 \
   /lib/aarch64-linux-gnu/liborc-0.4.so.0 \
-  /usr/lib/aarch64-linux-gnu/libswresample.so \
+  /lib/aarch64-linux-gnu/libswresample.so.5 \
+  /usr/lib/aarch64-linux-gnu/libswresample.so.5 \
+  /lib/aarch64-linux-gnu/libswresample.so.5 \
+  /usr/lib/aarch64-linux-gnu/libswresample.so.5 \
+  /lib/aarch64-linux-gnu/libswresample.so.5 \
   /lib/aarch64-linux-gnu/libvpx.so.9 \
   /lib/aarch64-linux-gnu/libwebpmux.so.3 \
-  /lib/aarch64-linux-gnu/liblzma.so.5 \
   /lib/aarch64-linux-gnu/libdav1d.so.7 \
   /lib/aarch64-linux-gnu/librsvg-2.so.2 \
   /lib/aarch64-linux-gnu/libcairo.so.2 \
@@ -143,11 +165,9 @@ yolo_inference: \
   /lib/aarch64-linux-gnu/libx265.so.215 \
   /lib/aarch64-linux-gnu/libxvidcore.so.4 \
   /lib/aarch64-linux-gnu/libva.so.2 \
-  /lib/aarch64-linux-gnu/libudev.so.1 \
   /lib/aarch64-linux-gnu/libdvdnav.so.4 \
   /lib/aarch64-linux-gnu/libdvdread.so.8 \
   /lib/aarch64-linux-gnu/libxml2.so.2 \
-  /lib/aarch64-linux-gnu/libbz2.so.1.0 \
   /lib/aarch64-linux-gnu/libgme.so.0 \
   /lib/aarch64-linux-gnu/libopenmpt.so.0 \
   /lib/aarch64-linux-gnu/libchromaprint.so.1 \
@@ -162,7 +182,6 @@ yolo_inference: \
   /lib/aarch64-linux-gnu/libva-x11.so.2 \
   /lib/aarch64-linux-gnu/libvdpau.so.1 \
   /lib/aarch64-linux-gnu/libX11.so.6 \
-  /lib/aarch64-linux-gnu/libdrm.so.2 \
   /lib/aarch64-linux-gnu/libOpenCL.so.1 \
   /lib/aarch64-linux-gnu/libltdl.so.7 \
   /lib/aarch64-linux-gnu/libexif.so.12 \
@@ -218,6 +237,7 @@ yolo_inference: \
   /lib/aarch64-linux-gnu/libmfhdfalt.so.0 \
   /lib/aarch64-linux-gnu/libGLdispatch.so.0 \
   /lib/aarch64-linux-gnu/libgfortran.so.5 \
+  /lib/aarch64-linux-gnu/libcap.so.2 \
   /lib/aarch64-linux-gnu/libsoxr.so.0 \
   /lib/aarch64-linux-gnu/libgio-2.0.so.0 \
   /lib/aarch64-linux-gnu/libgdk_pixbuf-2.0.so.0 \
@@ -242,7 +262,6 @@ yolo_inference: \
   /lib/aarch64-linux-gnu/libbrotlienc.so.1 \
   /lib/aarch64-linux-gnu/libogg.so.0 \
   /lib/aarch64-linux-gnu/libnuma.so.1 \
-  /lib/aarch64-linux-gnu/libcap.so.2 \
   /lib/aarch64-linux-gnu/libmpg123.so.0 \
   /lib/aarch64-linux-gnu/libvorbisfile.so.3 \
   /lib/aarch64-linux-gnu/libudfread.so.0 \
@@ -428,15 +447,15 @@ lib/libzenohpico.so:
 
 /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.10.0:
 
-/usr/lib/aarch64-linux-gnu/libavformat.so:
+/usr/local/lib/libavformat.so:
 
-/usr/lib/aarch64-linux-gnu/libavcodec.so:
+/usr/local/lib/libavcodec.so:
 
-/usr/lib/aarch64-linux-gnu/libswscale.so:
+/usr/local/lib/libswscale.so:
 
-/usr/lib/aarch64-linux-gnu/libswresample.so:
+/usr/local/lib/libswresample.so:
 
-/usr/lib/aarch64-linux-gnu/libavutil.so:
+/usr/local/lib/libavutil.so:
 
 /usr/lib/aarch64-linux-gnu/libgstapp-1.0.so:
 
@@ -508,6 +527,10 @@ lib/libzenohpico.so:
 
 /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so:
 
+/usr/lib/aarch64-linux-gnu/libgstreamer-1.0.so:
+
+/usr/lib/aarch64-linux-gnu/libgobject-2.0.so:
+
 /usr/lib/aarch64-linux-gnu/libglib-2.0.so:
 
 /usr/lib/aarch64-linux-gnu/libgstapp-1.0.so:
@@ -520,13 +543,37 @@ lib/libzenohpico.so:
 
 /lib/aarch64-linux-gnu/libgstaudio-1.0.so.0:
 
-/usr/lib/aarch64-linux-gnu/libavcodec.so:
+/lib/aarch64-linux-gnu/libavcodec.so.61:
 
-/usr/lib/aarch64-linux-gnu/libavformat.so:
+/usr/lib/aarch64-linux-gnu/libavcodec.so.61:
 
-/usr/lib/aarch64-linux-gnu/libavutil.so:
+/lib/aarch64-linux-gnu/libavcodec.so.61:
 
-/usr/lib/aarch64-linux-gnu/libswscale.so:
+/usr/lib/aarch64-linux-gnu/libavcodec.so.61:
+
+/lib/aarch64-linux-gnu/libavcodec.so.61:
+
+/lib/aarch64-linux-gnu/libavformat.so.61:
+
+/usr/lib/aarch64-linux-gnu/libavformat.so.61:
+
+/lib/aarch64-linux-gnu/libavformat.so.61:
+
+/usr/lib/aarch64-linux-gnu/libavformat.so.61:
+
+/lib/aarch64-linux-gnu/libavformat.so.61:
+
+/lib/aarch64-linux-gnu/libavutil.so.59:
+
+/lib/aarch64-linux-gnu/libswscale.so.8:
+
+/usr/lib/aarch64-linux-gnu/libswscale.so.8:
+
+/lib/aarch64-linux-gnu/libswscale.so.8:
+
+/usr/lib/aarch64-linux-gnu/libswscale.so.8:
+
+/lib/aarch64-linux-gnu/libswscale.so.8:
 
 /lib/aarch64-linux-gnu/libgphoto2.so.6:
 
@@ -560,13 +607,23 @@ lib/libzenohpico.so:
 
 /lib/aarch64-linux-gnu/libtbb.so.12:
 
-/lib/aarch64-linux-gnu/libgmodule-2.0.so.0:
+/lib/aarch64-linux-gnu/libbz2.so.1.0:
 
-/lib/aarch64-linux-gnu/libffi.so.8:
+/usr/local/lib/libswresample.so:
+
+/lib/aarch64-linux-gnu/liblzma.so.5:
+
+/lib/aarch64-linux-gnu/libudev.so.1:
+
+/lib/aarch64-linux-gnu/libdrm.so.2:
 
 /lib/aarch64-linux-gnu/libraw1394.so.11:
 
 /lib/aarch64-linux-gnu/libusb-1.0.so.0:
+
+/lib/aarch64-linux-gnu/libgmodule-2.0.so.0:
+
+/lib/aarch64-linux-gnu/libffi.so.8:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/libatomic.so:
 
@@ -576,13 +633,19 @@ lib/libzenohpico.so:
 
 /lib/aarch64-linux-gnu/liborc-0.4.so.0:
 
-/usr/lib/aarch64-linux-gnu/libswresample.so:
+/lib/aarch64-linux-gnu/libswresample.so.5:
+
+/usr/lib/aarch64-linux-gnu/libswresample.so.5:
+
+/lib/aarch64-linux-gnu/libswresample.so.5:
+
+/usr/lib/aarch64-linux-gnu/libswresample.so.5:
+
+/lib/aarch64-linux-gnu/libswresample.so.5:
 
 /lib/aarch64-linux-gnu/libvpx.so.9:
 
 /lib/aarch64-linux-gnu/libwebpmux.so.3:
-
-/lib/aarch64-linux-gnu/liblzma.so.5:
 
 /lib/aarch64-linux-gnu/libdav1d.so.7:
 
@@ -634,15 +697,11 @@ lib/libzenohpico.so:
 
 /lib/aarch64-linux-gnu/libva.so.2:
 
-/lib/aarch64-linux-gnu/libudev.so.1:
-
 /lib/aarch64-linux-gnu/libdvdnav.so.4:
 
 /lib/aarch64-linux-gnu/libdvdread.so.8:
 
 /lib/aarch64-linux-gnu/libxml2.so.2:
-
-/lib/aarch64-linux-gnu/libbz2.so.1.0:
 
 /lib/aarch64-linux-gnu/libgme.so.0:
 
@@ -671,8 +730,6 @@ lib/libzenohpico.so:
 /lib/aarch64-linux-gnu/libvdpau.so.1:
 
 /lib/aarch64-linux-gnu/libX11.so.6:
-
-/lib/aarch64-linux-gnu/libdrm.so.2:
 
 /lib/aarch64-linux-gnu/libOpenCL.so.1:
 
@@ -784,6 +841,8 @@ lib/libzenohpico.so:
 
 /lib/aarch64-linux-gnu/libgfortran.so.5:
 
+/lib/aarch64-linux-gnu/libcap.so.2:
+
 /lib/aarch64-linux-gnu/libsoxr.so.0:
 
 /lib/aarch64-linux-gnu/libgio-2.0.so.0:
@@ -831,8 +890,6 @@ lib/libzenohpico.so:
 /lib/aarch64-linux-gnu/libogg.so.0:
 
 /lib/aarch64-linux-gnu/libnuma.so.1:
-
-/lib/aarch64-linux-gnu/libcap.so.2:
 
 /lib/aarch64-linux-gnu/libmpg123.so.0:
 

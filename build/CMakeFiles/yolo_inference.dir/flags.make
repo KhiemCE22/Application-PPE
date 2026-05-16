@@ -5,7 +5,7 @@
 # compile CXX with /usr/bin/c++
 ASM_DEFINES = -DNCNN_VULKAN=1 -DZENOH_COMPILER_GCC -DZENOH_C_STANDARD=11 -DZENOH_LINUX
 
-ASM_INCLUDES = -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/include/aarch64-linux-gnu -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include -isystem /usr/include/orc-0.4
+ASM_INCLUDES = -I/home/pi/AI/EdgeVisionRT-tracking/include -I/home/pi/AI/EdgeVisionRT-tracking/include/bytetrack -I/home/pi/AI/EdgeVisionRT-tracking/include/ocsort -I/home/pi/AI/EdgeVisionRT-tracking/build/zenoh-pico/include -I/home/pi/AI/EdgeVisionRT-tracking/deps/zenoh-pico/include -isystem /usr/include/opencv4 -isystem /usr/include/eigen3 -isystem /home/pi/AI/EdgeVisionRT-tracking/deps/ncnn-vulkan-install/include/ncnn -isystem /usr/local/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -isystem /usr/include/sysprof-6 -isystem /usr/include -isystem /usr/include/orc-0.4
 
 ASM_FLAGS = -O3 -DNDEBUG -fPIC -pthread
 

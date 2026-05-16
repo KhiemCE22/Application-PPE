@@ -381,11 +381,11 @@ yolo_inference: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.10.0
 yolo_inference: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.10.0
 yolo_inference: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.10.0
 yolo_inference: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.10.0
-yolo_inference: /usr/lib/aarch64-linux-gnu/libavformat.so
-yolo_inference: /usr/lib/aarch64-linux-gnu/libavcodec.so
-yolo_inference: /usr/lib/aarch64-linux-gnu/libswscale.so
-yolo_inference: /usr/lib/aarch64-linux-gnu/libswresample.so
-yolo_inference: /usr/lib/aarch64-linux-gnu/libavutil.so
+yolo_inference: /usr/local/lib/libavformat.so
+yolo_inference: /usr/local/lib/libavcodec.so
+yolo_inference: /usr/local/lib/libswscale.so
+yolo_inference: /usr/local/lib/libswresample.so
+yolo_inference: /usr/local/lib/libavutil.so
 yolo_inference: /usr/lib/aarch64-linux-gnu/libgstapp-1.0.so
 yolo_inference: /usr/lib/aarch64-linux-gnu/libgstvideo-1.0.so
 yolo_inference: /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so
