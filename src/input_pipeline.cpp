@@ -354,9 +354,10 @@ void InputPipeline::capture_loop_video(FrameCallback callback) {
         }
         
         // Resize if necessary (but keep BGR format!)
-        if (bgr_frame.cols != config_.width || bgr_frame.rows != config_.height) {
-            cv::resize(bgr_frame, bgr_frame, cv::Size(config_.width, config_.height));
-        }
+//        if (bgr_frame.cols != config_.width || bgr_frame.rows != config_.height) {
+//            cv::resize(bgr_frame, bgr_frame, cv::Size(config_.width, config_.height));
+//        }
+
         
         // OPTIMIZATION: Pass BGR directly - NO YUYV conversion!
         // Create frame buffer pointing to BGR data
@@ -364,8 +365,8 @@ void InputPipeline::capture_loop_video(FrameCallback callback) {
         frame.data = bgr_frame.data;
         frame.size = bgr_frame.total() * bgr_frame.elemSize();
         frame.stride = bgr_frame.step[0];
-        frame.width = config_.width;
-        frame.height = config_.height;
+        frame.width = bgr_frame.cols;
+        frame.height = bgr_frame.rows;
         frame.timestamp_ns = get_timestamp_ns();
         frame.frame_index = frame_count_.load();
         frame.valid = true;
@@ -579,364 +580,306 @@ void InputPipeline::capture_loop_rtsp(FrameCallback callback) {
 
 
 /**
- * New RTSP callback to use Hardware Decoder with FFmpeg
-**/
+ * @file input_pipeline_rtsp.cpp
+ * @brief RTSP capture loop — FFmpeg 7 compatible, DRM HW accel with SW fallback
+ *
+ * Tested on Raspberry Pi 5 with:
+ *   - libavformat.so.61  (FFmpeg 7)
+ *   - libavcodec.so.61
+ *   - Headers: /usr/include/aarch64-linux-gnu
+ */
 
+// ============================================================================
+// Internal helpers
+// ============================================================================
 
-static enum AVPixelFormat get_hw_format(
-    AVCodecContext* ctx,
-    const enum AVPixelFormat* pix_fmts)
+/**
+ * @brief Pixel format negotiation callback for DRM PRIME hardware decoding.
+ *        FFmpeg calls this to pick the output format from the decoder.
+ */
+static enum AVPixelFormat get_hw_format(AVCodecContext* /*ctx*/,
+                                         const enum AVPixelFormat* pix_fmts)
 {
-    std::cout << "[HW] Available pixel formats:\n";
-
-    while (*pix_fmts != AV_PIX_FMT_NONE) {
-
-        std::cout << "  -> " << av_get_pix_fmt_name(*pix_fmts) << "\n";
-
-        if (*pix_fmts == AV_PIX_FMT_DRM_PRIME) {
-
-            std::cout << "[HW] Selected DRM PRIME format\n";
-
-            return *pix_fmts;
+    for (const AVPixelFormat* p = pix_fmts; *p != AV_PIX_FMT_NONE; ++p) {
+        if (*p == AV_PIX_FMT_DRM_PRIME) {
+            std::cout << "[HWACCEL] DRM PRIME format selected\n";
+            return *p;
         }
-
-        pix_fmts++;
     }
-
-    std::cerr << "[HW] DRM PRIME format not offered by decoder\n";
-
+    std::cerr << "[HWACCEL] DRM PRIME not available, falling back to software\n";
     return AV_PIX_FMT_NONE;
 }
+
+// ============================================================================
+// RTSP capture loop
+// ============================================================================
 
 void InputPipeline::capture_loop_rtsp(FrameCallback callback)
 {
     set_thread_affinity(INPUT_THREAD_CPU);
+    avformat_network_init();
 
-    std::cout << "\n========================================\n";
-    std::cout << " RTSP HEVC INPUT PIPELINE STARTED\n";
-    std::cout << "========================================\n";
-
-    AVFormatContext* fmt_ctx = nullptr;
+    // -------------------------------------------------------------------------
+    // 1. Open RTSP stream
+    //    NOTE: nobuffer/low_delay are applied AFTER find_stream_info.
+    //    Setting them before causes codecpar to be null in FFmpeg 7.
+    // -------------------------------------------------------------------------
+    AVFormatContext* fmt_ctx = avformat_alloc_context();
+    if (!fmt_ctx) {
+        std::cerr << "[FATAL] avformat_alloc_context failed\n";
+        running_.store(false);
+        return;
+    }
 
     AVDictionary* opts = nullptr;
-
     av_dict_set(&opts, "rtsp_transport", "tcp", 0);
-    av_dict_set(&opts, "fflags", "nobuffer", 0);
-    av_dict_set(&opts, "flags", "low_delay", 0);
 
-    std::cout << "[RTSP] Opening stream:\n";
-    std::cout << "       " << config_.device_path << "\n";
+    std::cout << "[RTSP] Opening: " << config_.device_path << "\n";
 
-    if (avformat_open_input(
-            &fmt_ctx,
-            config_.device_path.c_str(),
-            nullptr,
-            &opts) < 0)
-    {
-        std::cerr << "[FATAL] Could not open RTSP stream\n";
+    if (avformat_open_input(&fmt_ctx,
+            config_.device_path.c_str(), nullptr, &opts) < 0) {
+        std::cerr << "[FATAL] Could not open RTSP stream: "
+                  << config_.device_path << "\n";
+        av_dict_free(&opts);
+        avformat_free_context(fmt_ctx);
         running_.store(false);
         return;
     }
+    av_dict_free(&opts);
+
+    // -------------------------------------------------------------------------
+    // 2. Probe stream — give FFmpeg enough data to populate codecpar
+    // -------------------------------------------------------------------------
+    fmt_ctx->probesize            = 5'000'000;  // 5 MB
+    fmt_ctx->max_analyze_duration = 3'000'000;  // 3 s
 
     if (avformat_find_stream_info(fmt_ctx, nullptr) < 0) {
-
         std::cerr << "[FATAL] Could not find stream info\n";
-
+        avformat_close_input(&fmt_ctx);
         running_.store(false);
         return;
     }
 
-    int video_stream_idx = -1;
+    // Apply low-latency flags now that probing is complete
+    fmt_ctx->flags |= AVFMT_FLAG_NOBUFFER | AVFMT_FLAG_FLUSH_PACKETS;
 
-    for (unsigned int i = 0; i < fmt_ctx->nb_streams; i++) {
+    // -------------------------------------------------------------------------
+    // 3. Locate video stream + decoder
+    // -------------------------------------------------------------------------
+    const AVCodec* codec       = nullptr;
+    int video_stream_idx = av_find_best_stream(
+        fmt_ctx, AVMEDIA_TYPE_VIDEO, -1, -1, &codec, 0);
 
-        if (fmt_ctx->streams[i]->codecpar->codec_type ==
-            AVMEDIA_TYPE_VIDEO)
-        {
-            video_stream_idx = i;
-            break;
+    if (video_stream_idx < 0) {
+        std::cerr << "[FATAL] No video stream found\n";
+        avformat_close_input(&fmt_ctx);
+        running_.store(false);
+        return;
+    }
+
+    AVCodecParameters* codec_par = fmt_ctx->streams[video_stream_idx]->codecpar;
+    if (!codec_par || codec_par->codec_id == AV_CODEC_ID_NONE) {
+        std::cerr << "[FATAL] codecpar is null or codec_id NONE\n";
+        avformat_close_input(&fmt_ctx);
+        running_.store(false);
+        return;
+    }
+
+    if (!codec) {
+        codec = avcodec_find_decoder(codec_par->codec_id);
+        if (!codec) {
+            std::cerr << "[FATAL] Decoder not found for codec_id "
+                      << codec_par->codec_id << "\n";
+            avformat_close_input(&fmt_ctx);
+            running_.store(false);
+            return;
         }
     }
 
-    if (video_stream_idx < 0) {
+    std::cout << "[STREAM] Codec: "     << avcodec_get_name(codec_par->codec_id)
+              << "  Resolution: "       << codec_par->width
+              << "x" << codec_par->height << "\n"
+              << "[DECODER] Using: "    << codec->name << "\n";
 
-        std::cerr << "[FATAL] No video stream found\n";
-
+    // -------------------------------------------------------------------------
+    // 4. Build codec context
+    // -------------------------------------------------------------------------
+    AVCodecContext* codec_ctx = avcodec_alloc_context3(codec);
+    if (!codec_ctx) {
+        std::cerr << "[FATAL] avcodec_alloc_context3 failed\n";
+        avformat_close_input(&fmt_ctx);
         running_.store(false);
         return;
     }
 
-    AVCodecParameters* codec_par =
-        fmt_ctx->streams[video_stream_idx]->codecpar;
-
-    std::cout << "\n[STREAM INFO]\n";
-    std::cout << "Codec: " << avcodec_get_name(codec_par->codec_id) << "\n";
-    std::cout << "Resolution: "
-              << codec_par->width
-              << "x"
-              << codec_par->height
-              << "\n";
-
-    // =========================================================
-    // USE NATIVE DECODER + DRM HWACCEL
-    // =========================================================
-
-    const AVCodec* codec =
-        avcodec_find_decoder(codec_par->codec_id);
-
-    if (!codec) {
-
-        std::cerr << "[FATAL] Decoder not found\n";
-
+    if (avcodec_parameters_to_context(codec_ctx, codec_par) < 0) {
+        std::cerr << "[FATAL] avcodec_parameters_to_context failed\n";
+        avcodec_free_context(&codec_ctx);
+        avformat_close_input(&fmt_ctx);
         running_.store(false);
         return;
     }
 
-    std::cout << "\n[DECODER]\n";
-    std::cout << "Using decoder: " << codec->name << "\n";
-
-    AVCodecContext* codec_ctx =
-        avcodec_alloc_context3(codec);
-
-    avcodec_parameters_to_context(codec_ctx, codec_par);
-
-    // =========================================================
-    // DRM HW DEVICE
-    // =========================================================
-
+    // -------------------------------------------------------------------------
+    // 5. Hardware acceleration (DRM PRIME) with automatic software fallback
+    // -------------------------------------------------------------------------
     AVBufferRef* hw_device_ctx = nullptr;
-
-    std::cout << "\n[HWACCEL]\n";
-    std::cout << "Creating DRM device context...\n";
-
-    int hw_ret = av_hwdevice_ctx_create(
-        &hw_device_ctx,
-        AV_HWDEVICE_TYPE_DRM,
-        "/dev/dri/card0",
-        nullptr,
-        0);
-
     bool hw_enabled = false;
 
-    if (hw_ret >= 0) {
-
-        std::cout << "[SUCCESS] DRM HW Device Created\n";
-
-        codec_ctx->hw_device_ctx =
-            av_buffer_ref(hw_device_ctx);
-
-        codec_ctx->get_format = get_hw_format;
-
+    if (av_hwdevice_ctx_create(&hw_device_ctx,
+            AV_HWDEVICE_TYPE_DRM, "/dev/dri/card0", nullptr, 0) >= 0) {
+        codec_ctx->hw_device_ctx = av_buffer_ref(hw_device_ctx);
+        codec_ctx->get_format    = get_hw_format;
         hw_enabled = true;
-
+        std::cout << "[HWACCEL] DRM device created — hardware decode active\n";
     } else {
-
-        std::cout << "[WARNING] DRM HW Device Creation Failed\n";
-        std::cout << "[FALLBACK] Software Decode Mode\n";
-
         codec_ctx->thread_count = 4;
-        codec_ctx->thread_type = FF_THREAD_FRAME;
+        codec_ctx->thread_type  = FF_THREAD_FRAME;
+        std::cout << "[HWACCEL] DRM unavailable — software decode active\n";
     }
 
-    // =========================================================
-    // OPEN CODEC
-    // =========================================================
-
+    // -------------------------------------------------------------------------
+    // 6. Open codec
+    // -------------------------------------------------------------------------
     if (avcodec_open2(codec_ctx, codec, nullptr) < 0) {
-
         std::cerr << "[FATAL] Could not open codec\n";
-
+        avcodec_free_context(&codec_ctx);
+        avformat_close_input(&fmt_ctx);
+        if (hw_device_ctx) av_buffer_unref(&hw_device_ctx);
         running_.store(false);
         return;
     }
 
-    std::cout << "\n[CODEC OPENED SUCCESSFULLY]\n";
+    std::cout << "[CODEC] Opened — mode: "
+              << (hw_enabled ? "HARDWARE" : "SOFTWARE") << "\n";
 
-    if (hw_enabled) {
+    // -------------------------------------------------------------------------
+    // 7. Allocate frame / packet resources
+    //    sws_ctx converts whatever the decoder outputs ? BGR24 at target size.
+    //    NOTE: sws pixel format is set to YUV420P for software decode.
+    //          Hardware frames are transferred to sw_frame before sws_scale.
+    // -------------------------------------------------------------------------
+    AVFrame*  frame    = av_frame_alloc();
+    AVFrame*  sw_frame = av_frame_alloc();
+    AVPacket* pkt      = av_packet_alloc();
 
-        std::cout << "[MODE] HARDWARE HEVC DECODE ACTIVE\n";
-
-    } else {
-
-        std::cout << "[MODE] SOFTWARE DECODE ACTIVE\n";
+    if (!frame || !sw_frame || !pkt) {
+        std::cerr << "[FATAL] Failed to allocate frame/packet\n";
+        av_frame_free(&frame);
+        av_frame_free(&sw_frame);
+        av_packet_free(&pkt);
+        avcodec_free_context(&codec_ctx);
+        avformat_close_input(&fmt_ctx);
+        if (hw_device_ctx) av_buffer_unref(&hw_device_ctx);
+        running_.store(false);
+        return;
     }
 
-    // =========================================================
-    // ALLOC FRAMES
-    // =========================================================
+    SwsContext* sws_ctx = sws_getContext(
+        codec_par->width, codec_par->height, AV_PIX_FMT_YUV420P,
+        config_.width,    config_.height,    AV_PIX_FMT_BGR24,
+        SWS_BILINEAR, nullptr, nullptr, nullptr);
 
-    AVFrame* frame = av_frame_alloc();
+    if (!sws_ctx) {
+        std::cerr << "[FATAL] sws_getContext failed\n";
+        av_frame_free(&frame);
+        av_frame_free(&sw_frame);
+        av_packet_free(&pkt);
+        avcodec_free_context(&codec_ctx);
+        avformat_close_input(&fmt_ctx);
+        if (hw_device_ctx) av_buffer_unref(&hw_device_ctx);
+        running_.store(false);
+        return;
+    }
 
-    AVFrame* sw_frame = av_frame_alloc();
+    std::cout << "[RTSP] Pipeline ready — "
+              << config_.width << "x" << config_.height << "\n"
+              << "========================================\n";
 
-    AVPacket* pkt = av_packet_alloc();
-
-    struct SwsContext* sws_ctx = sws_getContext(
-        codec_par->width,
-        codec_par->height,
-        AV_PIX_FMT_YUV420P,
-        config_.width,
-        config_.height,
-        AV_PIX_FMT_BGR24,
-        SWS_BILINEAR,
-        nullptr,
-        nullptr,
-        nullptr);
-
-    std::cout << "\n[PIPELINE READY]\n";
-    std::cout << "========================================\n";
-
-    // =========================================================
-    // MAIN LOOP
-    // =========================================================
-
+    // -------------------------------------------------------------------------
+    // 8. Main capture loop
+    // -------------------------------------------------------------------------
     while (running_.load(std::memory_order_relaxed)) {
 
         if (av_read_frame(fmt_ctx, pkt) < 0) {
-
-            std::cout << "[STREAM] End or Error\n";
-
+            std::cout << "[RTSP] Stream ended or read error\n";
             break;
         }
 
         if (pkt->stream_index != video_stream_idx) {
-
             av_packet_unref(pkt);
-
             continue;
         }
 
-        int send_ret = avcodec_send_packet(codec_ctx, pkt);
-
-        if (send_ret < 0) {
-
-            std::cerr << "[ERROR] Failed to send packet\n";
-
+        if (avcodec_send_packet(codec_ctx, pkt) < 0) {
+            std::cerr << "[WARN] Failed to send packet to decoder\n";
             av_packet_unref(pkt);
-
             continue;
         }
 
         while (true) {
-
-            int recv_ret =
-                avcodec_receive_frame(codec_ctx, frame);
-
-            if (recv_ret == AVERROR(EAGAIN) ||
-                recv_ret == AVERROR_EOF)
-            {
+            int ret = avcodec_receive_frame(codec_ctx, frame);
+            if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) break;
+            if (ret < 0) {
+                std::cerr << "[WARN] Failed to receive decoded frame\n";
                 break;
             }
 
-            if (recv_ret < 0) {
-
-                std::cerr << "[ERROR] Failed to receive frame\n";
-
-                break;
-            }
-
-            // =================================================
-            // HARDWARE FRAME
-            // =================================================
-
-            AVFrame* usable_frame = frame;
-
+            // Transfer hardware frame to CPU if needed
+            AVFrame* usable = frame;
             if (frame->format == AV_PIX_FMT_DRM_PRIME) {
-
-                std::cout << "[HW FRAME] DRM PRIME received\n";
-
-                if (av_hwframe_transfer_data(
-                        sw_frame,
-                        frame,
-                        0) < 0)
-                {
-                    std::cerr
-                        << "[ERROR] hwframe transfer failed\n";
-
+                if (av_hwframe_transfer_data(sw_frame, frame, 0) < 0) {
+                    std::cerr << "[WARN] hwframe transfer failed\n";
                     continue;
                 }
-
-                usable_frame = sw_frame;
-
-            } else {
-
-                std::cout << "[SW FRAME] CPU frame received\n";
+                usable = sw_frame;
             }
 
-            // =================================================
-            // YUV -> BGR
-            // =================================================
+            // Convert YUV ? BGR24 into pre-allocated output buffer
+            uint8_t* dst_data[1]     = { video_frame_buffer_.get() };
+            int      dst_linesize[1] = { config_.width * 3 };
 
-            uint8_t* dest_slices[1] = {
-                video_frame_buffer_.get()
-            };
+            sws_scale(sws_ctx,
+                      usable->data, usable->linesize, 0, codec_ctx->height,
+                      dst_data, dst_linesize);
 
-            int dest_linesize[1] = {
-                config_.width * 3
-            };
-
-            sws_scale(
-                sws_ctx,
-                usable_frame->data,
-                usable_frame->linesize,
-                0,
-                codec_ctx->height,
-                dest_slices,
-                dest_linesize);
-
-            // =================================================
-            // CALLBACK
-            // =================================================
-
+            // Deliver frame to pipeline
             FrameBuffer fb;
-
-            fb.data = video_frame_buffer_.get();
-            fb.size = config_.width * config_.height * 3;
-            fb.width = config_.width;
-            fb.height = config_.height;
-            fb.stride = config_.width * 3;
-            fb.format = PixelFormat::BGR;
-            fb.frame_index = frame_count_.load();
+            fb.data         = video_frame_buffer_.get();
+            fb.size         = config_.width * config_.height * 3;
+            fb.width        = config_.width;
+            fb.height       = config_.height;
+            fb.stride       = config_.width * 3;
+            fb.format       = PixelFormat::BGR;
+            fb.frame_index  = frame_count_.load();
             fb.timestamp_ns = get_timestamp_ns();
-            fb.valid = true;
+            fb.valid        = true;
 
             if (!callback(fb)) {
-
                 running_.store(false);
             }
-
             frame_count_.fetch_add(1);
         }
 
         av_packet_unref(pkt);
     }
 
-    // =========================================================
-    // CLEANUP
-    // =========================================================
-
-    std::cout << "\n[CLEANUP]\n";
-
-    av_packet_free(&pkt);
-
-    av_frame_free(&frame);
-
-    av_frame_free(&sw_frame);
-
-    avcodec_free_context(&codec_ctx);
-
-    avformat_close_input(&fmt_ctx);
+    // -------------------------------------------------------------------------
+    // 9. Cleanup
+    // -------------------------------------------------------------------------
+    std::cout << "[RTSP] Shutting down pipeline\n";
 
     sws_freeContext(sws_ctx);
-
-    if (hw_device_ctx) {
-
-        av_buffer_unref(&hw_device_ctx);
-    }
+    av_packet_free(&pkt);
+    av_frame_free(&frame);
+    av_frame_free(&sw_frame);
+    avcodec_free_context(&codec_ctx);
+    avformat_close_input(&fmt_ctx);
+    if (hw_device_ctx) av_buffer_unref(&hw_device_ctx);
+    avformat_network_deinit();
 
     running_.store(false);
-
-    std::cout << "[EXIT] Pipeline stopped\n";
+    std::cout << "[RTSP] Pipeline stopped\n";
 }
 
 

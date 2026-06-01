@@ -40,10 +40,13 @@
 #include <map>
 #include <chrono>
 #include <vector>
+#include <fstream>
+#include <iomanip>
 
 #include <zenoh-pico.h>
 
 using namespace yolo;
+
 
 // ============================================================================
 // Zenoh session & Publishers
@@ -64,10 +67,15 @@ constexpr int CLOTHES_VIOLATION = 2;
 constexpr int VEST_SAFE        = 3;
 constexpr int HEAD_VIOLATION   = 4;
 
+constexpr int VIOL_NO_HELMET    = 1 << 0;
+constexpr int VIOL_SELF_CLOTHES = 1 << 1;
+
 // Cấu hình violation voting
-constexpr int VIOLATION_HISTORY_LEN  = 5;   // số frame lưu lịch sử
-constexpr int VIOLATION_VOTE_THRESH  = 3;   // bao nhiêu frame viol/5 thì coi là vi phạm
+constexpr int VIOLATION_HISTORY_LEN  = 7;   // số frame lưu lịch sử
+constexpr int VIOLATION_VOTE_THRESH  = 5;   // bao nhiêu frame viol/5 thì coi là vi phạm
 constexpr int WORKER_MAX_MISS        = 30;  // frame miss liên tiếp trước khi xóa worker
+constexpr int VIOLATION_CLEAR_FRAMES = 10;  // safe frames required before closing an event episode
+constexpr int VIOLATION_COOLDOWN_SEC = 30;  // suppress repeated events for the same worker/type
 constexpr float IOA_THRESHOLD        = 0.6f;
 constexpr float HEAD_REGION_RATIO    = 0.15f; // mở rộng lên trên bbox để check đầu
 
@@ -79,6 +87,7 @@ constexpr int SNAPSHOT_QUALITY = 60;  // 0-100, thấp hơn = nhỏ hơn
 // Interval publish
 constexpr int STATS_INTERVAL_SEC  = 2;
 constexpr int IMAGE_INTERVAL_SEC  = 5;
+constexpr bool DEBUG_GROUND_LINE  = true;
 
 // ============================================================================
 // Worker State
@@ -92,17 +101,63 @@ struct WorkerState {
     bool counted_in        = false;
     bool counted_out       = false;
     bool event_sent        = false;
+    int  safe_frames       = 0;
+    int  last_violation_mask = 0;
+    int  last_event_mask     = 0;
+    std::chrono::steady_clock::time_point last_event_time{};
 };
 
 GateROI                 active_roi;
 int                     factory_in_count  = 0;
 int                     factory_out_count = 0;
+int                     violation_event_count = 0;
 std::map<int, WorkerState> active_workers;
 
 // ============================================================================
 // Global State & Signal Handling
 // ============================================================================
 std::atomic<bool> g_running{true};
+
+static void draw_dashboard_snapshot_overlay(cv::Mat& frame,
+                                            const DetectionResult& result,
+                                            int frame_width,
+                                            int frame_height,
+                                            float rolling_fps,
+                                            float rolling_inference_ms) {
+    if (frame.empty()) return;
+
+    BBoxRenderer::draw_roi(frame, active_roi);
+
+    if (!active_roi.H.empty()) {
+        cv::Mat H_inv = active_roi.H.inv();
+        std::vector<cv::Point2f> bev_points = {
+            cv::Point2f(0, active_roi.ground_crossing_line),
+            cv::Point2f(400, active_roi.ground_crossing_line)
+        };
+        std::vector<cv::Point2f> img_points;
+        cv::perspectiveTransform(bev_points, img_points, H_inv);
+        if (img_points.size() >= 2) {
+            cv::line(frame, img_points[0], img_points[1],
+                     cv::Scalar(0, 255, 255), 3);
+        }
+    }
+
+    double ui_scale = std::min(frame_width / 640.0, frame_height / 480.0);
+    ui_scale = std::max(ui_scale, 0.5);
+    int margin_x = static_cast<int>(20 * ui_scale);
+    int margin_y = static_cast<int>(60 * ui_scale);
+    double font_scale = 1.0 * ui_scale;
+    int thickness = std::max(1, static_cast<int>(3 * ui_scale));
+
+    std::string stats = "IN: " + std::to_string(factory_in_count) +
+                        " | OUT: " + std::to_string(factory_out_count);
+    cv::putText(frame, stats, cv::Point(margin_x, margin_y),
+                cv::FONT_HERSHEY_SIMPLEX, font_scale,
+                cv::Scalar(0, 255, 255), thickness);
+
+    BBoxRenderer::draw(frame, result, frame_width, frame_height);
+    BBoxRenderer::draw_fps(frame, rolling_fps, rolling_inference_ms);
+}
 
 void signal_handler(int /*sig*/) {
     g_running.store(false);
@@ -124,6 +179,8 @@ struct Options {
     bool        fb_display_enabled = false;
     bool        use_vulkan         = false;
     bool        use_int8           = false;
+    bool              use_zenoh          = false;
+    bool show_fps = true;                // Show FPS overlay in output video
     int         gpu_device         = 0;
     std::string cam_id             = "cam1";
     std::string router_ip          = "192.168.1.9";
@@ -163,14 +220,14 @@ bool parse_options(int argc, char* argv[], Options& opts) {
         {"gpu",          required_argument, 0, 'g'},
         {"verbose",      no_argument,       0, 'V'},
         {"cam-id",       required_argument, 0, 'k'},
-        {"router",       required_argument, 0, 'r'},
+        {"zenoh-router", required_argument, 0, 'z'},
         {"help",         no_argument,       0, 'h'},
-        {"rtsp",         required_argument, 0, 'R'},
+        {"rtsp",         required_argument, 0, 'r'},
         {0, 0, 0, 0}
     };
 
     int opt;
-    while ((opt = getopt_long(argc, argv, "c:v:p:m:n:w:O:DBGIg:Vk:r:h",
+    while ((opt = getopt_long(argc, argv, "c:v:p:m:n:w:O:DBGIg:Vk:z:h:r",
                               long_options, nullptr)) != -1) {
         switch (opt) {
             case 'c': opts.mode = "camera"; opts.device = optarg;   break;
@@ -187,8 +244,8 @@ bool parse_options(int argc, char* argv[], Options& opts) {
             case 'g': opts.gpu_device   = std::stoi(optarg);        break;
             case 'V': opts.verbose      = true;                     break;
             case 'k': opts.cam_id       = optarg;                   break;
-            case 'r': opts.router_ip    = optarg;                   break;
-            case 'R': opts.mode = "rtsp";opts.device = optarg;      break;
+            case 'z': opts.router_ip    = optarg; opts.use_zenoh = true;                   break;
+            case 'r': opts.mode = "rtsp";opts.device = optarg;      break;
             case 'h': print_usage(argv[0]); exit(0);
             default: break;
         }
@@ -284,6 +341,55 @@ to_eigen_matrix(const std::vector<std::vector<float>>& data) {
     return mat;
 }
 
+
+
+static inline int64_t now_us() {
+    return get_timestamp_ns() / 1000;
+}
+
+static const char* violation_type_name(int bit) {
+    switch (bit) {
+        case VIOL_NO_HELMET:    return "NO_HELMET";
+        case VIOL_SELF_CLOTHES: return "SELF_CLOTHES";
+        default:                return "UNKNOWN";
+    }
+}
+
+static std::vector<std::string> violation_types_from_mask(int mask) {
+    std::vector<std::string> types;
+    if (mask & VIOL_NO_HELMET)
+        types.emplace_back(violation_type_name(VIOL_NO_HELMET));
+    if (mask & VIOL_SELF_CLOTHES)
+        types.emplace_back(violation_type_name(VIOL_SELF_CLOTHES));
+    if (types.empty())
+        types.emplace_back("UNKNOWN");
+    return types;
+}
+
+static std::string join_violation_types(int mask, const std::string& sep) {
+    const auto types = violation_types_from_mask(mask);
+    std::ostringstream oss;
+    for (size_t i = 0; i < types.size(); ++i) {
+        if (i > 0) oss << sep;
+        oss << types[i];
+    }
+    return oss.str();
+}
+
+static std::string violation_types_json(int mask) {
+    const auto types = violation_types_from_mask(mask);
+    std::ostringstream oss;
+    oss << "[";
+    for (size_t i = 0; i < types.size(); ++i) {
+        if (i > 0) oss << ",";
+        oss << "\"" << types[i] << "\"";
+    }
+    oss << "]";
+    return oss.str();
+}
+
+
+
 // ============================================================================
 // Zenoh Publisher Setup
 // ============================================================================
@@ -339,7 +445,6 @@ int run_inference_pipeline(const Options& opts) {
     }
     std::cout << "[INIT] Model loaded. Warming up...\n";
     engine.warmup(10);
-    bool use_zenoh = false;
 
     // ------------------------------------------------------------------
     // 3. Input pipeline
@@ -371,29 +476,92 @@ int run_inference_pipeline(const Options& opts) {
     }
     std::cout << "[INIT] Input pipeline ready.\n";
 
+
+    // Initialize async video writer (if output video specified)
+    std::unique_ptr<AsyncVideoWriter> video_writer;
+    int video_width = INPUT_WIDTH;   // Use pipeline resolution (already resized)
+    int video_height = INPUT_HEIGHT;
+    
+    if (!opts.output_video.empty()) {
+        video_writer = std::make_unique<AsyncVideoWriter>();
+        AsyncVideoWriter::Config writer_config;
+        writer_config.output_path = opts.output_video;
+        writer_config.width = video_width;
+        writer_config.height = video_height;
+        writer_config.fps = pipeline.get_video_fps();  // Match input video FPS
+        // Queue size: buffer all frames (inference faster than encoding)
+        // For typical videos: ~30fps * 60sec = 1800 frames max (~500MB)
+        writer_config.queue_size = 2000;
+        writer_config.draw_fps = opts.show_fps;
+        
+        if (!video_writer->start(writer_config)) {
+            std::cerr << "Failed to initialize video writer\n";
+            neon::cleanup_preprocess_buffers();
+            return 1;
+        }
+        
+        std::cout << "Video writer initialized: " << video_width << "x" << video_height << "\n";
+    }
+    
+    // Initialize async display (if enabled)
+    std::unique_ptr<AsyncDisplay> display;
+    if (opts.display_enabled) {
+        display = std::make_unique<AsyncDisplay>();
+        AsyncDisplay::Config display_config;
+        display_config.window_name = "YOLOv8n Detection";
+        display_config.queue_size = 3;  // Very small for low latency
+        display_config.draw_fps = opts.show_fps;
+        display_config.draw_bbox = true;
+        display_config.max_screen_ratio = 0.75f;  // 75% of screen max
+        
+        if (!display->start(display_config, INPUT_WIDTH, INPUT_HEIGHT)) {
+            std::cerr << "Failed to initialize display\n";
+            neon::cleanup_preprocess_buffers();
+            return 1;
+        }
+    }
+    
+    // Initialize framebuffer display (if enabled) - bypasses X11, faster!
+    std::unique_ptr<FramebufferDisplay> fb_display;
+    if (opts.fb_display_enabled) {
+        fb_display = std::make_unique<FramebufferDisplay>();
+        FramebufferDisplay::Config fb_config;
+        fb_config.target_width = INPUT_WIDTH;
+        fb_config.target_height = INPUT_HEIGHT;
+        fb_config.draw_fps = opts.show_fps;
+        fb_config.draw_bbox = true;
+        
+        if (!fb_display->start(fb_config)) {
+            std::cerr << "Failed to initialize framebuffer display\n";
+            std::cerr << "Try: sudo chmod 666 /dev/fb0\n";
+            neon::cleanup_preprocess_buffers();
+            return 1;
+        }
+        std::cout << "Framebuffer mode: No X11 overhead, max FPS!\n";
+    }
+
     // ------------------------------------------------------------------
     // 4. Zenoh session
     // ------------------------------------------------------------------
-    std::cout << "[INIT] Connecting Zenoh to " << opts.router_ip << "...\n";
-    {
-        z_owned_config_t z_cfg;
-        z_config_default(&z_cfg);
-        std::string ep = "tcp/" + opts.router_ip + ":7447";
-        zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_CONNECT_KEY, ep.c_str());
-        zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_MODE_KEY,    "client");
-        if (z_open(&z_session, z_config_move(&z_cfg), NULL) < 0) {
-            std::cerr << "[FATAL] Zenoh connection failed to " << ep << "\n";
-	    use_zenoh = false;
-            //return 1;
-        } else {
-	    use_zenoh = true;
-	}
+    
+    
+    if (opts.use_zenoh){
+      std::cout << "[INIT] Connecting Zenoh to " << opts.router_ip << "...\n";
+      z_owned_config_t z_cfg;
+      z_config_default(&z_cfg);
+      std::string ep = "tcp/" + opts.router_ip + ":7447";
+      zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_CONNECT_KEY, ep.c_str());
+      zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_MODE_KEY,    "client");
+      if (z_open(&z_session, z_config_move(&z_cfg), NULL) < 0) {
+          std::cerr << "[FATAL] Zenoh connection failed to " << ep << "\n";
+          //return 1;
+      } 
+  
+      zp_start_read_task(z_session_loan_mut(&z_session), NULL);
+      zp_start_lease_task(z_session_loan_mut(&z_session), NULL);
+      std::cout << "[INIT] Zenoh session open.\n";
     }
-    if (use_zenoh){
-        zp_start_read_task(z_session_loan_mut(&z_session), NULL);
-        zp_start_lease_task(z_session_loan_mut(&z_session), NULL);
-        std::cout << "[INIT] Zenoh session open.\n";
-    }
+
 
 
     // ------------------------------------------------------------------
@@ -406,26 +574,38 @@ int run_inference_pipeline(const Options& opts) {
     const std::string t_ev_image  = base + "/events/image";  // [FIX-2] topic riêng
     const std::string t_image     = base + "/image";
     const std::string t_count     = base + "/count";
-    if (use_zenoh){
-	    if (!declare_publisher(pub_stats,        t_stats))    return 1;
-	    if (!declare_publisher(pub_events,       t_events))   return 1;
-	    if (!declare_publisher(pub_events_image, t_ev_image)) return 1;  // [FIX-2]
-	    if (!declare_publisher(pub_image,        t_image))    return 1;
-	    if (!declare_publisher(pub_count,        t_count))    return 1;
+    if (opts.use_zenoh){
+            if (!declare_publisher(pub_stats,        t_stats))    return 1;
+            if (!declare_publisher(pub_events,       t_events))   return 1;
+            if (!declare_publisher(pub_events_image, t_ev_image)) return 1;  // [FIX-2]
+            if (!declare_publisher(pub_image,        t_image))    return 1;
+            if (!declare_publisher(pub_count,        t_count))    return 1;
     }
 
     // ------------------------------------------------------------------
     // 6. Tracker & ROI
     // ------------------------------------------------------------------
-    ocsort::OCSort tracker(0.25f, 30, 1, 0.4f, 3, "giou", 0.2f, true);
+    ocsort::OCSort tracker(0.25f, 30, 3, 0.25f, 3, "giou", 0.3f, true);
+    // det_thresh=0.25, max_age=30, min_hits=3 (tăng từ 1→3 để tránh ID giả),
+    // iou_threshold=0.3 (giảm từ 0.4→0.3 để match tốt hơn khi đông người),
+    // delta_t=3, asso_func="giou", inertia=0.2, use_byte=false (tắt để ổn định hơn)
 
     // Homography matrix (camera-specific, cấu hình theo thực tế)
-    active_roi.H = (cv::Mat_<double>(3, 3)
-                    << 1.25,  0.0,   -200.0,
-                       0.0,   2.857, -571.4,
-                       0.0,   0.0,      1.0);
-    active_roi.ground_crossing_line = 400.0f;
+ 
+  // FOR kling.mp4
+//    active_roi.H = (cv::Mat_<double>(3,3) <<
+//        -5.3064349731493275,  -0.6647882740410772,   3373.3256419913027,
+//        -0.47648302650342855, -22.235874570159813,   6623.114068397604,
+//         0.00038583253897717965, -0.014584398750060424, 1.0 );
+//    active_roi.ground_crossing_line = 500.0f;
 
+  // FOR gemini_1.mp4
+    active_roi.H = (cv::Mat_<double>(3,3) <<
+        0.625,      0.0,   -200.0,
+          0.0,   1.9046,   -571.4,
+          0.0,      0.0,      1.0);
+    active_roi.ground_crossing_line = 550.0f;
+    
     // ------------------------------------------------------------------
     // 7. Timing
     // ------------------------------------------------------------------
@@ -440,11 +620,39 @@ int run_inference_pipeline(const Options& opts) {
     AlignedPtr<float> model_input = make_aligned_buffer<float>(MODEL_INPUT_FLOATS);
 
     std::cout << "[INIT] Starting frame loop...\n";
+    
 
+    Benchmark benchmark;
+    
+    BenchmarkConfig bench_cfg;
+    
+    bench_cfg.warmup_frames = 30;
+    bench_cfg.test_frames   = 0;
+    bench_cfg.verbose       = false;
+    
+    bench_cfg.output_path = "pipeline_benchmark.csv";
+    
+    benchmark.configure(bench_cfg);
+    
+    std::cout << "[BENCHMARK] Initialized\n";
+
+    // Track FPS for overlay
+    float rolling_fps = 0;
+    float rolling_inference_ms = 0;
+    
     // ------------------------------------------------------------------
     // 9. Per-frame callback
     // ------------------------------------------------------------------
     auto process_frame = [&](const FrameBuffer& frame) -> bool {
+
+
+
+        FrameTiming timing = {};
+        
+        timing.frame_index = frame.frame_index;
+        
+        int64_t total_start = now_us();
+
 
         if (opts.verbose && frame.frame_index % 30 == 0)
             std::cout << "[FRAME] #" << frame.frame_index << "\n";
@@ -452,25 +660,41 @@ int run_inference_pipeline(const Options& opts) {
         auto now = std::chrono::steady_clock::now();
 
         // ---- Preprocess ------------------------------------------------
-        float scale; int pad_x, pad_y;
+        int64_t t0 = now_us();
+        
+        float scale;
+        int pad_x, pad_y;
+        
         neon::preprocess_bgr_direct(
-            frame.data, model_input.get(),
-            frame.width, frame.height, frame.stride,
-            &scale, &pad_x, &pad_y);
-        engine.set_letterbox_params(scale, pad_x, pad_y);
+            frame.data,
+            model_input.get(),
+            frame.width,
+            frame.height,
+            frame.stride,
+            &scale,
+            &pad_x,
+            &pad_y);
+        
+        timing.preprocess_time_us = now_us() - t0;
+        engine.set_letterbox_params(scale, pad_x, pad_y, frame.width, frame.height);
 
         // ---- Inference -------------------------------------------------
         DetectionResult result;
+        
+        t0 = now_us();
         engine.infer_fp32(model_input.get(), result);
-
+        timing.inference_time_us = now_us() - t0;
+        
         if (opts.verbose && frame.frame_index % 30 == 0)
             std::cout << "[INFER] Detections: " << result.count << "\n";
 
         // ---- Split detections: person vs PPE ---------------------------
         std::vector<std::vector<float>> tracker_input;
         std::vector<yolo::Detection>    ppe_detections;
+        std::vector<yolo::Detection>    final_detections;   // Detections với class_id đã mã hóa safe/violation
         tracker_input.reserve(result.count);
         ppe_detections.reserve(result.count);
+        final_detections.reserve(result.count);
 
         for (int i = 0; i < result.count; ++i) {
             const auto& d = result.detections[i];
@@ -481,6 +705,14 @@ int run_inference_pipeline(const Options& opts) {
                 ppe_detections.push_back(d);
         }
 
+        // [DEBUG] In ra số lượng và điểm tự tin của người do YOLO bắt được
+        if (!tracker_input.empty() || active_workers.size() > 0) {
+            std::cout << "\n--- FRAME " << frame.frame_index << " ---\n";
+            std::cout << "[DEBUG YOLO] Persons: " << tracker_input.size() << " | Confs: ";
+            for (auto& d : tracker_input) std::cout << std::fixed << std::setprecision(2) << d[4] << " ";
+            std::cout << "\n";
+        }
+
         // ---- Track persons ---------------------------------------------
         auto tracks = tracker.update(to_eigen_matrix(tracker_input));
         int  current_violations = 0;
@@ -489,6 +721,10 @@ int run_inference_pipeline(const Options& opts) {
         // Mark all existing workers as potentially missing this frame
         for (auto& [id, ws] : active_workers)
             ws.consecutive_misses++;
+
+        std::cout << "[DEBUG TRACKER] Active IDs returned: " << tracks.size() << " -> ";
+        for (auto& track : tracks) std::cout << (int)track[4] << " ";
+        std::cout << "\n";
 
         for (auto& track : tracks) {
             const int tid = static_cast<int>(track[4]);
@@ -509,23 +745,52 @@ int run_inference_pipeline(const Options& opts) {
                 track[0], track[1], track[2], track[3],
                 active_roi.H, frame.width, frame.height);
 
+            if (DEBUG_GROUND_LINE) {
+                const float line_y = active_roi.ground_crossing_line;
+                const char* side = ground.y >= line_y ? "BELOW_OR_ON" : "ABOVE";
+                std::cout << "[DEBUG GROUND] frame=" << frame.frame_index
+                          << " worker=" << tid
+                          << " ground=(" << std::fixed << std::setprecision(2)
+                          << ground.x << "," << ground.y << ")"
+                          << " line_y=" << line_y
+                          << " delta_y=" << (ground.y - line_y)
+                          << " last_y=" << state.last_ground_y
+                          << " side=" << side << "\n";
+            }
+
             if (state.last_ground_y > 0.f
                 && ground.y >= active_roi.ground_crossing_line
                 && state.last_ground_y < active_roi.ground_crossing_line) {
+                if (DEBUG_GROUND_LINE) {
+                    std::cout << "[DEBUG COUNT_CANDIDATE] worker=" << tid
+                              << " direction=IN"
+                              << " last_y=" << state.last_ground_y
+                              << " current_y=" << ground.y
+                              << " line_y=" << active_roi.ground_crossing_line
+                              << "\n";
+                }
                 // Đi vào (từ trên xuống line)
                 if (!state.counted_in) {
                     ++factory_in_count;
                     state.counted_in = true;
                     std::string val = std::to_string(factory_in_count);
-		    if (use_zenoh){
-                    	zenoh_publish_str(pub_count, val);
-		    }
+                            if (opts.use_zenoh){
+                        zenoh_publish_str(pub_count, val);
+                            }
                     std::cout << "[COUNT] IN: " << factory_in_count << "\n";
                 }
             }
             else if (state.last_ground_y >= active_roi.ground_crossing_line
                      && ground.y < active_roi.ground_crossing_line
                      && state.last_ground_y > 0.f) {
+                if (DEBUG_GROUND_LINE) {
+                    std::cout << "[DEBUG COUNT_CANDIDATE] worker=" << tid
+                              << " direction=OUT"
+                              << " last_y=" << state.last_ground_y
+                              << " current_y=" << ground.y
+                              << " line_y=" << active_roi.ground_crossing_line
+                              << "\n";
+                }
                 // Đi ra (từ dưới lên line)
                 if (!state.counted_out) {
                     ++factory_out_count;
@@ -536,7 +801,7 @@ int run_inference_pipeline(const Options& opts) {
             state.last_ground_y = ground.y;
 
             // ---- PPE Violation check -----------------------------------
-            int frame_viol = 0;
+            int frame_violation_mask = 0;
             // Mở rộng vùng đầu lên trên bbox để nhận diện mũ bảo hiểm
             float head_y1 = std::max(0.f,
                 track[1] - (track[3] - track[1]) * HEAD_REGION_RATIO);
@@ -548,39 +813,89 @@ int run_inference_pipeline(const Options& opts) {
                 if (ioa > IOA_THRESHOLD
                     && (ppe.class_id == HEAD_VIOLATION
                         || ppe.class_id == CLOTHES_VIOLATION)) {
-                    frame_viol = 1;
-                    break;
+                    if (ppe.class_id == HEAD_VIOLATION)
+                        frame_violation_mask |= VIOL_NO_HELMET;
+                    else
+                        frame_violation_mask |= VIOL_SELF_CLOTHES;
                 }
             }
 
             // Sliding-window vote
-            state.violation_history.push_back(frame_viol);
+            state.violation_history.push_back(frame_violation_mask);
             if ((int)state.violation_history.size() > VIOLATION_HISTORY_LEN)
                 state.violation_history.pop_front();
 
-            int votes = 0;
-            for (int v : state.violation_history) votes += v;
-            state.is_violating = (votes >= VIOLATION_VOTE_THRESH);
+            int head_votes = 0;
+            int clothes_votes = 0;
+            for (int mask : state.violation_history) {
+                if (mask & VIOL_NO_HELMET)    ++head_votes;
+                if (mask & VIOL_SELF_CLOTHES) ++clothes_votes;
+            }
 
-            // ---- Publish violation event (once per violation episode) --
+            int voted_violation_mask = 0;
+            if (head_votes >= VIOLATION_VOTE_THRESH)
+                voted_violation_mask |= VIOL_NO_HELMET;
+            if (clothes_votes >= VIOLATION_VOTE_THRESH)
+                voted_violation_mask |= VIOL_SELF_CLOTHES;
+
+            const bool violation_candidate = (voted_violation_mask != 0);
+
+            if (violation_candidate) {
+                state.is_violating = true;
+                state.last_violation_mask = voted_violation_mask;
+                state.safe_frames = 0;
+            }
+            else if (state.is_violating) {
+                ++state.safe_frames;
+                if (state.safe_frames >= VIOLATION_CLEAR_FRAMES) {
+                    state.is_violating = false;
+                    state.event_sent = false;
+                    state.last_violation_mask = 0;
+                    state.safe_frames = 0;
+                }
+            }
+            else {
+                state.safe_frames = 0;
+            }
+
+            // ---- Publish violation event (once per violation episode/set) --
             if (state.is_violating) {
                 ++current_violations;
 
-                if (!state.event_sent) {
+                const bool violation_set_changed =
+                    state.last_event_mask != state.last_violation_mask;
+                if (!state.event_sent || violation_set_changed) {
+                    const auto cooldown = std::chrono::seconds(VIOLATION_COOLDOWN_SEC);
+                    const bool has_last_event =
+                        state.last_event_time.time_since_epoch().count() != 0;
+                    const bool same_violation_set =
+                        state.last_event_mask == state.last_violation_mask;
+                    const bool cooldown_active =
+                        has_last_event && same_violation_set
+                        && (now - state.last_event_time < cooldown);
+
+                    if (!cooldown_active) {
                     // [FIX-2] Metadata JSON — không nhúng ảnh vào đây
-		    if (use_zenoh){
-			    
-                        std::string ev_json =
-                            "{\"id\":\"WK" + std::to_string(tid) +
-                            "\",\"type\":\"NO_PPE\""
-                            ",\"location\":\"" + opts.cam_id + "\""
-                            ",\"timestamp\":" +
-                            std::to_string(std::chrono::duration_cast<
+                        if (opts.use_zenoh) {
+                            const int event_id = ++violation_event_count;
+                            const auto event_ts = std::chrono::duration_cast<
                                 std::chrono::milliseconds>(
-                                now.time_since_epoch()).count()) +
-                            "}";
-                        zenoh_publish_str(pub_events, ev_json);
-		    }
+                                now.time_since_epoch()).count();
+                            std::string ev_json =
+                                "{\"event_id\":\"" + opts.cam_id + "-" +
+                                std::to_string(event_id) + "\""
+                                ",\"id\":\"WK" + std::to_string(tid) +
+                                "\",\"worker_id\":" + std::to_string(tid) +
+                                ",\"type\":\"" + join_violation_types(state.last_violation_mask, "+") + "\""
+                                ",\"types\":" + violation_types_json(state.last_violation_mask) +
+                                ",\"location\":\"" + opts.cam_id + "\""
+                                ",\"cam_id\":\"" + opts.cam_id + "\""
+                                ",\"timestamp\":" + std::to_string(event_ts) +
+                                ",\"snapshot_topic\":\"factory/" + opts.cam_id +
+                                "/events/image\""
+                                "}";
+                            zenoh_publish_str(pub_events, ev_json);
+                    }
 
                     // [FIX-2] Ảnh crop worker → topic riêng → raw JPEG
                     cv::Mat raw(frame.height, frame.width,
@@ -593,7 +908,7 @@ int run_inference_pipeline(const Options& opts) {
                     roi &= cv::Rect(0, 0, frame.width, frame.height);
 
                     auto jpeg = encode_jpeg(raw(roi), 75);
-                    if (!jpeg.empty() && use_zenoh) {
+                    if (!jpeg.empty() && opts.use_zenoh) {
                         // Thêm worker ID vào topic để backend biết ảnh của ai
                         // factory/cam1/events/image  (backend dùng metadata từ
                         // /events để ghép, hoặc dùng Zenoh attachment nếu cần)
@@ -604,34 +919,61 @@ int run_inference_pipeline(const Options& opts) {
                                   << tid << ")\n";
                     }
 
+                    state.last_event_time = now;
+                    state.last_event_mask = state.last_violation_mask;
+                    }
+
                     state.event_sent = true;
                 }
             }
-            else {
-                // Reset để có thể gửi event lần vi phạm tiếp theo
-                if (state.event_sent) state.event_sent = false;
-            }
+            // ---- Mã hóa violation vào class_id để BBoxRenderer vẽ màu đúng ----
+            // class_id âm  → vi phạm (hộp đỏ + nhãn VIOLATION)
+            // class_id dương → an toàn (hộp xanh + nhãn SAFE)
+            yolo::Detection det_p;
+            det_p.x1 = track[0]; det_p.y1 = track[1];
+            det_p.x2 = track[2]; det_p.y2 = track[3];
+            det_p.confidence = track[6];
+            det_p.class_id = state.is_violating ? -(tid + 1000) : (tid + 1000);
+            final_detections.push_back(det_p);
+        }
+
+        // ---- Build render result before dashboard snapshot publish ----
+        {
+            int write_idx = 0;
+            for (auto& d : final_detections)
+                if (write_idx < MAX_DETECTIONS) result.detections[write_idx++] = d;
+            for (auto& p : ppe_detections)
+                if (write_idx < MAX_DETECTIONS) result.detections[write_idx++] = p;
+            result.count = write_idx;
         }
 
         // ---- Periodic stats publish ------------------------------------
         if (now - last_stats_time >= stats_interval) {
-            float compliance = active_workers.empty()
+            const int current_workers = static_cast<int>(tracks.size());
+            float compliance = current_workers == 0
                 ? 100.f
                 : (1.f - (float)current_violations
-                         / (float)active_workers.size()) * 100.f;
-	    if (use_zenoh){
-
-		    std::string s_json =
-			"{\"cam_id\":\"" + opts.cam_id + "\""
-			",\"total\":"      + std::to_string(active_workers.size()) +
-			",\"violations\":" + std::to_string(current_violations) +
-			",\"compliance\":" + std::to_string(compliance) +
-			",\"in\":"         + std::to_string(factory_in_count) +
-			",\"out\":"        + std::to_string(factory_out_count) +
-			"}";
-		    zenoh_publish_str(pub_stats, s_json);
-		    std::cout << "[ZENOH] Stats: " << s_json << "\n";
-	    }
+                         / (float)current_workers) * 100.f;
+            if (opts.use_zenoh){
+                    const auto stats_ts = std::chrono::duration_cast<
+                        std::chrono::milliseconds>(
+                        now.time_since_epoch()).count();
+                    std::string s_json =
+                        "{\"cam_id\":\"" + opts.cam_id + "\""
+                        ",\"status\":\"online\""
+                        ",\"timestamp\":"  + std::to_string(stats_ts) +
+                        ",\"total\":"      + std::to_string(current_workers) +
+                        ",\"violations\":" + std::to_string(current_violations) +
+                        ",\"compliance\":" + std::to_string(compliance) +
+                        ",\"in\":"         + std::to_string(factory_in_count) +
+                        ",\"out\":"        + std::to_string(factory_out_count) +
+                        ",\"fps\":"        + std::to_string(rolling_fps) +
+                        ",\"inference_ms\":" + std::to_string(rolling_inference_ms) +
+                        ",\"event_count\":" + std::to_string(violation_event_count) +
+                        "}";    
+                    zenoh_publish_str(pub_stats, s_json);
+                    std::cout << "[ZENOH] Stats: " << s_json << "\n";
+            }
             last_stats_time = now;
         }
 
@@ -640,11 +982,15 @@ int run_inference_pipeline(const Options& opts) {
         if (now - last_image_time >= image_interval) {
             cv::Mat raw(frame.height, frame.width,
                         CV_8UC3, frame.data, frame.stride);
-            cv::Mat thumb;
-            cv::resize(raw, thumb, cv::Size(SNAPSHOT_WIDTH, SNAPSHOT_HEIGHT));
+            cv::Mat annotated = raw.clone();
+            draw_dashboard_snapshot_overlay(annotated, result,
+                                            frame.width, frame.height,
+                                            rolling_fps, rolling_inference_ms);
 
+            cv::Mat thumb;
+            cv::resize(annotated, thumb, cv::Size(SNAPSHOT_WIDTH, SNAPSHOT_HEIGHT));
             auto jpeg = encode_jpeg(thumb, SNAPSHOT_QUALITY);
-            if (!jpeg.empty() && use_zenoh) {
+            if (!jpeg.empty() && opts.use_zenoh) {
                 zenoh_publish_bytes(pub_image, jpeg.data(), jpeg.size());
                 std::cout << "[ZENOH] Snapshot sent: "
                           << jpeg.size() << " bytes\n";
@@ -656,16 +1002,122 @@ int run_inference_pipeline(const Options& opts) {
         //  [FIX-5] consecutive_misses đã được increment ở đầu loop,
         //           nên chỉ cần check > threshold ở đây
         for (auto it = active_workers.begin(); it != active_workers.end(); ) {
+            if (it->second.consecutive_misses > 0 && it->second.consecutive_misses < WORKER_MAX_MISS) {
+                // In ra cảnh báo khi worker bắt đầu bị miss (không in liên tục nếu miss quá nhiều để tránh rác)
+                if (it->second.consecutive_misses == 1 || it->second.consecutive_misses % 15 == 0) {
+                    std::cout << "[DEBUG MISS] Worker " << it->second.track_id 
+                              << " is missing for " << it->second.consecutive_misses << " frames\n";
+                }
+            }
+
             if (it->second.consecutive_misses > WORKER_MAX_MISS) {
                 std::cout << "[TRACK] Removed stale worker: "
-                          << it->second.track_id << "\n";
+                          << it->second.track_id << " (Missed " << it->second.consecutive_misses << " frames)\n";
                 it = active_workers.erase(it);
             } else {
                 ++it;
             }
         }
 
-        return g_running.load();
+        // ---- Ghi final_detections (class_id mã hóa safe/violation) + ppe vào result ----
+        {
+            int write_idx = 0;
+            for (auto& d : final_detections)
+                if (write_idx < MAX_DETECTIONS) result.detections[write_idx++] = d;
+            for (auto& p : ppe_detections)
+                if (write_idx < MAX_DETECTIONS) result.detections[write_idx++] = p;
+            result.count = write_idx;
+        }
+
+        timing.total_time_us = now_us() - total_start;
+        
+        timing.detection_count = result.count;
+        
+        // Update rolling stats for FPS overlay
+        float current_fps = 1000000.0f / timing.total_time_us;
+        float current_inference_ms = timing.inference_time_us / 1000.0f;
+        rolling_fps = rolling_fps * 0.9f + current_fps * 0.1f;
+        rolling_inference_ms = rolling_inference_ms * 0.9f + current_inference_ms * 0.1f;
+        
+        // Push frame to async writer (non-blocking, done AFTER inference)
+        if (video_writer && frame.format == PixelFormat::BGR) {
+            // Create cv::Mat wrapper (no copy, just wrap existing data)
+            cv::Mat bgr_frame(frame.height, frame.width, CV_8UC3, frame.data, frame.stride);
+            if (!bgr_frame.empty()) {
+                            BBoxRenderer::draw_roi(bgr_frame, active_roi); 
+                // --- VẼ VẠCH KẺ ĐẾM (LINE CROSSING) ---
+                // Chúng ta lấy 2 điểm trên vạch 300 trong không gian BEV và map ngược về ảnh gốc
+                cv::Mat H_inv = active_roi.H.inv();
+                std::vector<cv::Point2f> bev_points = { 
+                    cv::Point2f(0, active_roi.ground_crossing_line), 
+                    cv::Point2f(400, active_roi.ground_crossing_line) 
+                };
+                std::vector<cv::Point2f> img_points;
+                cv::perspectiveTransform(bev_points, img_points, H_inv);
+
+                // Vẽ đường nối 2 điểm này trên ảnh gốc
+                cv::line(bgr_frame, img_points[0], img_points[1], cv::Scalar(0, 255, 255), 3); // Màu vàng
+                
+                double ui_scale = std::min(frame.width / 640.0, frame.height / 480.0);
+                
+                int margin_x = static_cast<int>(20 * ui_scale);
+                int margin_y = static_cast<int>(60 * ui_scale);
+                double font_scale = 1.0 * ui_scale;
+                int thickness = std::max(1, static_cast<int>(3 * ui_scale));
+                
+                std::string stats = "IN: " + std::to_string(factory_in_count) +
+                                    " | OUT: " + std::to_string(factory_out_count);
+                
+                cv::putText(
+                    bgr_frame,
+                    stats,
+                    cv::Point(margin_x, margin_y),
+                    cv::FONT_HERSHEY_SIMPLEX,
+                    font_scale,
+                    cv::Scalar(0, 255, 255),
+                    thickness
+                );  
+            }  
+            // Push to async queue (bbox drawing happens in writer thread)
+            video_writer->push(bgr_frame, result, frame.width, frame.height,
+                             rolling_fps, rolling_inference_ms);
+        }
+        
+        // Push frame to async display (non-blocking)
+        if (display) {
+            if (frame.format == PixelFormat::BGR) {
+                cv::Mat bgr_frame(frame.height, frame.width, CV_8UC3, frame.data, frame.stride);
+                display->push(bgr_frame, result, frame.width, frame.height,
+                             rolling_fps, rolling_inference_ms);
+            } else if (frame.format == PixelFormat::YUYV) {
+                // Convert YUYV to BGR for display
+                cv::Mat yuyv_frame(frame.height, frame.width, CV_8UC2, frame.data, frame.stride);
+                cv::Mat bgr_frame;
+                cv::cvtColor(yuyv_frame, bgr_frame, cv::COLOR_YUV2BGR_YUYV);
+                display->push(bgr_frame, result, frame.width, frame.height,
+                             rolling_fps, rolling_inference_ms);
+            }
+        }
+        
+        // Push frame to framebuffer display (direct, no X11 overhead)
+        if (fb_display) {
+            if (frame.format == PixelFormat::BGR) {
+                fb_display->push_bgr(frame.data, frame.width, frame.height, frame.stride,
+                                    result, rolling_fps, rolling_inference_ms);
+            } else if (frame.format == PixelFormat::YUYV) {
+                // Convert YUYV to BGR for framebuffer display
+                cv::Mat yuyv_frame(frame.height, frame.width, CV_8UC2, frame.data, frame.stride);
+                cv::Mat bgr_frame;
+                cv::cvtColor(yuyv_frame, bgr_frame, cv::COLOR_YUV2BGR_YUYV);
+                fb_display->push_bgr(bgr_frame.data, bgr_frame.cols, bgr_frame.rows, 
+                                    bgr_frame.step, result, rolling_fps, rolling_inference_ms);
+            }
+        }
+        
+        
+        benchmark.record_frame(timing);
+        
+        return !benchmark.is_complete() && g_running.load();
     };
 
     // ------------------------------------------------------------------
@@ -677,16 +1129,43 @@ int run_inference_pipeline(const Options& opts) {
     // 11. Cleanup
     // ------------------------------------------------------------------
     std::cout << "[SHUTDOWN] Cleaning up...\n";
-    if (use_zenoh){
-	    z_publisher_drop(z_publisher_move(&pub_stats));
-	    z_publisher_drop(z_publisher_move(&pub_events));
-	    z_publisher_drop(z_publisher_move(&pub_events_image));
-	    z_publisher_drop(z_publisher_move(&pub_image));
-	    z_publisher_drop(z_publisher_move(&pub_count));
-	    z_session_drop(z_session_move(&z_session));
+    if (opts.use_zenoh){
+            z_publisher_drop(z_publisher_move(&pub_stats));
+            z_publisher_drop(z_publisher_move(&pub_events));
+            z_publisher_drop(z_publisher_move(&pub_events_image));
+            z_publisher_drop(z_publisher_move(&pub_image));
+            z_publisher_drop(z_publisher_move(&pub_count));
+            z_session_drop(z_session_move(&z_session));
     }
     neon::cleanup_preprocess_buffers();
     std::cout << "[SHUTDOWN] Done.\n";
+    
+    // Stop video writer (flushes remaining frames)
+    if (video_writer) {
+        std::cout << "Flushing video writer...\n";
+        video_writer->stop();
+        std::cout << "Video saved: " << opts.output_video << "\n";
+        std::cout << "  Frames written: " << video_writer->frames_written() << "\n";
+        std::cout << "  Frames dropped: " << video_writer->frames_dropped() << "\n";
+    }
+    // ------------------------------------------------------------------
+    // 12. Print Benchmark Result
+    // ------------------------------------------------------------------
+        // Print results
+    benchmark.print_summary();
+    
+    // Determine exit code based on validation
+    BenchmarkStats stats = benchmark.calculate_stats();
+    
+    if (stats.is_valid()) {
+        std::cout << "\n✓ SYSTEM MEETS ALL PERFORMANCE REQUIREMENTS\n";
+        std::cout << "  FPS (P99): " << stats.fps_p99 << " >= 20\n";
+        return 0;
+    } else {
+        std::cout << "\n✗ SYSTEM DOES NOT MEET PERFORMANCE REQUIREMENTS\n";
+        std::cout << "  FPS (P99): " << stats.fps_p99 << " < 20\n";
+        return 1;
+    }
     return 0;
 }
 

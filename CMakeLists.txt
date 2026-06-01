@@ -52,13 +52,25 @@ endif()
 # --- OpenCV ---
 find_package(OpenCV REQUIRED COMPONENTS core imgproc videoio highgui)
 
-# --- FFMPEG via PkgConfig (Using IMPORTED_TARGET for better symbol resolution) ---
+# --- FFMPEG (SYSTEM ABI CLEAN VERSION) ---
+
 find_package(PkgConfig REQUIRED)
+
+# Force system pkg-config only
+set(ENV{PKG_CONFIG_PATH} "/usr/lib/aarch64-linux-gnu/pkgconfig")
+
 pkg_check_modules(AVCODEC REQUIRED IMPORTED_TARGET libavcodec)
 pkg_check_modules(AVFORMAT REQUIRED IMPORTED_TARGET libavformat)
 pkg_check_modules(AVUTIL REQUIRED IMPORTED_TARGET libavutil)
 pkg_check_modules(SWSCALE REQUIRED IMPORTED_TARGET libswscale)
 pkg_check_modules(SWRESAMPLE REQUIRED IMPORTED_TARGET libswresample)
+
+message(STATUS "FFmpeg AVCODEC version: ${AVCODEC_VERSION}")
+message(STATUS "FFmpeg AVFORMAT version: ${AVFORMAT_VERSION}")
+message(STATUS "FFmpeg AVUTIL version: ${AVUTIL_VERSION}")
+message(STATUS "FFmpeg SWSCALE version: ${SWSCALE_VERSION}")
+
+
 
 # --- GStreamer ---
 pkg_check_modules(GSTREAMER REQUIRED IMPORTED_TARGET gstreamer-1.0)

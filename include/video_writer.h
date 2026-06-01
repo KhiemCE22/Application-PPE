@@ -26,6 +26,7 @@
 #include <memory>
 #include <iostream>
 #include <cstdio>
+#include <cstdlib>
 #include <vector>
 #include <unistd.h>
 
@@ -98,6 +99,7 @@ public:
         const float scale_y = static_cast<float>(frame.rows);
         
         for (int i = 0; i < result.count; i++) {
+        
             const Detection& det = result.detections[i];
             
             //if(det.class_id == 4) continue; // Add Here
@@ -112,21 +114,27 @@ public:
             x2 = std::max(0, std::min(x2, frame.cols - 1));
             y2 = std::max(0, std::min(y2, frame.rows - 1));
             
-            const cv::Scalar& color = CLASS_COLORS[det.class_id % NUM_COLORS];
+            int raw = det.class_id;
+            cv::Scalar color = (raw <= -1000)
+                ? cv::Scalar(0, 0, 255)
+                : ((raw >= 1000)
+                    ? cv::Scalar(0, 255, 0)
+                    : CLASS_COLORS[std::abs(raw) % NUM_COLORS]);
+                    
             cv::rectangle(frame, cv::Point(x1, y1), cv::Point(x2, y2), color, 2);
 
-	    int raw = det.class_id;
             char label[64];
-	    if (raw <= -1000 || raw >= 1000) {
-	    	snprintf(label, sizeof(label), "ID: %d %s",
-				std::abs(raw) - 1000,
-				raw < 0 ? "VIOLATION" : "SAFE");
-	    } else {
-	    	 //snprintf(label, sizeof(label), "%s %.0f%%", 
-                  //   CLASS_NAMES[det.class_id % NUM_CLASSES], 
-                  //   det.confidence * 100);
-             
-	    }
+            
+      	    if (raw <= -1000 || raw >= 1000) {
+      	    	snprintf(label, sizeof(label), "ID: %d %s",
+      				std::abs(raw) - 1000,
+      				raw < 0 ? "VIOLATION" : "SAFE");
+      	    } else {
+      	    	 //snprintf(label, sizeof(label), "%s %.0f%%", 
+                        //   CLASS_NAMES[det.class_id % NUM_CLASSES], 
+                        //   det.confidence * 100);
+                   
+      	    }
 
            
             int baseline = 0;
@@ -142,6 +150,7 @@ public:
             cv::putText(frame, label, 
                        cv::Point(x1 + 2, label_y + label_size.height + 2),
                        cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(255, 255, 255), 1);
+                       
         }
     }
     

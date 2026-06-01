@@ -6,6 +6,8 @@
 #include "postprocess.h"
 #include <algorithm>
 #include <cmath>
+#include <iostream>
+#include <vector>
 
 namespace yolo {
 
@@ -20,13 +22,21 @@ int decode_yolov8_output(
     Detection* detections,
     int max_detections
 ) {
-    int count = 0;
+    std::vector<Detection> candidates;
+    candidates.reserve(num_outputs);
+    float max_person_score = 0.0f;
+    int max_person_anchor = -1;
     
-    // YOLOv8 output format (transposed): [8400, 84]
-    // Each row: [cx, cy, w, h, class_scores[80]]
+    // YOLOv8 output format (transposed): [num_outputs, 4 + NUM_CLASSES]
+    // Each row: [cx, cy, w, h, class_scores...]
     
-    for (int i = 0; i < num_outputs && count < max_detections; i++) {
+    for (int i = 0; i < num_outputs; i++) {
         const float* row = output + i * (4 + NUM_CLASSES);
+
+        if (row[4] > max_person_score) {
+            max_person_score = row[4];
+            max_person_anchor = i;
+        }
         
         // Get box coordinates
         float cx = row[0];
@@ -62,17 +72,29 @@ int decode_yolov8_output(
         x2 = std::max(0.0f, std::min(1.0f, x2));
         y2 = std::max(0.0f, std::min(1.0f, y2));
         
-        // Store detection
-        detections[count].x1 = x1;
-        detections[count].y1 = y1;
-        detections[count].x2 = x2;
-        detections[count].y2 = y2;
-        detections[count].confidence = best_score;
-        detections[count].class_id = best_class;
-        
-        count++;
+        Detection det;
+        det.x1 = x1;
+        det.y1 = y1;
+        det.x2 = x2;
+        det.y2 = y2;
+        det.confidence = best_score;
+        det.class_id = best_class;
+        candidates.push_back(det);
+    }
+
+    std::sort(candidates.begin(), candidates.end(),
+        [](const Detection& a, const Detection& b) {
+            return a.confidence > b.confidence;
+        });
+
+    int count = std::min(static_cast<int>(candidates.size()), max_detections);
+    for (int i = 0; i < count; i++) {
+        detections[i] = candidates[i];
     }
     
+//    std::cout << "[DEBUG PERSON] max_score=" << max_person_score
+//              << " anchor=" << max_person_anchor << std::endl;
+
     return count;
 }
 

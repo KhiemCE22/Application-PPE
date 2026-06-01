@@ -83,10 +83,14 @@ public:
     /**
      * @brief Set letterbox parameters for coordinate mapping
      */
-    void set_letterbox_params(float scale, int pad_x, int pad_y) {
+    void set_letterbox_params(float scale, int pad_x, int pad_y,
+                              int orig_width = INPUT_WIDTH,
+                              int orig_height = INPUT_HEIGHT) {
         scale_ = scale;
         pad_x_ = pad_x;
         pad_y_ = pad_y;
+        orig_width_ = orig_width;
+        orig_height_ = orig_height;
     }
 
     /**
@@ -154,6 +158,8 @@ private:
     float scale_ = 1.0f;
     int pad_x_ = 0;
     int pad_y_ = 0;
+    int orig_width_ = INPUT_WIDTH;
+    int orig_height_ = INPUT_HEIGHT;
 };
 
 }  // namespace yolo

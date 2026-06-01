@@ -253,7 +253,7 @@ ErrorCode InferenceEngine::infer_fp32(const float* input_data, DetectionResult& 
         map_detection_to_original(
             result.detections[i],
             scale_, pad_x_, pad_y_,
-            INPUT_WIDTH, INPUT_HEIGHT
+            orig_width_, orig_height_
         );
     }
     
@@ -357,7 +357,7 @@ ErrorCode InferenceEngine::infer_fp16(const __fp16* input_data, DetectionResult&
         map_detection_to_original(
             result.detections[i],
             scale_, pad_x_, pad_y_,
-            INPUT_WIDTH, INPUT_HEIGHT
+            orig_width_, orig_height_
         );
     }
 
