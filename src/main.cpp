@@ -24,6 +24,7 @@
 #include "benchmark.h"
 #include "video_writer.h"
 #include "drm_display.h"
+#include "zenoh_transport.h"
 #include "bytetrack/BYTETracker.h"
 #include "ocsort/OCSort.hpp"
 #include <Eigen/Dense>
@@ -43,20 +44,8 @@
 #include <fstream>
 #include <iomanip>
 
-#include <zenoh-pico.h>
-
 using namespace yolo;
 
-
-// ============================================================================
-// Zenoh session & Publishers
-// ============================================================================
-z_owned_session_t   z_session;
-z_owned_publisher_t pub_stats;
-z_owned_publisher_t pub_events;
-z_owned_publisher_t pub_events_image;   // [FIX-2] Topic riêng cho ảnh violation
-z_owned_publisher_t pub_image;
-z_owned_publisher_t pub_count;
 
 // ============================================================================
 // Logic Constants
@@ -183,7 +172,10 @@ struct Options {
     bool show_fps = true;                // Show FPS overlay in output video
     int         gpu_device         = 0;
     std::string cam_id             = "cam1";
+    std::string node_id            = "gsn";
     std::string router_ip          = "192.168.1.9";
+    std::string zenoh_listen       = "tcp/0.0.0.0:7448";
+    std::string asn_peer           = "tcp/192.168.1.197:7447";
 };
 
 void print_usage(const char* program) {
@@ -195,7 +187,11 @@ void print_usage(const char* program) {
         << "  --param   FILE   NCNN .param path\n"
         << "  --bin     FILE   NCNN .bin path\n"
         << "  --cam-id  ID     Camera node identifier (default: cam1)\n"
-        << "  --router  IP     Zenoh router IP (default: 192.168.1.9)\n"
+        << "  --node-id ID     Surveillance node identifier (default: gsn)\n"
+        << "  --zenoh         Enable Zenoh cloud + P2P publishing\n"
+        << "  --zenoh-router IP   Zenoh router IP for cloud/dashboard (default: 192.168.1.9)\n"
+        << "  --zenoh-listen LOC  Local P2P listen locator (default: tcp/0.0.0.0:7448)\n"
+        << "  --asn-peer LOC      ASN direct peer locator, e.g. tcp/192.168.1.9:7447\n"
         << "  --display        Enable DRM/KMS display\n"
         << "  --fb             Enable framebuffer display\n"
         << "  --vulkan         Use Vulkan GPU backend\n"
@@ -220,6 +216,11 @@ bool parse_options(int argc, char* argv[], Options& opts) {
         {"gpu",          required_argument, 0, 'g'},
         {"verbose",      no_argument,       0, 'V'},
         {"cam-id",       required_argument, 0, 'k'},
+        {"node-id",      required_argument, 0, 1000},
+        {"zenoh",        no_argument,       0, 1001},
+        {"zenoh-listen", required_argument, 0, 1002},
+        {"asn-peer",     required_argument, 0, 1003},
+        {"zenoh-peer",   required_argument, 0, 1003},
         {"zenoh-router", required_argument, 0, 'z'},
         {"help",         no_argument,       0, 'h'},
         {"rtsp",         required_argument, 0, 'r'},
@@ -244,7 +245,11 @@ bool parse_options(int argc, char* argv[], Options& opts) {
             case 'g': opts.gpu_device   = std::stoi(optarg);        break;
             case 'V': opts.verbose      = true;                     break;
             case 'k': opts.cam_id       = optarg;                   break;
-            case 'z': opts.router_ip    = optarg; opts.use_zenoh = true;                   break;
+            case 1000: opts.node_id     = optarg;                   break;
+            case 1001: opts.use_zenoh   = true;                     break;
+            case 1002: opts.zenoh_listen = optarg; opts.use_zenoh = true; break;
+            case 1003: opts.asn_peer    = optarg; opts.use_zenoh = true; break;
+            case 'z': opts.router_ip    = optarg; opts.use_zenoh = true; break;
             case 'r': opts.mode = "rtsp";opts.device = optarg;      break;
             case 'h': print_usage(argv[0]); exit(0);
             default: break;
@@ -272,26 +277,10 @@ static std::vector<uchar> encode_jpeg(const cv::Mat& img, int quality = 80) {
     return buf;
 }
 
-/**
- * Publish raw bytes qua một Zenoh publisher.
- * Dùng z_bytes_copy_from_buf (không phải _from_str) để xử lý binary đúng.
- */
-static void zenoh_publish_bytes(z_owned_publisher_t& publisher,
-                                 const void* data, size_t size) {
-    z_owned_bytes_t z_payload;
-    z_bytes_copy_from_buf(&z_payload,
-                          reinterpret_cast<const uint8_t*>(data),
-                          size);
-    z_publisher_put(z_publisher_loan(&publisher),
-                    z_bytes_move(&z_payload), NULL);
-}
+static void publish_count_state(ZenohPublisher& zenoh, const Options& opts) {
+    if (!zenoh.enabled()) return;
 
-/**
- * Publish string (JSON metadata nhỏ) — wrapper tiện lợi.
- */
-static void zenoh_publish_str(z_owned_publisher_t& publisher,
-                               const std::string& str) {
-    zenoh_publish_bytes(publisher, str.data(), str.size());
+    zenoh.publish_count(opts.node_id, factory_in_count, factory_out_count);
 }
 
 /**
@@ -389,30 +378,6 @@ static std::string violation_types_json(int mask) {
 }
 
 
-
-// ============================================================================
-// Zenoh Publisher Setup
-// ============================================================================
-
-/**
- * Khai báo một publisher.
- * [FIX-3] Nhận const std::string& để tránh dangling pointer từ temporary.
- */
-static bool declare_publisher(z_owned_publisher_t& pub,
-                               const std::string& topic) {
-    z_view_keyexpr_t ke;
-    z_view_keyexpr_from_str(&ke, topic.c_str());
-    if (z_declare_publisher(z_session_loan(&z_session),
-                            &pub,
-                            z_view_keyexpr_loan(&ke), NULL) < 0) {
-        std::cerr << "[ERROR] Failed to declare publisher: " << topic << "\n";
-        return false;
-    }
-    std::cout << "[ZENOH] Publisher ready: " << topic << "\n";
-    return true;
-}
-
-// ============================================================================
 // Main Pipeline
 // ============================================================================
 
@@ -545,42 +510,15 @@ int run_inference_pipeline(const Options& opts) {
     // ------------------------------------------------------------------
     
     
-    if (opts.use_zenoh){
-      std::cout << "[INIT] Connecting Zenoh to " << opts.router_ip << "...\n";
-      z_owned_config_t z_cfg;
-      z_config_default(&z_cfg);
-      std::string ep = "tcp/" + opts.router_ip + ":7447";
-      zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_CONNECT_KEY, ep.c_str());
-      zp_config_insert(z_config_loan_mut(&z_cfg), Z_CONFIG_MODE_KEY,    "client");
-      if (z_open(&z_session, z_config_move(&z_cfg), NULL) < 0) {
-          std::cerr << "[FATAL] Zenoh connection failed to " << ep << "\n";
-          //return 1;
-      } 
-  
-      zp_start_read_task(z_session_loan_mut(&z_session), NULL);
-      zp_start_lease_task(z_session_loan_mut(&z_session), NULL);
-      std::cout << "[INIT] Zenoh session open.\n";
-    }
 
-
-
-    // ------------------------------------------------------------------
-    // 5. Declare publishers
-    //    [FIX-3] Lưu string vào biến cục bộ, không dùng temporary .c_str()
-    // ------------------------------------------------------------------
-    const std::string base        = "factory/" + opts.cam_id;
-    const std::string t_stats     = base + "/stats";
-    const std::string t_events    = base + "/events";
-    const std::string t_ev_image  = base + "/events/image";  // [FIX-2] topic riêng
-    const std::string t_image     = base + "/image";
-    const std::string t_count     = base + "/count";
-    if (opts.use_zenoh){
-            if (!declare_publisher(pub_stats,        t_stats))    return 1;
-            if (!declare_publisher(pub_events,       t_events))   return 1;
-            if (!declare_publisher(pub_events_image, t_ev_image)) return 1;  // [FIX-2]
-            if (!declare_publisher(pub_image,        t_image))    return 1;
-            if (!declare_publisher(pub_count,        t_count))    return 1;
-    }
+    ZenohPublisher zenoh;
+    ZenohConfig zenoh_cfg;
+    zenoh_cfg.enabled = opts.use_zenoh;
+    zenoh_cfg.cam_id = opts.cam_id;
+    zenoh_cfg.router_ip = opts.router_ip;
+    zenoh_cfg.p2p_listen = opts.zenoh_listen;
+    zenoh_cfg.asn_peer = opts.asn_peer;
+    if (!zenoh.initialize(zenoh_cfg)) return 1;
 
     // ------------------------------------------------------------------
     // 6. Tracker & ROI
@@ -773,10 +711,7 @@ int run_inference_pipeline(const Options& opts) {
                 if (!state.counted_in) {
                     ++factory_in_count;
                     state.counted_in = true;
-                    std::string val = std::to_string(factory_in_count);
-                            if (opts.use_zenoh){
-                        zenoh_publish_str(pub_count, val);
-                            }
+                    publish_count_state(zenoh, opts);
                     std::cout << "[COUNT] IN: " << factory_in_count << "\n";
                 }
             }
@@ -795,6 +730,7 @@ int run_inference_pipeline(const Options& opts) {
                 if (!state.counted_out) {
                     ++factory_out_count;
                     state.counted_out = true;
+                    publish_count_state(zenoh, opts);
                     std::cout << "[COUNT] OUT: " << factory_out_count << "\n";
                 }
             }
@@ -876,7 +812,7 @@ int run_inference_pipeline(const Options& opts) {
 
                     if (!cooldown_active) {
                     // [FIX-2] Metadata JSON — không nhúng ảnh vào đây
-                        if (opts.use_zenoh) {
+                        if (zenoh.enabled()) {
                             const int event_id = ++violation_event_count;
                             const auto event_ts = std::chrono::duration_cast<
                                 std::chrono::milliseconds>(
@@ -894,7 +830,7 @@ int run_inference_pipeline(const Options& opts) {
                                 ",\"snapshot_topic\":\"factory/" + opts.cam_id +
                                 "/events/image\""
                                 "}";
-                            zenoh_publish_str(pub_events, ev_json);
+                            zenoh.publish_event(ev_json);
                     }
 
                     // [FIX-2] Ảnh crop worker → topic riêng → raw JPEG
@@ -908,12 +844,11 @@ int run_inference_pipeline(const Options& opts) {
                     roi &= cv::Rect(0, 0, frame.width, frame.height);
 
                     auto jpeg = encode_jpeg(raw(roi), 75);
-                    if (!jpeg.empty() && opts.use_zenoh) {
+                    if (!jpeg.empty() && zenoh.enabled()) {
                         // Thêm worker ID vào topic để backend biết ảnh của ai
                         // factory/cam1/events/image  (backend dùng metadata từ
                         // /events để ghép, hoặc dùng Zenoh attachment nếu cần)
-                        zenoh_publish_bytes(pub_events_image,
-                                            jpeg.data(), jpeg.size());
+                        zenoh.publish_event_image(jpeg.data(), jpeg.size());
                         std::cout << "[ZENOH] Event image sent: "
                                   << jpeg.size() << " bytes (WK"
                                   << tid << ")\n";
@@ -954,7 +889,7 @@ int run_inference_pipeline(const Options& opts) {
                 ? 100.f
                 : (1.f - (float)current_violations
                          / (float)current_workers) * 100.f;
-            if (opts.use_zenoh){
+            if (zenoh.enabled()){
                     const auto stats_ts = std::chrono::duration_cast<
                         std::chrono::milliseconds>(
                         now.time_since_epoch()).count();
@@ -971,7 +906,7 @@ int run_inference_pipeline(const Options& opts) {
                         ",\"inference_ms\":" + std::to_string(rolling_inference_ms) +
                         ",\"event_count\":" + std::to_string(violation_event_count) +
                         "}";    
-                    zenoh_publish_str(pub_stats, s_json);
+                    zenoh.publish_stats(s_json);
                     std::cout << "[ZENOH] Stats: " << s_json << "\n";
             }
             last_stats_time = now;
@@ -990,8 +925,8 @@ int run_inference_pipeline(const Options& opts) {
             cv::Mat thumb;
             cv::resize(annotated, thumb, cv::Size(SNAPSHOT_WIDTH, SNAPSHOT_HEIGHT));
             auto jpeg = encode_jpeg(thumb, SNAPSHOT_QUALITY);
-            if (!jpeg.empty() && opts.use_zenoh) {
-                zenoh_publish_bytes(pub_image, jpeg.data(), jpeg.size());
+            if (!jpeg.empty() && zenoh.enabled()) {
+                zenoh.publish_snapshot(jpeg.data(), jpeg.size());
                 std::cout << "[ZENOH] Snapshot sent: "
                           << jpeg.size() << " bytes\n";
             }
@@ -1129,14 +1064,7 @@ int run_inference_pipeline(const Options& opts) {
     // 11. Cleanup
     // ------------------------------------------------------------------
     std::cout << "[SHUTDOWN] Cleaning up...\n";
-    if (opts.use_zenoh){
-            z_publisher_drop(z_publisher_move(&pub_stats));
-            z_publisher_drop(z_publisher_move(&pub_events));
-            z_publisher_drop(z_publisher_move(&pub_events_image));
-            z_publisher_drop(z_publisher_move(&pub_image));
-            z_publisher_drop(z_publisher_move(&pub_count));
-            z_session_drop(z_session_move(&z_session));
-    }
+    zenoh.shutdown();
     neon::cleanup_preprocess_buffers();
     std::cout << "[SHUTDOWN] Done.\n";
     
