@@ -24,8 +24,8 @@ namespace yolo {
 // Build Configuration Constants
 // ============================================================================
 
-constexpr int INPUT_WIDTH = 640;
-constexpr int INPUT_HEIGHT = 480;
+constexpr int INPUT_WIDTH = 1280; // Same with dataset resolution
+constexpr int INPUT_HEIGHT = 720;
 constexpr int MODEL_SIZE = 640; // 640 // 416 // Reduced from 640 for better FPS (was 480)
 constexpr int NUM_CLASSES = 7; // 7 // 80 // COCO dataset
 constexpr int NUM_OUTPUTS = 8400; // 8400 // 33600 // 3549 // YOLOv8 output anchors at 416x416
@@ -159,7 +159,8 @@ struct Object {
 struct GateROI {
     float x1 = 0.05f, y1 = 0.10f, x2 = 0.95f, y2 = 0.90f; 
     cv::Mat H; // Homography matrix 3x3 
-    float ground_crossing_line; // line counter on the floor coordination
+    float ground_crossing_line = 0.0f; // line counter on the floor coordination
+//    std::vector<cv::Point2f> ground_polygon; // ROI in BEV/ground-plane coordinates
 };
 
 // ============================================================================

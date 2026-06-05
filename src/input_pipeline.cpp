@@ -354,9 +354,9 @@ void InputPipeline::capture_loop_video(FrameCallback callback) {
         }
         
         // Resize if necessary (but keep BGR format!)
-//        if (bgr_frame.cols != config_.width || bgr_frame.rows != config_.height) {
-//            cv::resize(bgr_frame, bgr_frame, cv::Size(config_.width, config_.height));
-//        }
+        if (bgr_frame.cols != config_.width || bgr_frame.rows != config_.height) {
+            cv::resize(bgr_frame, bgr_frame, cv::Size(config_.width, config_.height));
+        }
 
         
         // OPTIMIZATION: Pass BGR directly - NO YUYV conversion!

@@ -173,9 +173,9 @@ struct Options {
     int         gpu_device         = 0;
     std::string cam_id             = "cam1";
     std::string node_id            = "gsn";
-    std::string router_ip          = "192.168.1.9";
+    std::string router_ip          = "192.168.1.6";
     std::string zenoh_listen       = "tcp/0.0.0.0:7448";
-    std::string asn_peer           = "tcp/192.168.1.197:7447";
+    std::string asn_peer           = "tcp/192.168.1.6:7447";
 };
 
 void print_usage(const char* program) {

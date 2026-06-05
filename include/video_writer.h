@@ -180,14 +180,14 @@ public:
         int r_line = static_cast<int>(roi.ground_crossing_line * frame.rows);
 
         // 1. Vẽ khung ROI (Màu Xanh Lam)
-        cv::rectangle(frame, cv::Point(rx1, ry1), cv::Point(rx2, ry2), cv::Scalar(255, 0, 0), 2);
+//        cv::rectangle(frame, cv::Point(rx1, ry1), cv::Point(rx2, ry2), cv::Scalar(255, 0, 0), 2);
         
         // 2. Vẽ đường ranh giới đếm người (Màu Vàng)
         cv::line(frame, cv::Point(rx1, r_line), cv::Point(rx2, r_line), cv::Scalar(0, 255, 255), 3);
         
-        // 3. Thêm nhãn nhãn vùng
-        cv::putText(frame, "PPE ROI & COUNTING LINE", cv::Point(rx1 + 5, ry1 - 10), 
-                    cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(255, 0, 0), 2);
+//        // 3. Thêm nhãn nhãn vùng
+//        cv::putText(frame, "COUNTING LINE", cv::Point(rx1 + 5, ry1 - 10), 
+//                    cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(255, 0, 0), 2);
     }
 };
 

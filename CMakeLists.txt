@@ -100,6 +100,7 @@ set(SOURCES
     src/inference_engine.cpp
     src/postprocess.cpp
     src/benchmark.cpp
+    src/zenoh_transport.cpp
 )
 
 # ByteTrack Core

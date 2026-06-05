@@ -20,7 +20,9 @@ BINARY="${BUILD_DIR}/yolo_inference"
 #VIDEO="${SCRIPT_DIR}/video/input/PPE_Part1.mp4"
 #VIDEO="${SCRIPT_DIR}/video/input/MOT17-02-SDP.mp4"
 #VIDEO="${SCRIPT_DIR}/video/input/192_168_2_202_seq_0.mp4"
-VIDEO="${SCRIPT_DIR}/video/input/gemini_1.mp4"
+#VIDEO="${SCRIPT_DIR}/video/input/kling-gemini-v2.mp4"
+VIDEO="${SCRIPT_DIR}/video/input/kling-gemini-loop.mp4"
+
 # =================================================================
 # MODEL PATHS (RESTORED TO ORIGINAL DEFAULT)
 # =================================================================
@@ -35,10 +37,11 @@ VIDEO="${SCRIPT_DIR}/video/input/gemini_1.mp4"
 #PARAM="${SCRIPT_DIR}/models/benchmarkYolov8n/ORI-FP32-model.ncnn.param"
 #BIN="${SCRIPT_DIR}/models/benchmarkYolov8n/ORI-FP32-model.ncnn.bin"
 
-PARAM="${SCRIPT_DIR}/models/kaggle/working/best_ncnn_model/model.ncnn.param"
-BIN="${SCRIPT_DIR}/models/kaggle/working/best_ncnn_model/model.ncnn.bin"
+PARAM="${SCRIPT_DIR}/models/best_ncnn_model/model.ncnn.param"
+BIN="${SCRIPT_DIR}/models//best_ncnn_model/model.ncnn.bin"
 
-
+#PARAM="${SCRIPT_DIR}/models/PPE_model/ori-640.ncnn.param"
+#BIN="${SCRIPT_DIR}/models/PPE_model/ori-640.ncnn.bin"
 
 # INT8 model paths
 PARAM_INT8="${SCRIPT_DIR}/models/PPE_model/khiem.int8.param"
@@ -70,6 +73,8 @@ ENABLE_FB=false
 ENABLE_VIDEO=false
 ENABLE_CAM=false
 ENABLE_RTSP=false      # <--- New Flag
+ENABLE_ZENOH=false     # <--- New Flag
+ROUTER_IP=""
 ENABLE_CLASS_FILTER=false
 ENABLE_INT8=false
 ENABLE_FP16=false
@@ -120,6 +125,16 @@ while [[ $# -gt 0 ]]; do
                 shift 2
             else
                 echo "Error: RTSP URL must start with 'rtsp://'"
+                exit 1
+            fi
+            ;;
+      router)
+	    ENABLE_ZENOH=true
+	    if [[ $# -gt 1 && "$2" == 192.168.1.* ]]; then
+                ROUTER_IP="$2"
+                shift 2
+            else
+                echo "Error: IP not match'"
                 exit 1
             fi
             ;;
@@ -209,6 +224,8 @@ else
 fi
 
 # Append other flags
+
+if [ "$ENABLE_ZENOH" = true ]; then ARGS+=("--zenoh-router" "${ROUTER_IP}"); MODE_DESC="${MODE_DESC}+ZENOH"; fi
 if [ "$ENABLE_INT8" = true ]; then ARGS+=("--int8"); MODE_DESC="${MODE_DESC}+INT8"; fi
 if [ "$ENABLE_FP16" = true ]; then MODE_DESC="${MODE_DESC}+FP16"; fi
 if [ "$ENABLE_VULKAN" = true ]; then ARGS+=("--vulkan"); MODE_DESC="${MODE_DESC}+Vulkan"; fi
